@@ -67,6 +67,22 @@ button:focus-visible {
   }
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  list-style: none;
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+}
+
 .properties li {
   list-style: none;
 }
@@ -74,6 +90,13 @@ button:focus-visible {
 .properties img {
   width: 100vw;
   height: auto;
+  border-radius: 5%;
+}
+
+.property img {
+  width: 100vw;
+  height: auto;
+  border-radius: 5%;
 }
 
 .host img {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchProperties } from "../api";
+import { fetchProperties } from "../../api";
 
 export default function ViewProperties() {
   const [properties, setProperties] = useState([]);
