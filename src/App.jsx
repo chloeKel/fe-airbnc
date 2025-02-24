@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+
 import Navbar from "./Components/Guest/Navbar";
 import ViewProperties from "./Components/Guest/ViewProperties";
 import ViewSingleProperty from "./Components/Guest/ViewSingleProperty";
