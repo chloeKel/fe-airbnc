@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchSingleProperty } from "../../api";
+import Reviews from "./Reviews";
 
 export default function ViewSingleProperty() {
   const { id } = useParams();
@@ -9,12 +10,12 @@ export default function ViewSingleProperty() {
   useEffect(() => {
     (async () => {
       const data = await fetchSingleProperty(id);
+      console.log("property data:", data);
       setProperty(data);
     })();
   }, [id]);
 
   const { images, property_id, property_name, favourite_count, location, description, price_per_night, host, host_avatar } = property;
-  console.log(images);
 
   return (
     <>
@@ -27,6 +28,7 @@ export default function ViewSingleProperty() {
           <p>{location}</p>
           <p>{description}</p>
         </li>
+        <Reviews id={id} />
       </ul>
       <ul className="host">
         <p>Hosted by {host}</p>

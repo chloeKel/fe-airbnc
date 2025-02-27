@@ -1,21 +1,26 @@
 import { useState } from "react";
 import SetPrice from "./SetPrice";
 import SetSort from "./SetSort";
+import SetOrder from "./SetOrder";
 
 export default function SortAndFilter() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(500);
-  // const [priceRange, setPriceRange] = useState([0, 50]);
-  const [sort, setSort] = useState("Most popular");
-  const [order, setOrder] = useState("");
+  const [sort, setSort] = useState("popularity");
+  const [order, setOrder] = useState("descending");
+  const [filtersClicked, setFiltersClicked] = useState(false);
 
-  console.log(sort);
   return (
-    <div>
-      <h3>Filters</h3>
-      <SetSort setSort={setSort} />
-      <SetPrice minPrice={minPrice} maxPrice={maxPrice} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} />
-      <button>Apply</button>
-    </div>
+    <>
+      <button onClick={() => setFiltersClicked((display) => !display)}>Filters</button>
+      {filtersClicked ? (
+        <div>
+          <SetSort setSort={setSort} />
+          <SetPrice minPrice={minPrice} maxPrice={maxPrice} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} />
+          <SetOrder setOrder={setOrder} />
+          <button>Apply</button>
+        </div>
+      ) : null}
+    </>
   );
 }
