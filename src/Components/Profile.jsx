@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../Contexts/User";
 import { fetchUser } from "../api";
 
-export default function Profile({ userId }) {
-  const { id: paramId } = useParams();
-  const [user, setUser] = useState({});
+export default function Profile({ host }) {
+  const { guest } = useContext(UserContext);
+  const [profile, setProfile] = useState({});
   const [canEdit, setCanEdit] = useState(false);
 
-  const id = userId || paramId;
+  const id = host || guest;
 
   useEffect(() => {
     (async () => {
       const { user } = await fetchUser(id);
-      setUser(user);
+      setProfile(user);
     })();
   }, [id]);
 
-  const { avatar, first_name, surname, email, phone_number } = user;
+  const { avatar, first_name, surname, email, phone_number } = profile;
 
   return (
     <div className="profile">

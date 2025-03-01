@@ -22,7 +22,7 @@ export default function PropertyListing() {
     <>
       <button onClick={() => setActiveTab("property")}>Property</button>
       <button onClick={() => setActiveTab("host")}>Host</button>
-      {activeTab === "property" ? <PropertyDetails property={property} id={id} /> : <Profile userId={hostId} />}
+      {activeTab === "property" ? <PropertyDetails property={property} id={id} /> : <Profile host={hostId} />}
     </>
   );
 }
