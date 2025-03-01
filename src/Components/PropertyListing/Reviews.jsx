@@ -5,24 +5,24 @@ export default function Reviews({ id }) {
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState("");
   const [reviewCount, setReviewCount] = useState(0);
-  const [reviewsClicked, setReviewsClicked] = useState(false);
+  const [activeReviews, setActiveReviews] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const data = await fetchReviews(id);
-      setReviews(data.reviews);
-      setRating(data.average_rating);
-      setReviewCount(data.reviews.length);
+      const { reviews, average_rating } = await fetchReviews(id);
+      setReviews(reviews);
+      setRating(average_rating);
+      setReviewCount(reviews.length);
     })();
   }, [id]);
 
-  const handleClick = () => setReviewsClicked((display) => !display);
+  const handleClick = () => setActiveReviews((display) => !display);
 
   return (
     <>
       <h3>{rating} stars</h3>
       {reviewCount === 1 ? <button onClick={handleClick}>{reviewCount} Review</button> : <button onClick={handleClick}>{reviewCount} Reviews</button>}
-      {reviewsClicked
+      {activeReviews
         ? reviews.map((review) => {
             const { review_id, rating, comment, guest, guest_avatar } = review;
             return (

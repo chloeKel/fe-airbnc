@@ -1,19 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { fetchProperties } from "../../api";
-import SortAndFilter from "./SortAndFilter/SortAndFilter";
+import SortAndFilter from "../SortAndFilter/SortAndFilter";
 
 export default function ViewProperties() {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const data = await fetchProperties();
-      setProperties(data);
+      const { properties } = await fetchProperties();
+      setProperties(properties);
     })();
   }, []);
-
-  console.log("properties:", properties);
 
   return (
     <>

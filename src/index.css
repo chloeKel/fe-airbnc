@@ -110,3 +110,9 @@ button:focus-visible {
   height: auto;
   border-radius: 50%;
 }
+
+.profile img {
+  width: 60vw;
+  height: auto;
+  border-radius: 5%;
+}
