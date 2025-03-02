@@ -1,4 +1,7 @@
-import { UserContext } from "./Contexts";
+import { useState } from "react";
+import { ErrorContext, UserContext } from "./Contexts";
+import { useNavigate } from "react-router-dom";
+import { PopUpContent, PopUpOverlay, PopUpButton } from "../Styling/PopUpStyles";
 
 export const UserProvider = ({ children }) => {
   return (
@@ -11,5 +14,34 @@ export const UserProvider = ({ children }) => {
     >
       {children}
     </UserContext.Provider>
+  );
+};
+
+export const ErrorProvider = ({ children }) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const [msg, setMsg] = useState(null);
+
+  return (
+    <ErrorContext.Provider value={{ setError, setMsg }}>
+      {children}
+      {error ? (
+        <>
+          <PopUpOverlay>
+            <PopUpContent>
+              <p>{msg}</p>
+              <PopUpButton
+                onClick={() => {
+                  navigate(-1);
+                  setError(null);
+                }}
+              >
+                Explore
+              </PopUpButton>
+            </PopUpContent>
+          </PopUpOverlay>
+        </>
+      ) : null}
+    </ErrorContext.Provider>
   );
 };

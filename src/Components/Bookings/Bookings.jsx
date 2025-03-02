@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../Contexts/Contexts";
+import { ErrorContext, UserContext } from "../../Contexts/Contexts";
 import { Link } from "react-router-dom";
 import { fetchBookings } from "../../api";
 import AmendBooking from "./AmendBooking";
@@ -7,16 +7,21 @@ import { formatDateString } from "../../utils";
 
 export default function Bookings() {
   const { id } = useContext(UserContext);
+  const { setError, setMsg } = useContext(ErrorContext);
   const [bookings, setBookings] = useState([]);
 
   const renderBookings = async () => {
-    const { bookings } = await fetchBookings(id);
-    setBookings(bookings);
+    try {
+      const { bookings } = await fetchBookings(id);
+      setBookings(bookings);
+    } catch (error) {
+      setError(error);
+    }
   };
 
   useEffect(() => {
     renderBookings();
-  }, []);
+  }, [setError]);
 
   return (
     <>
