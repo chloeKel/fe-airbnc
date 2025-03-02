@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Reviews from "./Reviews";
+import Reserve from "./Reserve";
 
 export default function PropertyDetails({ property, id }) {
-  const navigate = useNavigate();
-
+  const [reserveClicked, setReserveClicked] = useState(false);
   const { images, property_id, property_name, favourite_count, location, description } = property;
 
   return (
@@ -15,12 +15,13 @@ export default function PropertyDetails({ property, id }) {
           <p>Favourited by {favourite_count}</p>
           <p>{location}</p>
           <p>{description}</p>
+          <p>£{property.price_per_night} per night</p>
         </li>
       </ul>
       <Reviews id={id} />
       <div>
-        <p>£{property.price_per_night} per night</p>
-        <button onClick={() => navigate(`/property/${id}/reserve`)}>Reserve</button>
+        <button onClick={() => setReserveClicked((display) => !display)}>Reserve</button>
+        {reserveClicked ? <Reserve /> : null}
       </div>
     </>
   );

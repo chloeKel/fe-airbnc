@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { UserContext } from "../../Contexts/User";
+import { UserContext } from "../../Contexts/Contexts";
 
 export default function Navbar() {
-  const { guest } = useContext(UserContext);
+  const { id, name, avatar } = useContext(UserContext);
 
   return (
     <ul className="navbar">
@@ -11,13 +11,15 @@ export default function Navbar() {
         <Link to="/">Explore</Link>
       </li>
       <li>
-        <Link to={`/users/${guest}/bookings`}>Bookings</Link>
+        <Link to={`/users/${id}/bookings`}>Bookings</Link>
       </li>
       <li>
-        <Link to={`users/${guest}/favourites`}>Favourites</Link>
+        <Link to={`users/${id}/favourites`}>Favourites</Link>
       </li>
       <li>
-        <Link to={`/users/${guest}`}>Profile</Link>
+        <Link to={`/users/${id}`}>
+          Profile <img src={avatar} alt={name} />
+        </Link>
       </li>
     </ul>
   );

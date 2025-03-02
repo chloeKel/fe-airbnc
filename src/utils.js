@@ -8,3 +8,5 @@ export const futureDate = () => {
   future.setDate(current.getDate() + 7);
   return formatDate(future);
 };
+
+export const formatDateString = (date) => date.slice(0, 10);

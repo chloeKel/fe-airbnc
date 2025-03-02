@@ -1,39 +1,42 @@
 import { useState, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { UserContext } from "../../Contexts/User";
+import { UserContext } from "../../Contexts/Contexts";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { currentDate, futureDate } from "../../utils";
 import { postBooking } from "../../api";
+import { PopUpContent, PopUpOverlay, PopUpButton } from "../../Styling/PopUpStyles";
+import BookingForm from "../Bookings/BookingForm";
+import BookingConfirmation from "../Bookings/BookingConfirmation";
 
 export default function Reserve() {
   const navigate = useNavigate();
-  const { guest } = useContext(UserContext);
+  const { id: property } = useParams();
+  const { id: guest } = useContext(UserContext);
   const [checkIn, setCheckIn] = useState(currentDate());
   const [checkOut, setCheckOut] = useState(futureDate());
-  const { id } = useParams();
   const [booking, setBooking] = useState({});
   const [confirmed, setConfirmed] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await postBooking(guest, checkIn, checkOut, id);
-    setBooking(response);
+    const { data } = await postBooking(guest, checkIn, checkOut, property);
+    setBooking(data);
     setConfirmed(true);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <button onClick={() => navigate(-1)}>Back</button>
-        <label>
-          CHECK-IN
-          <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} />
-        </label>
-        <label>
-          CHECK-OUT
-          <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
-        </label>
-        <button type="submit">Continue</button>
-      </form>
+      <BookingForm handleSubmit={handleSubmit} checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
+
+      {confirmed ? (
+        <PopUpOverlay>
+          <PopUpContent>
+            <BookingConfirmation msg={booking.msg} checkIn={checkIn} checkOut={checkOut} />
+            <PopUpButton onClick={() => setConfirmed(false)}>Close</PopUpButton>
+            <PopUpButton onClick={() => navigate(`/users/${guest}/bookings`)}>View Bookings</PopUpButton>
+          </PopUpContent>
+        </PopUpOverlay>
+      ) : null}
     </>
   );
 }

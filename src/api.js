@@ -28,3 +28,21 @@ export const postBooking = async (guest, checkIn, checkOut, id) => {
   });
   return response;
 };
+
+export const fetchBookings = async (id) => {
+  const { data } = await axios.get(`https://airbnc-k7rs.onrender.com/api/users/${id}/bookings`);
+  return data;
+};
+
+export const patchBooking = async (id, checkIn, checkOut) => {
+  const response = axios.patch(`https://airbnc-k7rs.onrender.com/api/bookings/${id}`, {
+    check_in_date: checkIn,
+    check_out_date: checkOut,
+  });
+  return response;
+};
+
+export const deleteBooking = async (id) => {
+  const response = await axios.delete(`https://airbnc-k7rs.onrender.com/api/bookings/${id}`);
+  return response;
+};

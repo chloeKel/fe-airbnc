@@ -77,6 +77,12 @@ button:focus-visible {
   float: left;
 }
 
+.navbar li img {
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+}
+
 .navbar li a {
   display: block;
   text-align: center;
@@ -113,6 +119,12 @@ button:focus-visible {
 
 .profile img {
   width: 60vw;
+  height: auto;
+  border-radius: 5%;
+}
+
+.bookings img {
+  width: 100vw;
   height: auto;
   border-radius: 5%;
 }

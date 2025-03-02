@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../Contexts/User";
+import { UserContext } from "../Contexts/Contexts";
 import { fetchUser } from "../api";
 
-export default function Profile({ host }) {
-  const { guest } = useContext(UserContext);
+export default function Profile({ hostId }) {
+  const { id: userId } = useContext(UserContext);
   const [profile, setProfile] = useState({});
   const [canEdit, setCanEdit] = useState(false);
 
-  const id = host || guest;
+  const id = hostId || userId;
 
   useEffect(() => {
     (async () => {
