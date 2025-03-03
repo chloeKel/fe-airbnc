@@ -26,10 +26,10 @@ export default function ViewProperties() {
       <SortAndFilter />
       <ul className="properties">
         {properties.map((property) => {
-          const { property_id, property_name, location, price_per_night, image } = property;
+          const { property_id, property_name, location, price_per_night, images } = property;
           return (
             <li key={property_id}>
-              <img src={image} alt={property_name} />
+              <img src={images[0]} alt={property_name} />
               <Link to={`property/${property_id}`}>{property_name}</Link>
               <p>{location}</p>
               <p>£{price_per_night} per night</p>
