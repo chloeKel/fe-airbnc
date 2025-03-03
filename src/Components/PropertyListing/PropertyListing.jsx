@@ -1,10 +1,13 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { fetchSingleProperty } from "../../api";
+import { useState, useEffect, useContext } from "react";
+import { ErrorContext } from "../../Contexts/Contexts";
+import { setErrorMsg } from "../../Utils/setErrorMsg";
+import { fetchSingleProperty } from "../../Utils/api";
 import PropertyDetails from "./PropertyDetails";
 import Profile from "../Profile";
 
 export default function PropertyListing() {
+  const { setError } = useContext(ErrorContext);
   const { id } = useParams();
   const [property, setProperty] = useState({});
   const [hostId, setHostId] = useState(null);
@@ -12,9 +15,13 @@ export default function PropertyListing() {
 
   useEffect(() => {
     (async () => {
-      const { property } = await fetchSingleProperty(id);
-      setProperty(property);
-      setHostId(property.host_id);
+      try {
+        const { property } = await fetchSingleProperty(id);
+        setProperty(property);
+        setHostId(property.host_id);
+      } catch (error) {
+        setError(setErrorMsg(error.response));
+      }
     })();
   }, [id]);
 

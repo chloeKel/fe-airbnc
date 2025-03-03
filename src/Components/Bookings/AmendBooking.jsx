@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
-import { deleteBooking, patchBooking } from "../../api";
+import { useState, useContext } from "react";
+import { deleteBooking, patchBooking } from "../../Utils/api";
+import { ErrorContext } from "../../Contexts/Contexts";
+import { setErrorMsg } from "../../Utils/setErrorMsg";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
 import { PopUpOverlay, PopUpContent, PopUpButton } from "../../Styling/PopUpStyles";
 
 export default function AmendBooking({ prevCheckIn, prevCheckOut, id, renderBookings }) {
+  const { setError } = useContext(ErrorContext);
   const [display, setDisplay] = useState(false);
   const [status, setStatus] = useState(null);
   const [booking, setBooking] = useState({});
@@ -12,17 +15,25 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, id, renderBook
   const [checkOut, setCheckOut] = useState(prevCheckOut);
 
   const handleAmend = async (e) => {
-    e.preventDefault();
-    const response = await patchBooking(id, checkIn, checkOut);
-    setBooking(response);
-    setStatus("amended");
-    renderBookings();
+    try {
+      e.preventDefault();
+      const response = await patchBooking(id, checkIn, checkOut);
+      setBooking(response);
+      setStatus("amended");
+      renderBookings();
+    } catch (error) {
+      setError(setErrorMsg(error.response));
+    }
   };
 
   const handleDelete = async (e) => {
-    e.preventDefault();
-    const response = await deleteBooking(id);
-    setStatus("cancelled");
+    try {
+      e.preventDefault();
+      await deleteBooking(id);
+      setStatus("cancelled");
+    } catch (error) {
+      setError(setErrorMsg(error.response));
+    }
   };
 
   const handleState = (boolean, sts) => {

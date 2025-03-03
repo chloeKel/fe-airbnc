@@ -1,15 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { fetchProperties } from "../../api";
+import { ErrorContext } from "../../Contexts/Contexts";
+import { setErrorMsg } from "../../Utils/setErrorMsg";
+
+import { fetchProperties } from "../../Utils/api";
 import SortAndFilter from "../SortAndFilter/SortAndFilter";
 
 export default function ViewProperties() {
+  const { setError } = useContext(ErrorContext);
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const { properties } = await fetchProperties();
-      setProperties(properties);
+      try {
+        const { properties } = await fetchProperties();
+        setProperties(properties);
+      } catch (error) {
+        setError(setErrorMsg(error.response));
+      }
     })();
   }, []);
 

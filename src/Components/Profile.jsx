@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../Contexts/Contexts";
-import { fetchUser } from "../api";
+import { UserContext, ErrorContext } from "../Contexts/Contexts";
+import { setErrorMsg } from "../Utils/setErrorMsg";
+import { fetchUser } from "../Utils/api";
 
 export default function Profile({ hostId }) {
+  const { setError } = useContext(ErrorContext);
   const { id: userId } = useContext(UserContext);
   const [profile, setProfile] = useState({});
   const [canEdit, setCanEdit] = useState(false);
@@ -11,8 +13,12 @@ export default function Profile({ hostId }) {
 
   useEffect(() => {
     (async () => {
-      const { user } = await fetchUser(id);
-      setProfile(user);
+      try {
+        const { user } = await fetchUser(id);
+        setProfile(user);
+      } catch (error) {
+        setError(setErrorMsg(error.response));
+      }
     })();
   }, [id]);
 

@@ -1,27 +1,33 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../../Contexts/Contexts";
+import { UserContext, ErrorContext } from "../../Contexts/Contexts";
+import { setErrorMsg } from "../../Utils/setErrorMsg";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { currentDate, futureDate } from "../../utils";
-import { postBooking } from "../../api";
+import { currentDate, futureDate } from "../../Utils/utils";
+import { postBooking } from "../../Utils/api";
 import { PopUpContent, PopUpOverlay, PopUpButton } from "../../Styling/PopUpStyles";
 import BookingForm from "../Bookings/BookingForm";
 import BookingConfirmation from "../Bookings/BookingConfirmation";
 
 export default function Reserve() {
   const navigate = useNavigate();
-  const { id: property } = useParams();
+  const { setError } = useContext(ErrorContext);
   const { id: guest } = useContext(UserContext);
+  const { id: property } = useParams();
   const [checkIn, setCheckIn] = useState(currentDate());
   const [checkOut, setCheckOut] = useState(futureDate());
   const [booking, setBooking] = useState({});
   const [confirmed, setConfirmed] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { data } = await postBooking(guest, checkIn, checkOut, property);
-    setBooking(data);
-    setConfirmed(true);
+    try {
+      e.preventDefault();
+      const { data } = await postBooking(guest, checkIn, checkOut, property);
+      setBooking(data);
+      setConfirmed(true);
+    } catch (error) {
+      setError(setErrorMsg(error.response));
+    }
   };
 
   return (

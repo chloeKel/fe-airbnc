@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
-import { fetchReviews } from "../../api";
+import { useState, useEffect, useContext } from "react";
+import { ErrorContext } from "../../Contexts/Contexts";
+import { setErrorMsg } from "../../Utils/setErrorMsg";
+import { fetchReviews } from "../../Utils/api";
 
 export default function Reviews({ id }) {
+  const { setError } = useContext(ErrorContext);
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState("");
   const [reviewCount, setReviewCount] = useState(0);
@@ -9,10 +12,14 @@ export default function Reviews({ id }) {
 
   useEffect(() => {
     (async () => {
-      const { reviews, average_rating } = await fetchReviews(id);
-      setReviews(reviews);
-      setRating(average_rating);
-      setReviewCount(reviews.length);
+      try {
+        const { reviews, average_rating } = await fetchReviews(id);
+        setReviews(reviews);
+        setRating(average_rating);
+        setReviewCount(reviews.length);
+      } catch (error) {
+        setError(setErrorMsg(error.response));
+      }
     })();
   }, [id]);
 

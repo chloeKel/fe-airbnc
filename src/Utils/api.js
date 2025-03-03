@@ -30,12 +30,8 @@ export const postBooking = async (guest, checkIn, checkOut, id) => {
 };
 
 export const fetchBookings = async (id) => {
-  try {
-    const { data } = await axios.get(`https://airbnc-k7rs.onrender.com/api/users/${id}/bookings`);
-    return data;
-  } catch (error) {
-    throw Error(error);
-  }
+  const { data } = await axios.get(`https://airbnc-k7rs.onrender.com/api/users/${id}/bookings`);
+  return data;
 };
 
 export const patchBooking = async (id, checkIn, checkOut) => {
