@@ -3,7 +3,7 @@ import { UserContext, ErrorContext } from "../../Contexts/Contexts";
 import { setErrorMsg } from "../../Utils/setErrorMsg";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { currentDate, futureDate } from "../../Utils/utils";
+import { getCheckIn, getCheckOut } from "../../Utils/utils";
 import { postBooking } from "../../Utils/api";
 import { PopUpContent, PopUpOverlay, PopUpButton } from "../../Styling/PopUpStyles";
 import BookingForm from "../Bookings/BookingForm";
@@ -14,8 +14,8 @@ export default function Reserve() {
   const { setError } = useContext(ErrorContext);
   const { id: guest } = useContext(UserContext);
   const { id: property } = useParams();
-  const [checkIn, setCheckIn] = useState(currentDate());
-  const [checkOut, setCheckOut] = useState(futureDate());
+  const [checkIn, setCheckIn] = useState(getCheckIn());
+  const [checkOut, setCheckOut] = useState(getCheckOut(checkIn));
   const [booking, setBooking] = useState({});
   const [confirmed, setConfirmed] = useState(false);
 

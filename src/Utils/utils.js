@@ -1,12 +1,9 @@
-const formatDate = (date) => date.toISOString().slice(0, 10);
+export const getCheckIn = () => new Date().toISOString().slice(0, 10);
 
-export const currentDate = () => formatDate(new Date());
-
-export const futureDate = () => {
-  const current = new Date();
-  const future = new Date();
-  future.setDate(current.getDate() + 7);
-  return formatDate(future);
+export const getCheckOut = (checkIn) => {
+  const checkOut = new Date(checkIn);
+  checkOut.setDate(checkOut.getDate() + 7);
+  return checkOut.toISOString().slice(0, 10);
 };
 
 export const formatDateString = (date) => date.slice(0, 10);

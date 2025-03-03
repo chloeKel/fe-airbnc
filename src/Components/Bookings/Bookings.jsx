@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { ErrorContext, UserContext } from "../../Contexts/Contexts";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchBookings } from "../../Utils/api";
 import AmendBooking from "./AmendBooking";
 import { formatDateString } from "../../Utils/utils";
@@ -8,7 +8,6 @@ import { setErrorMsg } from "../../Utils/setErrorMsg";
 import DefaultContent from "../DefaultContent";
 
 export default function Bookings() {
-  const navigate = useNavigate();
   const { id } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const [bookings, setBookings] = useState([]);
