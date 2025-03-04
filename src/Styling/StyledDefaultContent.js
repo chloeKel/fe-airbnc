@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-export const CentralDiv = styled.div`
+export const StyledDefaultContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 100vh;
+  height: auto;
   width: 100%;
   box-sizing: border-box;
+  border-style: solid;
+  border-color: purple;
 `;

@@ -4,9 +4,10 @@ import { UserContext, ErrorContext } from "../../Contexts/Contexts";
 import { setErrorMsg } from "../../Utils/setErrorMsg";
 import { getCheckIn, getCheckOut } from "../../Utils/utils";
 import { postBooking } from "../../Utils/api";
-import { PopUpOverlay, PopUpContent, PopUpButton } from "../../Styling/PopUpStyles";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
+import { PopUpOverlay, PopUpContent } from "../../Styling/StyledPopUp";
+import { Button } from "../../Styling/StyledButton";
 
 export default function Reserve() {
   const navigate = useNavigate();
@@ -37,8 +38,8 @@ export default function Reserve() {
         <PopUpOverlay>
           <PopUpContent>
             <BookingConfirmation msg={booking.msg} checkIn={checkIn} checkOut={checkOut} />
-            <PopUpButton onClick={() => setConfirmed(false)}>Close</PopUpButton>
-            <PopUpButton onClick={() => navigate(`/users/${guest}/bookings`)}>View Bookings</PopUpButton>
+            <Button onClick={() => setConfirmed(false)}>Close</Button>
+            <Button onClick={() => navigate(`/users/${guest}/bookings`)}>View Bookings</Button>
           </PopUpContent>
         </PopUpOverlay>
       ) : null}

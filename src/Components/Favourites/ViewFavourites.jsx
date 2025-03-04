@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from "react";
-import { ErrorContext, UserContext } from "../Contexts/Contexts";
-import { setErrorMsg } from "../Utils/setErrorMsg";
-import { fetchFavourites, fetchSingleProperty } from "../Utils/api";
-import PropertyCards from "./ExplorePage/PropertyCards";
-import DefaultContent from "./DefaultContent";
+import { ErrorContext, UserContext } from "../../Contexts/Contexts";
+import { setErrorMsg } from "../../Utils/setErrorMsg";
+import { fetchFavourites } from "../../Utils/api";
+import PropertyCards from "../ExplorePage/PropertyCards";
+import DefaultContent from "../DefaultContent";
 
-export default function Favourites() {
+export default function ViewFavourites() {
   const { setError } = useContext(ErrorContext);
   const { id } = useContext(UserContext);
   const [properties, setProperties] = useState([]);

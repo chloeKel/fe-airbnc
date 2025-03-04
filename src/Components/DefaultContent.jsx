@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { CentralDiv } from "../Styling/CentralDiv";
 import { setDefaultText } from "../Utils/setDefaultText";
 import { useNavigate } from "react-router-dom";
+import { StyledDefaultContent } from "../Styling/StyledDefaultContent";
 
 export default function DefaultContent({ component }) {
   const navigate = useNavigate();
@@ -12,9 +12,9 @@ export default function DefaultContent({ component }) {
   }, [component]);
 
   return (
-    <CentralDiv>
+    <StyledDefaultContent>
       <p>{text}</p>
       <button onClick={() => navigate("/")}>Explore</button>
-    </CentralDiv>
+    </StyledDefaultContent>
   );
 }

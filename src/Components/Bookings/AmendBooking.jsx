@@ -4,7 +4,8 @@ import { ErrorContext } from "../../Contexts/Contexts";
 import { setErrorMsg } from "../../Utils/setErrorMsg";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
-import { PopUpOverlay, PopUpContent, PopUpButton } from "../../Styling/PopUpStyles";
+import { PopUpOverlay, PopUpContent } from "../../Styling/StyledPopUp";
+import { Button } from "../../Styling/StyledButton";
 
 export default function AmendBooking({ prevCheckIn, prevCheckOut, id, renderBookings }) {
   const { setError } = useContext(ErrorContext);
@@ -53,34 +54,34 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, id, renderBook
               <>
                 <h3>Amend booking</h3>
                 <BookingForm handleSubmit={handleAmend} checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
-                <PopUpButton onClick={() => handleState(false, null)}>Close</PopUpButton>
+                <Button onClick={() => handleState(false, null)}>Close</Button>
               </>
             ) : null}
             {status === "amended" ? (
               <>
                 <BookingConfirmation msg="Booking updated" checkIn={checkIn} checkOut={checkOut} />
-                <PopUpButton onClick={() => handleState(false, null)}>Close</PopUpButton>
+                <Button onClick={() => handleState(false, null)}>Close</Button>
               </>
             ) : null}
             {status === "cancel" ? (
               <>
                 <h3>Cancel Booking</h3>
                 <p>Are you sure you would like to cancel?</p>
-                <PopUpButton onClick={handleDelete}>Confirm</PopUpButton>
-                <PopUpButton onClick={() => handleState(false, null)}>Close</PopUpButton>
+                <Button onClick={handleDelete}>Confirm</Button>
+                <Button onClick={() => handleState(false, null)}>Close</Button>
               </>
             ) : null}
             {status === "cancelled" ? (
               <>
                 <p>Your booking has been cancelled</p>
-                <PopUpButton
+                <Button
                   onClick={() => {
                     handleState(false, null);
                     renderBookings();
                   }}
                 >
                   Close
-                </PopUpButton>
+                </Button>
               </>
             ) : null}
           </PopUpContent>

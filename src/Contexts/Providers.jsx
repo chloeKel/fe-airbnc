@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { ErrorContext, UserContext } from "./Contexts";
 import { useNavigate } from "react-router-dom";
-import { PopUpContent, PopUpOverlay, PopUpButton } from "../Styling/PopUpStyles";
+import { PopUpContent, PopUpOverlay } from "../Styling/StyledPopUp";
+import { Button } from "../Styling/StyledButton";
 
 export const UserProvider = ({ children }) => {
   return (
@@ -29,14 +30,14 @@ export const ErrorProvider = ({ children }) => {
           <PopUpOverlay>
             <PopUpContent>
               <p>{error.msg}</p>
-              <PopUpButton
+              <Button
                 onClick={() => {
                   setError(null);
                   navigate(-1);
                 }}
               >
                 Explore
-              </PopUpButton>
+              </Button>
             </PopUpContent>
           </PopUpOverlay>
         </>

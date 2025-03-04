@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Reviews from "./Reviews";
 import Reserve from "../Bookings/Reserve";
+import { PropertyCard, PropertyImage, PropertyList } from "../../Styling/StyledPropertyCard";
 
 export default function PropertyDetails({ property, id }) {
   const [reserveClicked, setReserveClicked] = useState(false);
@@ -8,16 +9,16 @@ export default function PropertyDetails({ property, id }) {
 
   return (
     <>
-      <ul className="property">
-        <li key={property_id}>
-          <img src={images} alt={property_name} />
+      <PropertyList>
+        <PropertyCard key={property_id}>
+          <PropertyImage src={images} alt={property_name} />
           <h3>{property_name}</h3>
           <p>Favourited by {favourite_count}</p>
           <p>{location}</p>
           <p>{description}</p>
           <p>£{price_per_night} per night</p>
-        </li>
-      </ul>
+        </PropertyCard>
+      </PropertyList>
       <Reviews id={id} />
       <div>
         <button onClick={() => setReserveClicked((display) => !display)}>Reserve</button>

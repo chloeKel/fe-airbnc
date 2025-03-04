@@ -4,7 +4,7 @@ import ViewProperties from "./Components/ExplorePage/ViewProperties";
 import PropertyListing from "./Components/PropertyListing/PropertyListing";
 import Profile from "./Components/Profile";
 import Bookings from "./Components/Bookings/Bookings";
-import Favourites from "./Components/Favourites";
+import ViewFavourites from "./Components/Favourites/ViewFavourites";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path={"/property/:id"} element={<PropertyListing />} />
         <Route path={"/users/:id"} element={<Profile />} />
         <Route path={"/users/:id/bookings"} element={<Bookings />} />
-        <Route path={"users/:id/favourites"} element={<Favourites />} />
+        <Route path={"users/:id/favourites"} element={<ViewFavourites />} />
       </Routes>
     </>
   );

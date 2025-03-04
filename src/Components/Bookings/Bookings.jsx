@@ -6,6 +6,7 @@ import AmendBooking from "./AmendBooking";
 import { formatDateString } from "../../Utils/utils";
 import { setErrorMsg } from "../../Utils/setErrorMsg";
 import DefaultContent from "../DefaultContent";
+import { PropertyCard, PropertyImage, PropertyList } from "../../Styling/StyledPropertyCard";
 
 export default function Bookings() {
   const { id } = useContext(UserContext);
@@ -32,14 +33,14 @@ export default function Bookings() {
       ) : (
         <>
           <h2>Your Bookings</h2>
-          <ul className="bookings">
+          <PropertyList>
             {bookings.map((booking, index) => {
               const { booking_id, image, check_in_date, check_out_date, property_id, property_name } = booking;
               const checkIn = formatDateString(check_in_date);
               const checkOut = formatDateString(check_out_date);
               return (
-                <li key={`${booking_id}-${index}`}>
-                  <img src={image} alt={property_name} />
+                <PropertyCard key={`${booking_id}-${index}`}>
+                  <PropertyImage src={image} alt={property_name} />
                   <h3>
                     <Link to={`/property/${property_id}`}>{property_name}</Link>
                   </h3>
@@ -47,10 +48,10 @@ export default function Bookings() {
                   <p>Check-in-date: {checkIn.split("-").reverse().join("-")}</p>
                   <p>Check-out-date: {checkOut.split("-").reverse().join("-")}</p>
                   <AmendBooking prevCheckIn={checkIn} prevCheckOut={checkOut} id={booking_id} renderBookings={renderBookings} />
-                </li>
+                </PropertyCard>
               );
             })}
-          </ul>
+          </PropertyList>
         </>
       )}
     </>

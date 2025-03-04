@@ -1,26 +1,27 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../Contexts/Contexts";
+import { StyledList, StyledNavigation } from "../../Styling/StyledNavigation";
 
 export default function Navbar() {
   const { id, name, avatar } = useContext(UserContext);
 
   return (
-    <ul className="navbar">
-      <li>
+    <StyledNavigation>
+      <StyledList>
         <Link to="/">Explore</Link>
-      </li>
-      <li>
+      </StyledList>
+      <StyledList>
         <Link to={`/users/${id}/bookings`}>Bookings</Link>
-      </li>
-      <li>
+      </StyledList>
+      <StyledList>
         <Link to={`users/${id}/favourites`}>Favourites</Link>
-      </li>
-      <li>
+      </StyledList>
+      <StyledList>
         <Link to={`/users/${id}`}>
-          Profile <img src={avatar} alt={name} />
+          <img src={avatar} alt={name} />
         </Link>
-      </li>
-    </ul>
+      </StyledList>
+    </StyledNavigation>
   );
 }

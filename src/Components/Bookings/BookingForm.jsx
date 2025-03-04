@@ -1,4 +1,4 @@
-import { PopUpButton } from "../../Styling/PopUpStyles";
+import { Button } from "../../Styling/StyledButton";
 import { getCheckOut } from "../../Utils/utils";
 
 export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckIn, setCheckOut }) {
@@ -19,7 +19,7 @@ export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckI
         CHECK-OUT
         <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
       </label>
-      <PopUpButton type="submit">Confirm</PopUpButton>
+      <Button type="submit">Confirm</Button>
     </form>
   );
 }
