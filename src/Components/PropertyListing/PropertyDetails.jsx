@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Reviews from "./Reviews";
-import Reserve from "./Reserve";
+import Reserve from "../Bookings/Reserve";
 
 export default function PropertyDetails({ property, id }) {
   const [reserveClicked, setReserveClicked] = useState(false);
-  const { images, property_id, property_name, favourite_count, location, description } = property;
+  const { images, property_id, property_name, favourite_count, location, description, price_per_night } = property;
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function PropertyDetails({ property, id }) {
           <p>Favourited by {favourite_count}</p>
           <p>{location}</p>
           <p>{description}</p>
-          <p>£{property.price_per_night} per night</p>
+          <p>£{price_per_night} per night</p>
         </li>
       </ul>
       <Reviews id={id} />

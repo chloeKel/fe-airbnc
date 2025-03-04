@@ -46,3 +46,8 @@ export const deleteBooking = async (id) => {
   const response = await axios.delete(`https://airbnc-k7rs.onrender.com/api/bookings/${id}`);
   return response;
 };
+
+export const fetchFavourites = async (id) => {
+  const { data } = await axios.get(`https://airbnc-k7rs.onrender.com/api/favourites/${id}`);
+  return data;
+};

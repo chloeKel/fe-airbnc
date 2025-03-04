@@ -1,13 +1,12 @@
 import { useState, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserContext, ErrorContext } from "../../Contexts/Contexts";
 import { setErrorMsg } from "../../Utils/setErrorMsg";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { getCheckIn, getCheckOut } from "../../Utils/utils";
 import { postBooking } from "../../Utils/api";
-import { PopUpContent, PopUpOverlay, PopUpButton } from "../../Styling/PopUpStyles";
-import BookingForm from "../Bookings/BookingForm";
-import BookingConfirmation from "../Bookings/BookingConfirmation";
+import { PopUpOverlay, PopUpContent, PopUpButton } from "../../Styling/PopUpStyles";
+import BookingForm from "./BookingForm";
+import BookingConfirmation from "./BookingConfirmation";
 
 export default function Reserve() {
   const navigate = useNavigate();
