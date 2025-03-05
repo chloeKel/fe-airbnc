@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { FavouriteButton } from "../../Styling/StyledPropertyCard";
 
-export default function Favourite({ favourited }) {
+export default function ToggleFavourite({ favourited }) {
   const [asset, setAsset] = useState("assets/blackHeart.svg");
 
   useEffect(() => {
