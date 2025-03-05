@@ -11,9 +11,7 @@ export default function useFavouritesRef() {
   useEffect(() => {
     (async () => {
       try {
-        console.log("useFavouritesRef is being envoked");
         const { favourites } = await fetchFavourites(id);
-        console.log("favourites:", favourites);
         const ref =
           favourites.length > 0
             ? favourites.reduce((acc, { property_id, favourite_id }) => {
@@ -22,7 +20,6 @@ export default function useFavouritesRef() {
               }, {})
             : [];
 
-        console.log("favouritesRef:", favouritesRef);
         setFavouritesRef(ref);
       } catch (error) {
         setError(setErrorMsg(error.response));
