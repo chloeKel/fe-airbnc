@@ -1,8 +1,40 @@
 import axios from "axios";
 
-export const fetchProperties = async () => {
-  const { data } = await axios.get("https://airbnc-k7rs.onrender.com/api/properties");
-  return data;
+export const fetchProperties = async (userId) => {
+  const {
+    data: { properties },
+  } = await axios.get("https://airbnc-k7rs.onrender.com/api/properties");
+
+  const propsWithFavourite = await Promise.all(
+    properties.map(async ({ property_id }) => {
+      const {
+        data: { property },
+      } = await axios.get(`https://airbnc-k7rs.onrender.com/api/properties/${property_id}?user_id=${userId}`);
+      return property;
+    })
+  );
+
+  const {
+    data: { favourites },
+  } = await axios.get(`https://airbnc-k7rs.onrender.com/api/favourites/${userId}`);
+
+  const favouritesRef =
+    favourites.length > 0
+      ? favourites.reduce((acc, { property_id, favourite_id }) => {
+          acc[property_id] = favourite_id;
+          return acc;
+        }, {})
+      : [];
+
+  const favouriteProperties = propsWithFavourite.map(({ property_id, ...rest }) => {
+    return {
+      ...rest,
+      property_id,
+      favourite_id: favouritesRef[property_id],
+    };
+  });
+
+  return favouriteProperties;
 };
 
 export const fetchSingleProperty = async (propertyId, userId = null) => {
@@ -55,13 +87,11 @@ export const fetchFavourites = async (id) => {
 };
 
 export const postFavourite = async (propertyId, guestId) => {
-  const response = await axios.post(`https://airbnc-k7rs.onrender.com/api/properties/${propertyId}/favourite`, {
+  await axios.post(`https://airbnc-k7rs.onrender.com/api/properties/${propertyId}/favourite`, {
     guest_id: guestId,
   });
-  return response;
 };
 
 export const deleteFavourite = async (id) => {
-  const response = await axios.delete(`https://airbnc-k7rs.onrender.com/api/favourites/${id}`);
-  return response;
+  await axios.delete(`https://airbnc-k7rs.onrender.com/api/favourites/${id}`);
 };

@@ -21,6 +21,8 @@ export const PropertyImage = styled.img`
 export const FavouriteButton = styled.button`
   background: ${({ $asset }) => `url(${$asset})`};
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 40px;
   height: 40px;
   border: none;
