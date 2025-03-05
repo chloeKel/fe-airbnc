@@ -5,6 +5,7 @@ import { PropertyCard, PropertyImage, PropertyList } from "../../Styling/StyledP
 
 export default function PropertyDetails({ property, id }) {
   const [reserveClicked, setReserveClicked] = useState(false);
+
   const { images, property_id, property_name, favourite_count, location, description, price_per_night } = property;
 
   return (

@@ -19,8 +19,6 @@ export const PropertyImage = styled.img`
 `;
 
 export const FavouriteButton = styled.button`
-  padding: 10px;
-  background-color: transparent;
   background: url("assets/blackHeart.svg") no-repeat center center;
   background-size: contain;
   width: 40px;

@@ -1,35 +1,11 @@
-import { useState, useEffect, useContext } from "react";
-import { ErrorContext, UserContext } from "../../Contexts/Contexts";
-import { setErrorMsg } from "../../Utils/setErrorMsg";
-import { fetchFavourites } from "../../Utils/api";
 import PropertyCards from "../ExplorePage/PropertyCards";
 import DefaultContent from "../DefaultContent";
+import useProperties from "../../CustomHooks/useProperties";
 
 export default function ViewFavourites() {
-  const { setError } = useContext(ErrorContext);
-  const { id } = useContext(UserContext);
-  const [properties, setProperties] = useState([]);
+  const { properties } = useProperties();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { favourites } = await fetchFavourites(id);
-        if (favourites.length > 0) {
-          const favouriteProperties = await Promise.all(
-            favourites.map(async ({ property_id }) => {
-              const { property } = await fetchSingleProperty(property_id);
-              return property;
-            })
-          );
-          setProperties(favouriteProperties);
-        } else {
-          setProperties([]);
-        }
-      } catch (error) {
-        setError(setErrorMsg(error.response));
-      }
-    })();
-  }, []);
+  const favourites = properties.filter(({ favourited }) => favourited);
 
-  return <>{properties.length > 0 ? <PropertyCards properties={properties} /> : <DefaultContent component="favourites" />}</>;
+  return <>{favourites.length > 0 ? <PropertyCards properties={favourites} /> : <DefaultContent component="favourites" />}</>;
 }

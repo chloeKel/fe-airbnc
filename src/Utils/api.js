@@ -5,8 +5,10 @@ export const fetchProperties = async () => {
   return data;
 };
 
-export const fetchSingleProperty = async (id) => {
-  const { data } = await axios.get(`https://airbnc-k7rs.onrender.com/api/properties/${id}`);
+export const fetchSingleProperty = async (propertyId, userId = null) => {
+  let request = `https://airbnc-k7rs.onrender.com/api/properties/${propertyId}`;
+  if (userId) request += `?user_id=${userId}`;
+  const { data } = await axios.get(request);
   return data;
 };
 
@@ -50,4 +52,16 @@ export const deleteBooking = async (id) => {
 export const fetchFavourites = async (id) => {
   const { data } = await axios.get(`https://airbnc-k7rs.onrender.com/api/favourites/${id}`);
   return data;
+};
+
+export const postFavourite = async (propertyId, guestId) => {
+  const response = await axios.post(`https://airbnc-k7rs.onrender.com/api/properties/${propertyId}/favourite`, {
+    guest_id: guestId,
+  });
+  return response;
+};
+
+export const deleteFavourite = async (id) => {
+  const response = await axios.delete(`https://airbnc-k7rs.onrender.com/api/favourites/${id}`);
+  return response;
 };
