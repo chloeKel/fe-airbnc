@@ -24,7 +24,7 @@ export default function Bookings() {
 
   useEffect(() => {
     renderBookings();
-  }, [setError]);
+  }, []);
 
   return (
     <>

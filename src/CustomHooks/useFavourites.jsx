@@ -1,10 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { ErrorContext, UserContext } from "../Contexts/Contexts";
 import { setErrorMsg } from "../Utils/setErrorMsg";
-import { fetchFavourites } from "../Utils/api";
-import useProperties from "./useProperties";
+import { deleteFavourite, fetchFavourites, postFavourite } from "../Utils/api";
 
-export default function useFavourites() {
+export function useFavourites() {
   const { id } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const [favouritesRef, setFavouritesRef] = useState({});
@@ -15,11 +14,9 @@ export default function useFavourites() {
         const { favourites } = await fetchFavourites(id);
         const ref =
           favourites.length > 0
-            ? favourites.map(({ property_id, favourite_id }) => {
-                return {
-                  [property_id]: favourite_id,
-                };
-              })
+            ? favourites.reduce((acc, { property_id, favourite_id }) => {
+                return { ...acc, [property_id]: favourite_id };
+              }, {})
             : [];
         setFavouritesRef(ref);
       } catch (error) {
@@ -29,4 +26,26 @@ export default function useFavourites() {
   }, []);
 
   return { favouritesRef };
+}
+
+export function useFavouriteButton() {
+  const { setError } = useContext(ErrorContext);
+
+  const addFavourite = async (propertyId, userId) => {
+    try {
+      await postFavourite(propertyId, userId);
+    } catch (error) {
+      setError(setErrorMsg(error.response));
+    }
+  };
+
+  const removeFavourite = async (favouriteId) => {
+    try {
+      await deleteFavourite(favouriteId);
+    } catch (error) {
+      setError(setErrorMsg(error.response));
+    }
+  };
+
+  return { addFavourite, removeFavourite };
 }

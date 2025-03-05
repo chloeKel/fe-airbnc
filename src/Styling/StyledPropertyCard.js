@@ -19,7 +19,7 @@ export const PropertyImage = styled.img`
 `;
 
 export const FavouriteButton = styled.button`
-  background: url("assets/blackHeart.svg") no-repeat center center;
+  background: ${({ $asset }) => `url(${$asset})`};
   background-size: contain;
   width: 40px;
   height: 40px;
