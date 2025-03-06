@@ -15,7 +15,7 @@ export const PropertyCard = styled.li`
 export const PropertyImage = styled.img`
   width: 90vw;
   height: auto;
-  border-radius: 5%;
+  border-radius: 10px;
 `;
 
 export const FavouriteButton = styled.button`
