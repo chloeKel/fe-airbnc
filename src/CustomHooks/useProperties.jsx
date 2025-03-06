@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { ErrorContext, UserContext } from "../Contexts/Contexts";
-import { setErrorMsg } from "../Utils/setErrorMsg";
+import setErrorMsg from "../Utils/setErrorMsg";
 import { fetchProperties } from "../Utils/api";
 
 export default function useProperties() {

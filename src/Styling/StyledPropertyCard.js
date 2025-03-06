@@ -23,6 +23,8 @@ export const FavouriteButton = styled.button`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: transparent !important;
+  outline: none;
   width: 40px;
   height: 40px;
   border: none;
@@ -32,8 +34,10 @@ export const FavouriteButton = styled.button`
   border-style: solid;
   border-color: orange;
 
-  &:hover {
-    opacity: 1;
+  &:active,
+  &: focus {
+    background-color: transparent !important;
+    box-shadow: none;
   }
 
   &:disabled {

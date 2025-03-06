@@ -13,7 +13,7 @@ export default function PropertyCards({ properties }) {
             <Link to={`property/${property_id}`}>{property_name}</Link>
             <p>{location}</p>
             <p>£{price_per_night} per night</p>
-            <ToggleFavourite favourited={favourited} propertyId={property_id} favouriteId={favourite_id} />
+            <ToggleFavourite favouritedStatus={favourited} propertyId={property_id} favouriteId={favourite_id} />
           </PropertyCard>
         );
       })}

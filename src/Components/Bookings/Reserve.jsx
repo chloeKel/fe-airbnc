@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext, ErrorContext } from "../../Contexts/Contexts";
-import { setErrorMsg } from "../../Utils/setErrorMsg";
+import setErrorMsg from "../../Utils/setErrorMsg";
 import { getCheckIn, getCheckOut } from "../../Utils/utils";
 import { postBooking } from "../../Utils/api";
 import BookingForm from "./BookingForm";

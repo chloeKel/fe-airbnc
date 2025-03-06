@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext, ErrorContext } from "../Contexts/Contexts";
-import { setErrorMsg } from "../Utils/setErrorMsg";
+import setErrorMsg from "../Utils/setErrorMsg";
 import { fetchUser } from "../Utils/api";
 
 export default function Profile({ hostId }) {

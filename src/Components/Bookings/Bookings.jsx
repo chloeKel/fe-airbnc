@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { fetchBookings } from "../../Utils/api";
 import AmendBooking from "./AmendBooking";
 import { formatDateString } from "../../Utils/utils";
-import { setErrorMsg } from "../../Utils/setErrorMsg";
+import setErrorMsg from "../../Utils/setErrorMsg";
 import DefaultContent from "../DefaultContent";
 import { PropertyCard, PropertyImage, PropertyList } from "../../Styling/StyledPropertyCard";
 

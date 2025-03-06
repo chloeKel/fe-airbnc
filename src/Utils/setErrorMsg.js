@@ -1,4 +1,4 @@
-export const setErrorMsg = (error) => {
+export default function setErrorMsg(error) {
   return {
     status: error.status,
     msg: error.data.msg
@@ -20,4 +20,4 @@ export const setErrorMsg = (error) => {
           }
         })(),
   };
-};
+}

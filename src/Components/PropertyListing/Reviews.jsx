@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { ErrorContext } from "../../Contexts/Contexts";
-import { setErrorMsg } from "../../Utils/setErrorMsg";
+import setErrorMsg from "../../Utils/setErrorMsg";
 import { fetchReviews } from "../../Utils/api";
 
 export default function Reviews({ id }) {

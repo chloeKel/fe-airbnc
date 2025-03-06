@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { deleteBooking, patchBooking } from "../../Utils/api";
 import { ErrorContext } from "../../Contexts/Contexts";
-import { setErrorMsg } from "../../Utils/setErrorMsg";
+import setErrorMsg from "../../Utils/setErrorMsg";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
 import { PopUpOverlay, PopUpContent } from "../../Styling/StyledPopUp";
