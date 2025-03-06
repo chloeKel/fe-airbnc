@@ -11,7 +11,7 @@ export default function ToggleFavourite({ favouritedStatus, propertyId, favourit
 
   const [optimisticFavourite, setOptimisticFavourite] = useOptimistic(favourited, (currentStatus) => !currentStatus);
 
-  const asset = optimisticFavourite ? "assets/redPinkHeart.svg" : "assets/blackHeart.svg";
+  const asset = optimisticFavourite ? "assets/highContrastPinkHeart.svg" : "assets/blackHeart.svg";
 
   const handleClick = async () => {
     startTransition(() => {

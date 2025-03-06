@@ -31,17 +31,4 @@ export const FavouriteButton = styled.button`
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.3s ease;
-  border-style: solid;
-  border-color: orange;
-
-  &:active,
-  &: focus {
-    background-color: transparent !important;
-    box-shadow: none;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
 `;
