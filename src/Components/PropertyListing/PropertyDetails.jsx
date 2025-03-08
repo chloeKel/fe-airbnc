@@ -1,9 +1,10 @@
 import { useState } from "react";
-import Reviews from "./Reviews";
+import Reviews from "../Reviews/Reviews";
 import Reserve from "../Bookings/Reserve";
 import { PropertyCard, PropertyImage, PropertyList } from "../../Styling/StyledPropertyCard";
 
 export default function PropertyDetails({ property, id }) {
+  console.log("id in propertydetails:", id);
   const [reserveClicked, setReserveClicked] = useState(false);
 
   const { images, property_id, property_name, favourite_count, location, description, price_per_night } = property;

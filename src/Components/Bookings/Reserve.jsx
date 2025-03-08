@@ -1,8 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext, ErrorContext } from "../../Contexts/Contexts";
-import setErrorMsg from "../../Utils/setErrorMsg";
-import { getCheckIn, getCheckOut } from "../../Utils/utils";
+import { getTodaysDate, getCheckOut } from "../../Utils/utils";
 import { postBooking } from "../../Utils/api";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
@@ -12,9 +11,9 @@ import { Button } from "../../Styling/StyledButton";
 export default function Reserve() {
   const navigate = useNavigate();
   const { setError } = useContext(ErrorContext);
-  const { id: guest } = useContext(UserContext);
-  const { id: property } = useParams();
-  const [checkIn, setCheckIn] = useState(getCheckIn());
+  const { userId } = useContext(UserContext);
+  const { id: propertyId } = useParams();
+  const [checkIn, setCheckIn] = useState(getTodaysDate());
   const [checkOut, setCheckOut] = useState(getCheckOut(checkIn));
   const [booking, setBooking] = useState({});
   const [confirmed, setConfirmed] = useState(false);
@@ -22,11 +21,12 @@ export default function Reserve() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const { data } = await postBooking(guest, checkIn, checkOut, property);
+      const { data } = await postBooking(userId, checkIn, checkOut, propertyId);
       setBooking(data);
       setConfirmed(true);
     } catch (error) {
-      setError(setErrorMsg(error.response));
+      console.log("error captured in error Reserve:", error);
+      setError(error);
     }
   };
 
@@ -39,7 +39,7 @@ export default function Reserve() {
           <PopUpContent>
             <BookingConfirmation msg={booking.msg} checkIn={checkIn} checkOut={checkOut} />
             <Button onClick={() => setConfirmed(false)}>Close</Button>
-            <Button onClick={() => navigate(`/users/${guest}/bookings`)}>View Bookings</Button>
+            <Button onClick={() => navigate(`/users/${userId}/bookings`)}>View Bookings</Button>
           </PopUpContent>
         </PopUpOverlay>
       ) : null}

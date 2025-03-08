@@ -1,13 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext, ErrorContext } from "../Contexts/Contexts";
-import setErrorMsg from "../Utils/setErrorMsg";
 import { fetchUser } from "../Utils/api";
 
 export default function Profile({ hostId }) {
   const { setError } = useContext(ErrorContext);
-  const { id: userId } = useContext(UserContext);
-  const [profile, setProfile] = useState({});
-  const [canEdit, setCanEdit] = useState(false);
+  const { userId } = useContext(UserContext);
+  const [user, setUser] = useState({});
 
   const id = hostId || userId;
 
@@ -15,23 +13,21 @@ export default function Profile({ hostId }) {
     (async () => {
       try {
         const { user } = await fetchUser(id);
-        setProfile(user);
+        setUser(user);
       } catch (error) {
-        setError(setErrorMsg(error.response));
+        setError(error);
       }
     })();
   }, [id]);
 
-  const { avatar, first_name, surname, email, phone_number } = profile;
-
   return (
     <div className="profile">
       <h3>About</h3>
-      <img src={avatar} alt={`${first_name} ${surname}`} />
-      <p>First name: {first_name}</p>
-      <p>Surname: {surname}</p>
-      <p>Email: {email}</p>
-      <p>Phone number: {phone_number}</p>
+      <img src={user.avatar} alt={`${user.first_name} ${user.surname}`} />
+      <p>First name: {user.first_name}</p>
+      <p>Surname: {user.surname}</p>
+      <p>Email: {user.email}</p>
+      <p>Phone number: {user.phone_number}</p>
     </div>
   );
 }

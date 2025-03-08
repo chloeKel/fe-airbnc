@@ -1,9 +1,11 @@
 import axios from "axios";
 
 export const fetchProperties = async (userId) => {
+  console.log("userId in fetchProperties:", userId);
   const {
     data: { properties },
   } = await axios.get("https://airbnc-k7rs.onrender.com/api/properties");
+  console.log("fetchProps properties:", properties);
 
   const propsWithFavourite = await Promise.all(
     properties.map(async ({ property_id }) => {
@@ -14,9 +16,12 @@ export const fetchProperties = async (userId) => {
     })
   );
 
+  console.log("fetchProps propsWithFavourite:", propsWithFavourite);
+
   const {
     data: { favourites },
   } = await axios.get(`https://airbnc-k7rs.onrender.com/api/favourites/${userId}`);
+  console.log("fetchProps favourites:", favourites);
 
   const favouritesRef =
     favourites.length > 0
@@ -25,6 +30,7 @@ export const fetchProperties = async (userId) => {
           return acc;
         }, {})
       : [];
+  console.log("fetchProps favouritesRef:", favouritesRef);
 
   const favouriteProperties = propsWithFavourite.map(({ property_id, ...rest }) => {
     return {
@@ -33,6 +39,8 @@ export const fetchProperties = async (userId) => {
       favourite_id: favouritesRef[property_id],
     };
   });
+
+  console.log("fetchProps favouriteProperties:", favouriteProperties);
 
   return favouriteProperties;
 };

@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ErrorContext, UserContext } from "./Contexts";
+import ErrorPopUp from "../Components/ErrorPopUp";
 import { useNavigate } from "react-router-dom";
-import { PopUpContent, PopUpOverlay } from "../Styling/StyledPopUp";
-import { Button } from "../Styling/StyledButton";
 
 export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        id: 1,
-        name: "Alice Johnson",
+        userId: 8,
+        name: "Sophia Bennett",
         avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       }}
     >
@@ -21,27 +20,17 @@ export const UserProvider = ({ children }) => {
 export const ErrorProvider = ({ children }) => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const [redirect, setRedirect] = useState(false);
+
+  const handleCloseError = () => {
+    setError(null);
+    if (redirect) navigate(-1);
+  };
 
   return (
-    <ErrorContext.Provider value={{ setError }}>
+    <ErrorContext.Provider value={{ setError, setRedirect }}>
       {children}
-      {error ? (
-        <>
-          <PopUpOverlay>
-            <PopUpContent>
-              <p>{error.msg}</p>
-              <Button
-                onClick={() => {
-                  setError(null);
-                  navigate(-1);
-                }}
-              >
-                Explore
-              </Button>
-            </PopUpContent>
-          </PopUpOverlay>
-        </>
-      ) : null}
+      {error ? <ErrorPopUp error={error} redirect={redirect} handleCloseError={handleCloseError} /> : null}
     </ErrorContext.Provider>
   );
 };

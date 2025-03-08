@@ -1,19 +1,13 @@
-import { useState, useEffect } from "react";
-import { setDefaultText } from "../Utils/setDefaultText";
 import { useNavigate } from "react-router-dom";
 import { StyledDefaultContent } from "../Styling/StyledDefaultContent";
+import setDefaultContent from "../Utils/setDefaultContent";
 
 export default function DefaultContent({ component }) {
   const navigate = useNavigate();
-  const [text, setText] = useState("");
-
-  useEffect(() => {
-    setText(setDefaultText(component));
-  }, [component]);
 
   return (
     <StyledDefaultContent>
-      <p>{text}</p>
+      <p>{setDefaultContent(component)}</p>
       <button onClick={() => navigate("/")}>Explore</button>
     </StyledDefaultContent>
   );

@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from "react";
 import { ErrorContext } from "../Contexts/Contexts";
-import setErrorMsg from "../Utils/setErrorMsg";
 import { fetchSingleProperty } from "../Utils/api";
 
 export default function useSingleProperty(id) {
@@ -15,7 +14,8 @@ export default function useSingleProperty(id) {
         setProperty(property);
         setHostId(property.host_id);
       } catch (error) {
-        setError(setErrorMsg(error.response));
+        console.log("error captured in useSingleProperty:", error);
+        setError(error);
       }
     })();
   }, []);

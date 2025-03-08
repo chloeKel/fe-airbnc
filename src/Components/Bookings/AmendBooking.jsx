@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { deleteBooking, patchBooking } from "../../Utils/api";
 import { ErrorContext } from "../../Contexts/Contexts";
-import setErrorMsg from "../../Utils/setErrorMsg";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
 import { PopUpOverlay, PopUpContent } from "../../Styling/StyledPopUp";
@@ -11,19 +10,18 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, id, renderBook
   const { setError } = useContext(ErrorContext);
   const [display, setDisplay] = useState(false);
   const [status, setStatus] = useState(null);
-  const [booking, setBooking] = useState({});
   const [checkIn, setCheckIn] = useState(prevCheckIn);
   const [checkOut, setCheckOut] = useState(prevCheckOut);
 
   const handleAmend = async (e) => {
     try {
       e.preventDefault();
-      const response = await patchBooking(id, checkIn, checkOut);
-      setBooking(response);
+      await patchBooking(id, checkIn, checkOut);
       setStatus("amended");
       renderBookings();
     } catch (error) {
-      setError(setErrorMsg(error.response));
+      console.log("error captured in handle AmendBooking:", error);
+      setError(error);
     }
   };
 
@@ -33,7 +31,8 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, id, renderBook
       await deleteBooking(id);
       setStatus("cancelled");
     } catch (error) {
-      setError(setErrorMsg(error.response));
+      console.log("error captured in handleDeleteBooking:", error);
+      setError(error);
     }
   };
 

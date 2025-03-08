@@ -1,10 +1,10 @@
-export default function SetOrder() {
+export default function SetOrder({ setOrder }) {
   return (
     <div>
-      <button value="ascending" onClick={(e) => setSort(e.target.value)}>
+      <button value="ascending" onClick={(e) => setOrder(e.target.value)}>
         Lowest price first
       </button>
-      <button value="descending" onClick={(e) => setSort(e.target.value)}>
+      <button value="descending" onClick={(e) => setOrder(e.target.value)}>
         Highest price first
       </button>
     </div>

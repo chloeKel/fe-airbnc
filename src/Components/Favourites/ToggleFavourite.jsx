@@ -1,36 +1,30 @@
-import { useState, useContext, useOptimistic, startTransition } from "react";
+import { useState, useContext } from "react";
 import { UserContext, ErrorContext } from "../../Contexts/Contexts";
-import setErrorMsg from "../../Utils/setErrorMsg";
 import { FavouriteButton } from "../../Styling/StyledPropertyCard";
 import { postFavourite, deleteFavourite } from "../../Utils/api";
 
 export default function ToggleFavourite({ favouritedStatus, propertyId, favouriteId }) {
-  const { id: userId } = useContext(UserContext);
+  const { userId } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const [favourited, setFavourited] = useState(favouritedStatus);
 
-  const [optimisticFavourite, setOptimisticFavourite] = useOptimistic(favourited, (currentStatus) => !currentStatus);
+  const asset = favourited ? "assets/highContrastPinkHeart.svg" : "assets/blackHeart.svg";
 
-  const asset = optimisticFavourite ? "assets/highContrastPinkHeart.svg" : "assets/blackHeart.svg";
-
-  const handleClick = async () => {
-    startTransition(() => {
-      setOptimisticFavourite();
-    });
+  const handleClick = async (favourited) => {
+    setFavourited((prevState) => !prevState);
 
     try {
       if (favourited) {
         await deleteFavourite(favouriteId);
-        setFavourited(false);
       } else {
         await postFavourite(propertyId, userId);
-        setFavourited(true);
       }
     } catch (error) {
-      setError(setErrorMsg(error.response));
-      setOptimisticFavourite();
+      setFavourited((prevState) => !prevState);
+      console.log("error captured in ToggleFavourite:", error);
+      setError(error);
     }
   };
 
-  return <FavouriteButton $asset={asset} onClick={handleClick} />;
+  return <FavouriteButton $asset={asset} onClick={() => handleClick(favourited)} />;
 }

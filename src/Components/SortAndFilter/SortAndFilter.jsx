@@ -10,6 +10,9 @@ export default function SortAndFilter() {
   const [order, setOrder] = useState("descending");
   const [filtersClicked, setFiltersClicked] = useState(false);
 
+  console.log(sort);
+  console.log(order);
+
   return (
     <>
       <button onClick={() => setFiltersClicked((display) => !display)}>Filters</button>

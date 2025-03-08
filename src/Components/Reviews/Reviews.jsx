@@ -1,27 +1,9 @@
-import { useState, useEffect, useContext } from "react";
-import { ErrorContext } from "../../Contexts/Contexts";
-import setErrorMsg from "../../Utils/setErrorMsg";
-import { fetchReviews } from "../../Utils/api";
+import { useState } from "react";
+import useReviews from "../../CustomHooks/useReviews";
 
 export default function Reviews({ id }) {
-  const { setError } = useContext(ErrorContext);
-  const [reviews, setReviews] = useState([]);
-  const [rating, setRating] = useState("");
-  const [reviewCount, setReviewCount] = useState(0);
+  const { reviews, rating, reviewCount } = useReviews(id);
   const [activeReviews, setActiveReviews] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { reviews, average_rating } = await fetchReviews(id);
-        setReviews(reviews);
-        setRating(average_rating);
-        setReviewCount(reviews.length);
-      } catch (error) {
-        setError(setErrorMsg(error.response));
-      }
-    })();
-  }, [id]);
 
   const handleClick = () => setActiveReviews((display) => !display);
 
