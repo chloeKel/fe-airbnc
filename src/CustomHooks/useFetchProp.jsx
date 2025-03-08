@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useContext, useCallback } from "react";
+import { useContext, useCallback } from "react";
 import { ErrorContext } from "../Contexts/Contexts";
 
 export default function useFetchProp() {
@@ -10,7 +10,9 @@ export default function useFetchProp() {
       try {
         let endpoint = `https://airbnc-k7rs.onrender.com/api/properties/${propertyId}`;
         if (userId) endpoint += `?user_id=${userId}`;
-        const { data: property } = await axios.get(endpoint);
+        const {
+          data: { property },
+        } = await axios.get(endpoint);
         return property;
       } catch (error) {
         setError(error);

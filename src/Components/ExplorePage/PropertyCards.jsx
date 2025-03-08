@@ -4,7 +4,6 @@ import ToggleFavourite from "../Favourites/ToggleFavourite";
 import AverageRating from "../Reviews/AverageRating";
 
 export default function PropertyCards({ properties }) {
-  console.log("propertyCards properties:", properties);
   return (
     <PropertyList>
       {properties.map((property, index) => {

@@ -7,7 +7,6 @@ import { useFavesRef } from "./useFavesRequests";
 export default function useRefinedProps(userId) {
   const { setError } = useContext(ErrorContext);
   const { favouritesRef } = useFavesRef(userId);
-  console.log("refinedProps favRef:", favouritesRef);
   const { fetchProp } = useFetchProp();
   const [data, setData] = useState([]);
 
@@ -29,8 +28,6 @@ export default function useRefinedProps(userId) {
       }
     })();
   }, [fetchProp, userId, setError]);
-
-  console.log("propswithfavespecs:", data);
 
   const refinedProps = useMemo(() => {
     return data.map(({ property_id, ...rest }) => {
