@@ -5,7 +5,7 @@ import BookingConfirmation from "./BookingConfirmation";
 import { PopUpOverlay, PopUpContent } from "../../Styling/StyledPopUp";
 import { Button } from "../../Styling/StyledButton";
 
-export default function AmendBooking({ prevCheckIn, prevCheckOut, userId, fetchBookings }) {
+export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, refreshBookings }) {
   const { patchBooking, deleteBooking } = useBookingRequests();
   const [display, setDisplay] = useState(false);
   const [status, setStatus] = useState(null);
@@ -14,14 +14,14 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, userId, fetchB
 
   const handleAmend = async (e) => {
     e.preventDefault();
-    await patchBooking(userId, checkIn, checkOut);
+    await patchBooking(bookingId, checkIn, checkOut);
     setStatus("amended");
-    await fetchBookings(userId);
+    refreshBookings();
   };
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    await deleteBooking(userId);
+    await deleteBooking(bookingId);
     setStatus("cancelled");
   };
 
@@ -65,7 +65,7 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, userId, fetchB
                 <Button
                   onClick={() => {
                     handleState(false, null);
-                    fetchBookings(userId);
+                    // refreshBookings();
                   }}
                 >
                   Close

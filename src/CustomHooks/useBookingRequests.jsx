@@ -5,19 +5,16 @@ import { ErrorContext } from "../Contexts/Contexts";
 export default function useBookingRequests() {
   const { setError } = useContext(ErrorContext);
 
-  const fetchBookings = useCallback(
-    async (userId) => {
-      try {
-        const {
-          data: { bookings },
-        } = await axios.get(`https://airbnc-k7rs.onrender.com/api/users/${userId}/bookings`);
-        return bookings;
-      } catch (error) {
-        setError(error);
-      }
-    },
-    [setError]
-  );
+  const fetchBookings = async (userId) => {
+    try {
+      const {
+        data: { bookings },
+      } = await axios.get(`https://airbnc-k7rs.onrender.com/api/users/${userId}/bookings`);
+      return bookings;
+    } catch (error) {
+      setError(error);
+    }
+  };
 
   const postBooking = useCallback(
     async (userId, checkIn, checkOut, propertyId) => {

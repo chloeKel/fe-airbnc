@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
 export const ErrorProvider = ({ children }) => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(true);
 
   const handleCloseError = () => {
     setError(null);
