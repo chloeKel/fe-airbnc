@@ -3,7 +3,6 @@ import { PopUpOverlay, PopUpContent } from "../Styling/StyledPopUp";
 import { Button } from "../Styling/StyledButton";
 
 export default function ErrorPopUp({ error, redirect, handleCloseError }) {
-  console.log(handleCloseError);
   return (
     <>
       {error ? (

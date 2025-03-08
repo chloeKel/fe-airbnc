@@ -1,30 +1,21 @@
-import { useState, useEffect, useContext, useCallback } from "react";
-import { ErrorContext, UserContext } from "../../Contexts/Contexts";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../Contexts/Contexts";
 import { Link } from "react-router-dom";
-import { formatDateString } from "../../Utils/utils";
-import { fetchBookings } from "../../Utils/api";
+import useBookingRequests from "../../CustomHooks/useBookingRequests";
 import AmendBooking from "./AmendBooking";
+import { formatDateString } from "../../Utils/utils";
 import DefaultContent from "../DefaultContent";
 import { PropertyCard, PropertyImage, PropertyList } from "../../Styling/StyledPropertyCard";
 
 export default function Bookings() {
   const { userId } = useContext(UserContext);
-  const { setError } = useContext(ErrorContext);
+  const { fetchBookings } = useBookingRequests();
   const [bookings, setBookings] = useState([]);
 
-  const renderBookings = useCallback(async () => {
-    try {
-      const { bookings } = await fetchBookings(userId);
-      setBookings(bookings);
-    } catch (error) {
-      console.log("error captured in Bookings:", error);
-      setError(error);
-    }
-  }, []);
-
   useEffect(() => {
-    renderBookings();
-  }, [renderBookings]);
+    const data = fetchBookings(userId);
+    setBookings(data);
+  }, [fetchBookings, userId]);
 
   return (
     <>
@@ -47,7 +38,7 @@ export default function Bookings() {
                   <p>Booking reference: {booking_userId}</p>
                   <p>Check-in-date: {checkIn.split("-").reverse().join("-")}</p>
                   <p>Check-out-date: {checkOut.split("-").reverse().join("-")}</p>
-                  <AmendBooking prevCheckIn={checkIn} prevCheckOut={checkOut} userId={booking_userId} renderBookings={renderBookings} />
+                  <AmendBooking prevCheckIn={checkIn} prevCheckOut={checkOut} userId={booking_userId} fetchBookings={fetchBookings} />
                 </PropertyCard>
               );
             })}

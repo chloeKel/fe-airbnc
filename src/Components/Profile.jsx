@@ -1,24 +1,14 @@
-import { useState, useEffect, useContext } from "react";
-import { UserContext, ErrorContext } from "../Contexts/Contexts";
-import { fetchUser } from "../Utils/api";
+import { useEffect, useContext } from "react";
+import { UserContext } from "../Contexts/Contexts";
 
 export default function Profile({ hostId }) {
-  const { setError } = useContext(ErrorContext);
-  const { userId } = useContext(UserContext);
-  const [user, setUser] = useState({});
+  const { userId, setUserId, user } = useContext(UserContext);
 
   const id = hostId || userId;
 
   useEffect(() => {
-    (async () => {
-      try {
-        const { user } = await fetchUser(id);
-        setUser(user);
-      } catch (error) {
-        setError(error);
-      }
-    })();
-  }, [id]);
+    setUserId(id);
+  }, [setUserId, id]);
 
   return (
     <div className="profile">

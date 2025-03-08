@@ -1,20 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { ErrorContext, UserContext } from "./Contexts";
 import ErrorPopUp from "../Components/ErrorPopUp";
 import { useNavigate } from "react-router-dom";
+import useFetchUser from "../CustomHooks/useFetchUser";
 
 export const UserProvider = ({ children }) => {
-  return (
-    <UserContext.Provider
-      value={{
-        userId: 8,
-        name: "Sophia Bennett",
-        avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      }}
-    >
-      {children}
-    </UserContext.Provider>
+  const { fetchUser } = useFetchUser();
+  const [user, setUser] = useState({});
+  const [userId, setUserId] = useState(8);
+
+  useEffect(() => {
+    (async () => {
+      const user = await fetchUser(userId);
+      setUser(user);
+    })();
+  }, [fetchUser, userId]);
+
+  const contextValue = useMemo(
+    () => ({
+      user,
+      userId,
+      setUserId,
+    }),
+    [user, userId]
   );
+
+  return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
 };
 
 export const ErrorProvider = ({ children }) => {
@@ -27,8 +38,16 @@ export const ErrorProvider = ({ children }) => {
     if (redirect) navigate(-1);
   };
 
+  const contextValue = useMemo(
+    () => ({
+      setError,
+      setRedirect,
+    }),
+    []
+  );
+
   return (
-    <ErrorContext.Provider value={{ setError, setRedirect }}>
+    <ErrorContext.Provider value={contextValue}>
       {children}
       {error ? <ErrorPopUp error={error} redirect={redirect} handleCloseError={handleCloseError} /> : null}
     </ErrorContext.Provider>

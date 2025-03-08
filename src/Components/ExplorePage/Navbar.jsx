@@ -4,7 +4,7 @@ import { UserContext } from "../../Contexts/Contexts";
 import { StyledList, StyledNavigation } from "../../Styling/StyledNavigation";
 
 export default function Navbar() {
-  const { userId, name, avatar } = useContext(UserContext);
+  const { userId, user } = useContext(UserContext);
 
   return (
     <StyledNavigation>
@@ -19,7 +19,7 @@ export default function Navbar() {
       </StyledList>
       <StyledList>
         <Link to={`/users/${userId}`}>
-          <img src={avatar} alt={name} />
+          <img src={user.avatar} alt={`${user.first_name} ${user.surname}`} />
         </Link>
       </StyledList>
     </StyledNavigation>

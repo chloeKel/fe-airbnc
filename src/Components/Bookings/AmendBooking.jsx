@@ -1,39 +1,28 @@
-import { useState, useContext } from "react";
-import { deleteBooking, patchBooking } from "../../Utils/api";
-import { ErrorContext } from "../../Contexts/Contexts";
+import { useState } from "react";
+import useBookingRequests from "../../CustomHooks/useBookingRequests";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
 import { PopUpOverlay, PopUpContent } from "../../Styling/StyledPopUp";
 import { Button } from "../../Styling/StyledButton";
 
-export default function AmendBooking({ prevCheckIn, prevCheckOut, id, renderBookings }) {
-  const { setError } = useContext(ErrorContext);
+export default function AmendBooking({ prevCheckIn, prevCheckOut, userId, fetchBookings }) {
+  const { patchBooking, deleteBooking } = useBookingRequests();
   const [display, setDisplay] = useState(false);
   const [status, setStatus] = useState(null);
   const [checkIn, setCheckIn] = useState(prevCheckIn);
   const [checkOut, setCheckOut] = useState(prevCheckOut);
 
   const handleAmend = async (e) => {
-    try {
-      e.preventDefault();
-      await patchBooking(id, checkIn, checkOut);
-      setStatus("amended");
-      renderBookings();
-    } catch (error) {
-      console.log("error captured in handle AmendBooking:", error);
-      setError(error);
-    }
+    e.preventDefault();
+    await patchBooking(userId, checkIn, checkOut);
+    setStatus("amended");
+    await fetchBookings(userId);
   };
 
   const handleDelete = async (e) => {
-    try {
-      e.preventDefault();
-      await deleteBooking(id);
-      setStatus("cancelled");
-    } catch (error) {
-      console.log("error captured in handleDeleteBooking:", error);
-      setError(error);
-    }
+    e.preventDefault();
+    await deleteBooking(userId);
+    setStatus("cancelled");
   };
 
   const handleState = (boolean, sts) => {
@@ -76,7 +65,7 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, id, renderBook
                 <Button
                   onClick={() => {
                     handleState(false, null);
-                    renderBookings();
+                    fetchBookings(userId);
                   }}
                 >
                   Close

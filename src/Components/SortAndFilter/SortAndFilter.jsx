@@ -10,17 +10,14 @@ export default function SortAndFilter() {
   const [order, setOrder] = useState("descending");
   const [filtersClicked, setFiltersClicked] = useState(false);
 
-  console.log(sort);
-  console.log(order);
-
   return (
     <>
       <button onClick={() => setFiltersClicked((display) => !display)}>Filters</button>
       {filtersClicked ? (
         <div>
-          <SetSort setSort={setSort} />
+          <SetSort sort={sort} setSort={setSort} />
           <SetPrice minPrice={minPrice} maxPrice={maxPrice} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} />
-          <SetOrder setOrder={setOrder} />
+          <SetOrder order={order} setOrder={setOrder} />
           <button>Apply</button>
         </div>
       ) : null}

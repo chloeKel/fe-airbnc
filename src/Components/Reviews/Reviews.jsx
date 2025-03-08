@@ -1,8 +1,8 @@
 import { useState } from "react";
-import useReviews from "../../CustomHooks/useReviews";
+import useFetchReviews from "../../CustomHooks/useFetchReviews";
 
-export default function Reviews({ id }) {
-  const { reviews, rating, reviewCount } = useReviews(id);
+export default function Reviews({ propertyId }) {
+  const { reviews, rating } = useFetchReviews(propertyId);
   const [activeReviews, setActiveReviews] = useState(false);
 
   const handleClick = () => setActiveReviews((display) => !display);
@@ -10,7 +10,7 @@ export default function Reviews({ id }) {
   return (
     <>
       <h3>{rating} stars</h3>
-      {reviewCount === 1 ? <button onClick={handleClick}>{reviewCount} Review</button> : <button onClick={handleClick}>{reviewCount} Reviews</button>}
+      {reviews.length === 1 ? <button onClick={handleClick}>{reviews.length} Review</button> : <button onClick={handleClick}>{reviews.length} Reviews</button>}
       {activeReviews
         ? reviews.map((review) => {
             const { review_id, rating, comment, guest, guest_avatar } = review;

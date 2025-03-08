@@ -4,6 +4,7 @@ import ToggleFavourite from "../Favourites/ToggleFavourite";
 import AverageRating from "../Reviews/AverageRating";
 
 export default function PropertyCards({ properties }) {
+  console.log("propertyCards properties:", properties);
   return (
     <PropertyList>
       {properties.map((property, index) => {
@@ -12,7 +13,7 @@ export default function PropertyCards({ properties }) {
           <PropertyCard key={`${property_id}-${index}`}>
             <PropertyImage src={images[0]} alt={property_name} />
             <Link to={`property/${property_id}`}>{property_name}</Link>
-            <AverageRating id={property_id} />
+            <AverageRating propertyId={property_id} />
             <p>{location}</p>
             <p>£{price_per_night} per night</p>
             <ToggleFavourite favouritedStatus={favourited} propertyId={property_id} favouriteId={favourite_id} />

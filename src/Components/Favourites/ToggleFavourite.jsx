@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
 import { UserContext, ErrorContext } from "../../Contexts/Contexts";
 import { FavouriteButton } from "../../Styling/StyledPropertyCard";
-import { postFavourite, deleteFavourite } from "../../Utils/api";
+import { useFavesRequests } from "../../CustomHooks/useFavesRequests";
 
 export default function ToggleFavourite({ favouritedStatus, propertyId, favouriteId }) {
   const { userId } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { postFavourite, deleteFavourite } = useFavesRequests();
   const [favourited, setFavourited] = useState(favouritedStatus);
 
   const asset = favourited ? "assets/highContrastPinkHeart.svg" : "assets/blackHeart.svg";
@@ -21,7 +22,6 @@ export default function ToggleFavourite({ favouritedStatus, propertyId, favourit
       }
     } catch (error) {
       setFavourited((prevState) => !prevState);
-      console.log("error captured in ToggleFavourite:", error);
       setError(error);
     }
   };
