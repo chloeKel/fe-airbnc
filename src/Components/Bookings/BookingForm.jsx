@@ -1,16 +1,7 @@
-import { useContext } from "react";
 import { Button } from "../../Styling/StyledButton";
-import { getTodaysDate, getCheckOut } from "../../Utils/utils";
-import { ErrorContext } from "../../Contexts/Contexts";
+import { getCheckOut } from "../../Utils/utils";
 
 export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckIn, setCheckOut }) {
-  const { error } = useContext(ErrorContext);
-
-  if (error) {
-    setCheckIn(getTodaysDate());
-    setCheckOut(checkIn);
-  }
-
   return (
     <form onSubmit={handleSubmit}>
       <label>

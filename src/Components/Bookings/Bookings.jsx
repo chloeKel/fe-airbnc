@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext, useCallback } from "react";
-import { UserContext, ErrorContext } from "../../Contexts/Contexts";
+import { useState, useEffect } from "react";
+import { useUserContext } from "../../Contexts/Contexts";
 import { Link } from "react-router-dom";
 import useBookingRequests from "../../CustomHooks/useBookingRequests";
 import AmendBooking from "./AmendBooking";
@@ -8,24 +8,20 @@ import DefaultContent from "../DefaultContent";
 import { PropertyCard, PropertyImage, PropertyList } from "../../Styling/StyledPropertyCard";
 
 export default function Bookings() {
-  const { setRedirect } = useContext(ErrorContext);
-  const { userId } = useContext(UserContext);
+  const { userId } = useUserContext();
   const { fetchBookings } = useBookingRequests();
   const [bookings, setBookings] = useState([]);
 
-  const refreshBookings = useCallback(async () => {
-    const data = await fetchBookings(userId);
-    setBookings(data);
-  }, [fetchBookings, userId]);
-
   useEffect(() => {
-    setRedirect(false);
-    refreshBookings();
-  }, [setRedirect, refreshBookings]);
+    (async () => {
+      const data = await fetchBookings(userId);
+      setBookings(data);
+    })();
+  }, [fetchBookings, userId]);
 
   return (
     <>
-      {bookings.length < 1 ? (
+      {bookings.length === 0 ? (
         <DefaultContent component="bookings" />
       ) : (
         <>
@@ -44,7 +40,7 @@ export default function Bookings() {
                   <p>Booking reference: {booking_id}</p>
                   <p>Check-in-date: {checkIn.split("-").reverse().join("-")}</p>
                   <p>Check-out-date: {checkOut.split("-").reverse().join("-")}</p>
-                  <AmendBooking prevCheckIn={checkIn} prevCheckOut={checkOut} bookingId={booking_id} refreshBookings={refreshBookings} />
+                  <AmendBooking prevCheckIn={checkIn} prevCheckOut={checkOut} bookingId={booking_id} />
                 </PropertyCard>
               );
             })}

@@ -1,4 +1,4 @@
-export default function useErrorMsg(error) {
+export default function setErrorMsg(error) {
   switch (error.status) {
     case 400:
       return "Oops, something's off with your request! Let's try a different method to find your getaway! 🔐🏝️";

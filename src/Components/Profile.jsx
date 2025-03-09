@@ -1,8 +1,8 @@
-import { useEffect, useContext } from "react";
-import { UserContext } from "../Contexts/Contexts";
+import { useEffect } from "react";
+import { useUserContext } from "../Contexts/Contexts";
 
 export default function Profile({ hostId }) {
-  const { userId, setUserId, user } = useContext(UserContext);
+  const { userId, setUserId, user } = useUserContext();
 
   const id = hostId || userId;
 

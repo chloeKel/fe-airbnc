@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
-import { ErrorContext } from "../Contexts/Contexts";
+import { useState, useEffect } from "react";
+import { useErrorContext } from "../Contexts/Contexts";
 
 export default function useFetchReviews(propertyId) {
-  const { setError } = useContext(ErrorContext);
+  const { setError } = useErrorContext();
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState("");
 

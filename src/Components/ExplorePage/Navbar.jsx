@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../Contexts/Contexts";
+import { useUserContext } from "../../Contexts/Contexts";
 import { StyledList, StyledNavigation } from "../../Styling/StyledNavigation";
 
 export default function Navbar() {
-  const { userId, user } = useContext(UserContext);
+  const { userId, user } = useUserContext();
 
   return (
     <StyledNavigation>

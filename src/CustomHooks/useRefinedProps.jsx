@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useState, useEffect, useContext, useMemo } from "react";
-import { ErrorContext } from "../Contexts/Contexts";
+import { useState, useEffect, useMemo } from "react";
+import { useErrorContext } from "../Contexts/Contexts";
 import useFetchProp from "./useFetchProp";
 import { useFavesRef } from "./useFavesRequests";
 
 export default function useRefinedProps(userId) {
-  const { setError } = useContext(ErrorContext);
+  const { setError } = useErrorContext();
   const { favouritesRef } = useFavesRef(userId);
   const { fetchProp } = useFetchProp();
   const [data, setData] = useState([]);

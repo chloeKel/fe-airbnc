@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useState, useEffect, useContext, useCallback } from "react";
-import { ErrorContext } from "../Contexts/Contexts";
+import { useState, useEffect, useCallback } from "react";
+import { useErrorContext } from "../Contexts/Contexts";
 
 export function useFavesRef(userId) {
-  const { setError } = useContext(ErrorContext);
+  const { setError } = useErrorContext();
   const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export function useFavesRef(userId) {
 }
 
 export function useFavesRequests() {
-  const { setError } = useContext(ErrorContext);
+  const { setError } = useErrorContext();
 
   const postFavourite = useCallback(
     async (propertyId, userId) => {

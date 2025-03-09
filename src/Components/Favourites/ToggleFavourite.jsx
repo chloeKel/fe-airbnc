@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
-import { UserContext, ErrorContext } from "../../Contexts/Contexts";
+import { useState } from "react";
+import { useUserContext, useErrorContext } from "../../Contexts/Contexts";
 import { FavouriteButton } from "../../Styling/StyledPropertyCard";
 import { useFavesRequests } from "../../CustomHooks/useFavesRequests";
 
 export default function ToggleFavourite({ favouritedStatus, propertyId, favouriteId }) {
-  const { userId } = useContext(UserContext);
-  const { setError } = useContext(ErrorContext);
+  const { userId } = useUserContext();
+  const { setError } = useErrorContext();
   const { postFavourite, deleteFavourite } = useFavesRequests();
   const [favourited, setFavourited] = useState(favouritedStatus);
 

@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useContext, useCallback } from "react";
-import { ErrorContext } from "../Contexts/Contexts";
+import { useCallback } from "react";
+import { useErrorContext } from "../Contexts/Contexts";
 
 export default function useFetchUser() {
-  const { setError } = useContext(ErrorContext);
+  const { setError } = useErrorContext();
 
   const fetchUser = useCallback(
     async (userId) => {
