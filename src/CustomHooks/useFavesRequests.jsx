@@ -19,15 +19,7 @@ export function useFavesRef(userId) {
     })();
   }, [userId, setError]);
 
-  const favouritesRef =
-    favourites.length > 0
-      ? favourites.reduce((acc, { property_id, favourite_id }) => {
-          acc[property_id] = favourite_id;
-          return acc;
-        }, {})
-      : [];
-
-  return { favouritesRef };
+  return { favourites };
 }
 
 export function useFavesRequests() {

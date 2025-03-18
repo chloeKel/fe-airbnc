@@ -5,7 +5,7 @@ import useBookingRequests from "../../CustomHooks/useBookingRequests";
 import { getTodaysDate, getCheckOut } from "../../Utils/utils";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
-import { Button } from "../../Styling/StyledButton";
+import { StyledButton } from "../../Styling/StyledButton";
 
 export default function Reserve() {
   const navigate = useNavigate();
@@ -24,15 +24,15 @@ export default function Reserve() {
     openModal(
       <>
         <BookingConfirmation msg={booking.msg} checkIn={checkIn} checkOut={checkOut} />
-        <Button onClick={closeModal}>Close</Button>
-        <Button
+        <StyledButton onClick={closeModal}>Close</StyledButton>
+        <StyledButton
           onClick={() => {
             navigate(`/users/${userId}/bookings`);
             closeModal();
           }}
         >
           View Bookings
-        </Button>
+        </StyledButton>
       </>
     );
   };

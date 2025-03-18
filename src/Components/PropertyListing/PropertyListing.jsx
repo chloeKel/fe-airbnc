@@ -1,27 +1,42 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useUserContext } from "../../Contexts/Contexts";
 import useFetchProp from "../../CustomHooks/useFetchProp";
-import PropertyDetails from "./PropertyDetails";
-import Profile from "../Profile";
+import useFetchUser from "../../CustomHooks/useFetchUser";
+import AverageRating from "../Reviews/AverageRating";
+import Reviews from "../Reviews/Reviews";
+import Host from "../Host";
+import Reserve from "../Bookings/Reserve";
+import Carousel from "../Carousel";
+import { StyledPropContainer, StyledStatsDiv } from "../../Styling/PropListingStyle";
+import { StyledButton } from "../../Styling/StyledButton";
 
 export default function PropertyListing() {
+  const { userId } = useUserContext();
   const { id: propertyId } = useParams();
-  const { fetchProp } = useFetchProp();
-  const [property, setProperty] = useState({});
-  const [activeTab, setActiveTab] = useState("property");
+  const { prop } = useFetchProp(userId, propertyId);
+  const { user } = useFetchUser(prop.host_id);
+  const [reserveClicked, setReserveClicked] = useState(false);
 
-  useEffect(() => {
-    (async () => {
-      const prop = await fetchProp(propertyId);
-      setProperty(prop);
-    })();
-  }, [fetchProp, propertyId]);
+  console.log("prop:", prop);
 
   return (
-    <>
-      <button onClick={() => setActiveTab("property")}>Property</button>
-      <button onClick={() => setActiveTab("host")}>Host</button>
-      {activeTab === "property" ? <PropertyDetails property={property} /> : <Profile hostId={property.host_id} />}
-    </>
+    <StyledPropContainer key={prop.property_id}>
+      <Carousel images={prop.images} name={prop.name} favourite={prop.favourited} propertyId={prop.property_id} favouriteId={prop.favourite_id} />
+      <StyledStatsDiv>
+        <AverageRating avgRating={prop.average_rating} />
+        <p>£{prop.price_per_night} per night</p>
+        <p>Favourited by {prop.favourite_count}</p>
+      </StyledStatsDiv>
+      <Host host={user} />
+      <h3>{prop.name}</h3>
+      <p>
+        {prop.property_type}, {prop.location}
+      </p>
+      <p>{prop.description}</p>
+      <Reviews propertyId={prop.property_id} />
+      <StyledButton onClick={() => setReserveClicked((display) => !display)}>Reserve</StyledButton>
+      {reserveClicked ? <Reserve /> : null}
+    </StyledPropContainer>
   );
 }

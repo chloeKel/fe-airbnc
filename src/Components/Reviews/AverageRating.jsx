@@ -1,13 +1,12 @@
-import useFetchReviews from "../../CustomHooks/useFetchReviews";
 import { StyledAvgRating } from "../../Styling/StyledImages";
 
-export default function AverageRating({ propertyId }) {
-  const { rating } = useFetchReviews(propertyId);
-
+export default function AverageRating({ avgRating }) {
   return (
-    <h3>
-      {`${rating}`}
-      <StyledAvgRating src="assets/blkStar.svg" alt={`${rating} stars`} />
-    </h3>
+    <StyledAvgRating>
+      <h3>
+        <img src="assets/blackStr.svg" alt={`${avgRating} stars`} />
+        {avgRating}
+      </h3>
+    </StyledAvgRating>
   );
 }

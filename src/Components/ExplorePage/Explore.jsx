@@ -1,16 +1,16 @@
 import { useUserContext } from "../../Contexts/Contexts";
-import useRefinedProps from "../../CustomHooks/useRefinedProps";
+import useFetchProps from "../../CustomHooks/useFetchProps";
 import SortAndFilter from "../SortAndFilter/SortAndFilter";
 import PropertyCards from "./PropertyCards";
 
-export default function ViewProperties() {
+export default function Explore() {
   const { userId } = useUserContext();
-  const { refinedProps } = useRefinedProps(userId);
+  const { properties } = useFetchProps(userId);
 
   return (
     <>
       <SortAndFilter />
-      <PropertyCards properties={refinedProps} />
+      <PropertyCards properties={properties} />
     </>
   );
 }

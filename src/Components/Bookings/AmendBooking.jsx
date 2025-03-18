@@ -2,7 +2,7 @@ import { useState } from "react";
 import useBookingRequests from "../../CustomHooks/useBookingRequests";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
-import { Button } from "../../Styling/StyledButton";
+import { StyledButton } from "../../Styling/StyledButton";
 import { useModalContext } from "../../Contexts/Contexts";
 
 export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId }) {
@@ -19,7 +19,7 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId }) {
     openModal(
       <>
         <BookingConfirmation msg="Booking updated" checkIn={checkIn} checkOut={checkOut} />
-        <Button onClick={closeModal}>Close</Button>
+        <StyledButton onClick={closeModal}>Close</StyledButton>
       </>
     );
   };
@@ -30,40 +30,40 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId }) {
     openModal(
       <>
         <p>Your booking has been cancelled</p>
-        <Button onClick={closeModal}>Close</Button>
+        <StyledButton onClick={closeModal}>Close</StyledButton>
       </>
     );
   };
 
   return (
     <>
-      <button
+      <StyledButton
         onClick={() => {
           openModal(
             <>
               <h3>Amend booking</h3>
               <BookingForm handleSubmit={handleAmend} checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
-              <Button onClick={closeModal}>Close</Button>
+              <StyledButton onClick={closeModal}>Close</StyledButton>
             </>
           );
         }}
       >
         Amend
-      </button>
-      <button
+      </StyledButton>
+      <StyledButton
         onClick={() => {
           openModal(
             <>
               <h3>Cancel Booking</h3>
               <p>Are you sure you would like to cancel?</p>
-              <Button onClick={handleDelete}>Confirm</Button>
-              <Button onClick={closeModal}>Close</Button>
+              <StyledButton onClick={handleDelete}>Confirm</StyledButton>
+              <StyledButton onClick={closeModal}>Close</StyledButton>
             </>
           );
         }}
       >
         Cancel
-      </button>
+      </StyledButton>
     </>
   );
 }

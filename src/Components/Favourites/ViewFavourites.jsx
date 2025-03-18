@@ -1,11 +1,12 @@
 import { useUserContext } from "../../Contexts/Contexts";
+import useFetchProps from "../../CustomHooks/useFetchProps";
+
 import DefaultContent from "../DefaultContent";
 import FavouriteCards from "./FavouriteCards";
-import useRefinedProps from "../../CustomHooks/useRefinedProps";
 
 export default function ViewFavourites() {
   const { userId } = useUserContext();
-  const { refinedProps } = useRefinedProps(userId);
+  const { properties } = useFetchProps(userId);
 
-  return <>{refinedProps.length > 0 ? <FavouriteCards favourites={refinedProps} /> : <DefaultContent component="favourites" />}</>;
+  return <>{properties.length > 0 ? <FavouriteCards favourites={properties} /> : <DefaultContent component="favourites" />}</>;
 }

@@ -3,21 +3,13 @@ import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { ErrorContext, UserContext, ModalContext, useModalContext } from "./Contexts";
 import { PopUpOverlay, PopUpContent } from "../Styling/StyledPopUp";
-import { Button } from "../Styling/StyledButton";
 import useFetchUser from "../CustomHooks/useFetchUser";
 import setErrorMsg from "../Utils/setErrorMsg";
+import { StyledButton } from "../Styling/StyledButton";
 
 export const UserProvider = ({ children }) => {
-  const { fetchUser } = useFetchUser();
-  const [user, setUser] = useState({});
   const [userId, setUserId] = useState(8);
-
-  useEffect(() => {
-    (async () => {
-      const user = await fetchUser(userId);
-      setUser(user);
-    })();
-  }, [fetchUser, userId]);
+  const { user } = useFetchUser(userId);
 
   const contextValue = useMemo(
     () => ({
@@ -74,7 +66,7 @@ export const ErrorProvider = ({ children }) => {
       openModal(
         <>
           <p>{setErrorMsg(error.status)}</p>
-          <Button
+          <StyledButton
             onClick={() => {
               setError(null);
               if (redirect) navigate(-1);
@@ -82,7 +74,7 @@ export const ErrorProvider = ({ children }) => {
             }}
           >
             {redirect ? "Explore" : "Back"}
-          </Button>
+          </StyledButton>
         </>
       );
     }

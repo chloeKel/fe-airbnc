@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { StyledDefaultContent } from "../Styling/StyledDefaultContent";
 import setDefaultContent from "../Utils/setDefaultContent";
+import { StyledButton } from "../Styling/StyledButton";
 
 export default function DefaultContent({ component }) {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ export default function DefaultContent({ component }) {
   return (
     <StyledDefaultContent>
       <p>{setDefaultContent(component)}</p>
-      <button onClick={() => navigate("/")}>Explore</button>
+      <StyledButton onClick={() => navigate("/")}>Explore</StyledButton>
     </StyledDefaultContent>
   );
 }

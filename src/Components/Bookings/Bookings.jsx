@@ -5,7 +5,7 @@ import useBookingRequests from "../../CustomHooks/useBookingRequests";
 import AmendBooking from "./AmendBooking";
 import { formatDateString } from "../../Utils/utils";
 import DefaultContent from "../DefaultContent";
-import { PropertyCard, PropertyImage, PropertyList } from "../../Styling/StyledPropertyCard";
+import { StyledPropsUl, StyledPropsLi, StyledPropsImg } from "../../Styling/StyledPropertyCard";
 
 export default function Bookings() {
   const { userId } = useUserContext();
@@ -26,14 +26,14 @@ export default function Bookings() {
       ) : (
         <>
           <h2>Your Bookings</h2>
-          <PropertyList>
+          <StyledPropsUl>
             {bookings.map((booking, index) => {
               const { booking_id, image, check_in_date, check_out_date, property_userId, property_name } = booking;
               const checkIn = formatDateString(check_in_date);
               const checkOut = formatDateString(check_out_date);
               return (
-                <PropertyCard key={`${booking_id}-${index}`}>
-                  <PropertyImage src={image} alt={property_name} />
+                <StyledPropsLi key={`${booking_id}-${index}`}>
+                  <StyledPropsImg src={image} alt={property_name} />
                   <h3>
                     <Link to={`/property/${property_userId}`}>{property_name}</Link>
                   </h3>
@@ -41,10 +41,10 @@ export default function Bookings() {
                   <p>Check-in-date: {checkIn.split("-").reverse().join("-")}</p>
                   <p>Check-out-date: {checkOut.split("-").reverse().join("-")}</p>
                   <AmendBooking prevCheckIn={checkIn} prevCheckOut={checkOut} bookingId={booking_id} />
-                </PropertyCard>
+                </StyledPropsLi>
               );
             })}
-          </PropertyList>
+          </StyledPropsUl>
         </>
       )}
     </>

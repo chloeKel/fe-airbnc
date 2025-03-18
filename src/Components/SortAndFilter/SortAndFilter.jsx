@@ -2,6 +2,7 @@ import { useState } from "react";
 import SetPrice from "./SetPrice";
 import SetSort from "./SetSort";
 import SetOrder from "./SetOrder";
+import { StyledButton } from "../../Styling/StyledButton";
 
 export default function SortAndFilter() {
   const [minPrice, setMinPrice] = useState(0);
@@ -12,13 +13,13 @@ export default function SortAndFilter() {
 
   return (
     <>
-      <button onClick={() => setFiltersClicked((display) => !display)}>Filters</button>
+      <StyledButton onClick={() => setFiltersClicked((display) => !display)}>Filters</StyledButton>
       {filtersClicked ? (
         <div>
           <SetSort sort={sort} setSort={setSort} />
           <SetPrice minPrice={minPrice} maxPrice={maxPrice} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} />
           <SetOrder order={order} setOrder={setOrder} />
-          <button>Apply</button>
+          <StyledButton>Apply</StyledButton>
         </div>
       ) : null}
     </>
