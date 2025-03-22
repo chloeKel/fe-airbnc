@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
@@ -43,26 +43,5 @@ a {
 
 a:hover {
  color: #747bff;
-}
-
-button {
-  -webkit-tap-highlight-color: transparent;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #ffffff;
-  background-color: #000000;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:focus,
-button:active {
-  outline: none !important;
-  box-shadow: none !important;
-  background-color: 
 }
 `;

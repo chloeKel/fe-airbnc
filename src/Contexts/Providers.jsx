@@ -1,47 +1,93 @@
-import { useState, useEffect } from "react";
-import { ErrorContext, UserContext } from "./Contexts";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
-import { PopUpContent, PopUpOverlay } from "../Styling/StyledPopUp";
-import { Button } from "../Styling/StyledButton";
+import { ErrorContext, UserContext, ModalContext, useModalContext } from "./Contexts";
+import { PopUpOverlay, PopUpContent } from "../Styling/StyledPopUp";
+import useFetchUser from "../CustomHooks/useFetchUser";
+import setErrorMsg from "../Utils/setErrorMsg";
+import { StyledButton } from "../Styling/StyledButton";
 
 export const UserProvider = ({ children }) => {
+  const [userId, setUserId] = useState(8);
+  const user = useFetchUser(userId);
+
+  const contextValue = useMemo(
+    () => ({
+      user,
+      userId,
+      setUserId,
+    }),
+    [user, userId]
+  );
+
+  return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
+};
+
+export const ModalProvider = ({ children }) => {
+  const modalRoot = document.getElementById("modal-root");
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState(<div>Loading...</div>);
+
+  const openModal = useCallback(
+    (content) => {
+      setShowModal(true);
+      setModalContent(content);
+    },
+    [setModalContent, setShowModal]
+  );
+
+  const closeModal = useCallback(() => {
+    setShowModal(false);
+    setModalContent(null);
+  }, [setModalContent, setShowModal]);
+
   return (
-    <UserContext.Provider
-      value={{
-        id: 1,
-        name: "Alice Johnson",
-        avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      }}
-    >
+    <ModalContext.Provider value={{ closeModal, openModal }}>
       {children}
-    </UserContext.Provider>
+      {showModal &&
+        createPortal(
+          <PopUpOverlay>
+            <PopUpContent>{modalContent}</PopUpContent>
+          </PopUpOverlay>,
+          modalRoot
+        )}
+    </ModalContext.Provider>
   );
 };
 
 export const ErrorProvider = ({ children }) => {
   const navigate = useNavigate();
+  const { openModal, closeModal } = useModalContext();
   const [error, setError] = useState(null);
+  const [redirect, setRedirect] = useState(true);
 
-  return (
-    <ErrorContext.Provider value={{ setError }}>
-      {children}
-      {error ? (
+  useEffect(() => {
+    if (error) {
+      openModal(
         <>
-          <PopUpOverlay>
-            <PopUpContent>
-              <p>{error.msg}</p>
-              <Button
-                onClick={() => {
-                  setError(null);
-                  navigate(-1);
-                }}
-              >
-                Explore
-              </Button>
-            </PopUpContent>
-          </PopUpOverlay>
+          <p>{setErrorMsg(error.status)}</p>
+          <StyledButton
+            onClick={() => {
+              setError(null);
+              if (redirect) navigate(-1);
+              closeModal();
+            }}
+          >
+            {redirect ? "Explore" : "Back"}
+          </StyledButton>
         </>
-      ) : null}
-    </ErrorContext.Provider>
+      );
+    }
+  }, [error, openModal, closeModal, navigate, redirect]);
+
+  const contextValue = useMemo(
+    () => ({
+      error,
+      setError,
+      setRedirect,
+    }),
+    [error]
   );
+
+  return <ErrorContext.Provider value={contextValue}>{children}</ErrorContext.Provider>;
 };

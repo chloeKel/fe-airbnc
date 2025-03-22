@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../Contexts/Contexts";
+import { useUserContext } from "../../Contexts/Contexts";
 import { StyledList, StyledNavigation } from "../../Styling/StyledNavigation";
 
 export default function Navbar() {
-  const { id, name, avatar } = useContext(UserContext);
+  const { userId, user } = useUserContext();
 
   return (
     <StyledNavigation>
@@ -12,14 +11,14 @@ export default function Navbar() {
         <Link to="/">Explore</Link>
       </StyledList>
       <StyledList>
-        <Link to={`/users/${id}/bookings`}>Bookings</Link>
+        <Link to={`/users/${userId}/bookings`}>Bookings</Link>
       </StyledList>
       <StyledList>
-        <Link to={`users/${id}/favourites`}>Favourites</Link>
+        <Link to={`users/${userId}/favourites`}>Favourites</Link>
       </StyledList>
       <StyledList>
-        <Link to={`/users/${id}`}>
-          <img src={avatar} alt={name} />
+        <Link to={`/users/${userId}`}>
+          <img src={user.avatar} alt={`${user.first_name} ${user.surname}`} />
         </Link>
       </StyledList>
     </StyledNavigation>

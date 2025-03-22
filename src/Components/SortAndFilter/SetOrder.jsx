@@ -1,12 +1,14 @@
-export default function SetOrder() {
+import { StyledButton } from "../../Styling/StyledButton";
+
+export default function SetOrder({ order, setOrder }) {
   return (
     <div>
-      <button value="ascending" onClick={(e) => setSort(e.target.value)}>
-        Lowest price first
-      </button>
-      <button value="descending" onClick={(e) => setSort(e.target.value)}>
+      <StyledButton value="ascending" onClick={(e) => setOrder(e.target.value)}>
+        {order}, Lowest price first
+      </StyledButton>
+      <StyledButton value="descending" onClick={(e) => setOrder(e.target.value)}>
         Highest price first
-      </button>
+      </StyledButton>
     </div>
   );
 }

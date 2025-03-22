@@ -1,36 +1,30 @@
-import { useState, useContext, useOptimistic, startTransition } from "react";
-import { UserContext, ErrorContext } from "../../Contexts/Contexts";
-import setErrorMsg from "../../Utils/setErrorMsg";
-import { FavouriteButton } from "../../Styling/StyledPropertyCard";
-import { postFavourite, deleteFavourite } from "../../Utils/api";
+import { useState } from "react";
+import { useUserContext, useErrorContext } from "../../Contexts/Contexts";
+import useFavesRequests from "../../CustomHooks/useFavesRequests";
+import { FavouriteButton } from "../../Styling/CarouselStyle";
 
-export default function ToggleFavourite({ favouritedStatus, propertyId, favouriteId }) {
-  const { id: userId } = useContext(UserContext);
-  const { setError } = useContext(ErrorContext);
-  const [favourited, setFavourited] = useState(favouritedStatus);
+export default function ToggleFavourite({ favourited, propertyId, favouriteId }) {
+  const { userId } = useUserContext();
+  const { setError } = useErrorContext();
+  const { postFavourite, deleteFavourite } = useFavesRequests();
+  const [favourite, setFavourite] = useState(favourited);
 
-  const [optimisticFavourite, setOptimisticFavourite] = useOptimistic(favourited, (currentStatus) => !currentStatus);
+  const asset = favourite ? "/assets/redHeart.svg" : "/assets/whiteHeart.svg";
 
-  const asset = optimisticFavourite ? "assets/highContrastPinkHeart.svg" : "assets/blackHeart.svg";
-
-  const handleClick = async () => {
-    startTransition(() => {
-      setOptimisticFavourite();
-    });
+  const handleClick = async (favourite) => {
+    setFavourite((prevState) => !prevState);
 
     try {
-      if (favourited) {
+      if (favourite) {
         await deleteFavourite(favouriteId);
-        setFavourited(false);
       } else {
         await postFavourite(propertyId, userId);
-        setFavourited(true);
       }
     } catch (error) {
-      setError(setErrorMsg(error.response));
-      setOptimisticFavourite();
+      setFavourite((prevState) => !prevState);
+      setError(error);
     }
   };
 
-  return <FavouriteButton $asset={asset} onClick={handleClick} />;
+  return <FavouriteButton $asset={asset} onClick={() => handleClick(favourite)} />;
 }

@@ -1,4 +1,4 @@
-export const getCheckIn = () => new Date().toISOString().slice(0, 10);
+export const getTodaysDate = () => new Date().toISOString().slice(0, 10);
 
 export const getCheckOut = (checkIn) => {
   const checkOut = new Date(checkIn);
