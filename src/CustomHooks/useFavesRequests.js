@@ -1,28 +1,8 @@
 import axios from "axios";
-import { useState, useEffect, useCallback } from "react";
+import { useCallback } from "react";
 import { useErrorContext } from "../Contexts/Contexts";
 
-export function useFavesRef(userId) {
-  const { setError } = useErrorContext();
-  const [favourites, setFavourites] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const {
-          data: { favourites },
-        } = await axios.get(`https://airbnc-k7rs.onrender.com/api/favourites/${userId}`);
-        setFavourites(favourites);
-      } catch (error) {
-        setError(error);
-      }
-    })();
-  }, [userId, setError]);
-
-  return { favourites };
-}
-
-export function useFavesRequests() {
+export default function useFavesRequests() {
   const { setError } = useErrorContext();
 
   const postFavourite = useCallback(

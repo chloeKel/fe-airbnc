@@ -4,7 +4,7 @@ import { StyledButton } from "../Styling/StyledButton";
 
 export default function Profile() {
   const { userId } = useUserContext();
-  const { user } = useFetchUser(userId);
+  const user = useFetchUser(userId);
 
   return (
     <>

@@ -1,12 +1,10 @@
-import { StyledAvgRating } from "../../Styling/StyledImages";
+import { StyledAsset } from "../../Styling/StyledPropertyCard";
 
 export default function AverageRating({ avgRating }) {
   return (
-    <StyledAvgRating>
-      <h3>
-        <img src="assets/blackStr.svg" alt={`${avgRating} stars`} />
-        {avgRating}
-      </h3>
-    </StyledAvgRating>
+    <p>
+      <StyledAsset src="/assets/blackStr.svg" alt={`${avgRating} stars`} />
+      {avgRating}
+    </p>
   );
 }

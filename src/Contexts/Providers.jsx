@@ -9,7 +9,7 @@ import { StyledButton } from "../Styling/StyledButton";
 
 export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(8);
-  const { user } = useFetchUser(userId);
+  const user = useFetchUser(userId);
 
   const contextValue = useMemo(
     () => ({

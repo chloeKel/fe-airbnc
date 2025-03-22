@@ -12,7 +12,7 @@ export default function useFetchReviews(propertyId) {
       try {
         const {
           data: { reviews, average_rating },
-        } = await axios.get(`https://airbnc-k7rs.onrender.com/api/properties/1/reviews`);
+        } = await axios.get(`https://airbnc-k7rs.onrender.com/api/properties/${propertyId}/reviews`);
         setReviews(reviews);
         setRating(average_rating);
       } catch (error) {

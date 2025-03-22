@@ -12,10 +12,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Explore />} />
-        <Route path={"/property/:id"} element={<PropertyListing />} />
-        <Route path={"/users/:id"} element={<Profile />} />
-        <Route path={"/users/:id/bookings"} element={<Bookings />} />
-        <Route path={"users/:id/favourites"} element={<ViewFavourites />} />
+        <Route path="property/:id" element={<PropertyListing />} />
+        <Route path="users/:id" element={<Profile />} />
+        <Route path="users/:id/bookings" element={<Bookings />} />
+        <Route path="users/:id/favourites" element={<ViewFavourites />} />
       </Routes>
     </>
   );

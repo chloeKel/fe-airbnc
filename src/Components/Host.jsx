@@ -1,15 +1,12 @@
-import { StyledHost } from "../Styling/PropListingStyle";
-import { StyledAvatar } from "../Styling/StyledImages";
+import { StyledHost, StyledAvatar } from "../Styling/PropListingStyle";
 
-export default function Host({ host }) {
+export default function Host({ host, hostAvatar }) {
   return (
     <StyledHost>
-      <h3>
-        <StyledAvatar src={host.avatar} alt={`${host.first_name} ${host.surname}`} />
-        Hosted by {`${host.first_name} ${host.surname}`}
-      </h3>
-      <p>{host.email}</p>
-      <p>{host.phone_number}</p>
+      <p>
+        <StyledAvatar src={hostAvatar} alt={host} />
+        Hosted by {host}
+      </p>
     </StyledHost>
   );
 }

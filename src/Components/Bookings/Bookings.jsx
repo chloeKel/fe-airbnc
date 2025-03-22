@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
 import { useUserContext } from "../../Contexts/Contexts";
 import { Link } from "react-router-dom";
-import useBookingRequests from "../../CustomHooks/useBookingRequests";
+import { useFetchBookings } from "../../CustomHooks/useBookingRequests";
 import AmendBooking from "./AmendBooking";
 import { formatDateString } from "../../Utils/utils";
 import DefaultContent from "../DefaultContent";
@@ -9,15 +8,7 @@ import { StyledPropsUl, StyledPropsLi, StyledPropsImg } from "../../Styling/Styl
 
 export default function Bookings() {
   const { userId } = useUserContext();
-  const { fetchBookings } = useBookingRequests();
-  const [bookings, setBookings] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const data = await fetchBookings(userId);
-      setBookings(data);
-    })();
-  }, [fetchBookings, userId]);
+  const bookings = useFetchBookings(userId);
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useUserContext, useErrorContext } from "../../Contexts/Contexts";
-import { useFavesRequests } from "../../CustomHooks/useFavesRequests";
+import useFavesRequests from "../../CustomHooks/useFavesRequests";
 import { FavouriteButton } from "../../Styling/CarouselStyle";
 
 export default function ToggleFavourite({ favourited, propertyId, favouriteId }) {
@@ -9,7 +9,7 @@ export default function ToggleFavourite({ favourited, propertyId, favouriteId })
   const { postFavourite, deleteFavourite } = useFavesRequests();
   const [favourite, setFavourite] = useState(favourited);
 
-  const asset = favourite ? "assets/redHeart.svg" : "assets/whiteHeart.svg";
+  const asset = favourite ? "/assets/redHeart.svg" : "/assets/whiteHeart.svg";
 
   const handleClick = async (favourite) => {
     setFavourite((prevState) => !prevState);

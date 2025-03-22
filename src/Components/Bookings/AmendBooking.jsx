@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useBookingRequests from "../../CustomHooks/useBookingRequests";
+import { useBookingRequests } from "../../CustomHooks/useBookingRequests";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
 import { StyledButton } from "../../Styling/StyledButton";

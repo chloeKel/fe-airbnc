@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useErrorContext } from "../Contexts/Contexts";
 
-export default function useFetchProp(userId, propertyId) {
+export default function useFetchProp(propertyId, userId) {
   const { setError } = useErrorContext();
   const [prop, setProp] = useState({});
 
@@ -21,5 +21,5 @@ export default function useFetchProp(userId, propertyId) {
     })();
   }, [propertyId, userId, setError]);
 
-  return { prop };
+  return prop;
 }

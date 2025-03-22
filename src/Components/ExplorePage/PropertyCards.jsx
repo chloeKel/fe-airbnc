@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Carousel from "../Carousel";
 import AverageRating from "../Reviews/AverageRating";
 import { StyledPropsUl, StyledPropsLi, StyledPropsDiv } from "../../Styling/StyledPropertyCard";
+
 import { Fragment } from "react";
 
 export default function PropertyCards({ properties }) {

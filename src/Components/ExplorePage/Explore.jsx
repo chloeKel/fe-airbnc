@@ -5,7 +5,7 @@ import PropertyCards from "./PropertyCards";
 
 export default function Explore() {
   const { userId } = useUserContext();
-  const { properties } = useFetchProps(userId);
+  const properties = useFetchProps(userId);
 
   return (
     <>
