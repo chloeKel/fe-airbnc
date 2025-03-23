@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useErrorContext } from "../Contexts/Contexts";
+const url = import.meta.env.VITE_API_URL;
 
 export default function useFetchReviews(propertyId) {
   const { setError } = useErrorContext();
@@ -12,7 +13,7 @@ export default function useFetchReviews(propertyId) {
       try {
         const {
           data: { reviews, average_rating },
-        } = await axios.get(`https://airbnc-k7rs.onrender.com/api/properties/${propertyId}/reviews`);
+        } = await axios.get(`${url}/api/properties/${propertyId}/reviews`);
         setReviews(reviews);
         setRating(average_rating);
       } catch (error) {

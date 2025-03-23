@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useErrorContext } from "../Contexts/Contexts";
+const url = import.meta.env.VITE_API_URL;
 
 export default function useFetchProps(userId) {
   const { setError } = useErrorContext();
@@ -11,7 +12,7 @@ export default function useFetchProps(userId) {
       try {
         const {
           data: { properties },
-        } = await axios.get(`https://airbnc-k7rs.onrender.com/api/properties?userId=${userId}`);
+        } = await axios.get(`${url}/api/properties?user_id=${userId}`);
         setProperties(properties);
       } catch (error) {
         setError(error);

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useErrorContext } from "../Contexts/Contexts";
+const url = import.meta.env.VITE_API_URL;
 
 export default function useFetchProp(propertyId, userId) {
   const { setError } = useErrorContext();
@@ -9,7 +10,7 @@ export default function useFetchProp(propertyId, userId) {
   useEffect(() => {
     (async () => {
       try {
-        let endpoint = `https://airbnc-k7rs.onrender.com/api/properties/${propertyId}`;
+        let endpoint = `${url}/api/properties/${propertyId}`;
         if (userId) endpoint += `?user_id=${userId}`;
         const {
           data: { property },

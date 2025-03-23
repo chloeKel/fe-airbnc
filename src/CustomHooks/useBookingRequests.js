@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect, useCallback } from "react";
 import { useErrorContext } from "../Contexts/Contexts";
+const url = import.meta.env.VITE_API_URL;
 
 export function useFetchBookings(userId) {
   const { setError } = useErrorContext();
@@ -11,7 +12,7 @@ export function useFetchBookings(userId) {
       try {
         const {
           data: { bookings },
-        } = await axios.get(`https://airbnc-k7rs.onrender.com/api/users/${userId}/bookings`);
+        } = await axios.get(`${url}/api/users/${userId}/bookings`);
         setBookings(bookings);
       } catch (error) {
         setError(error);
@@ -28,7 +29,7 @@ export function useBookingRequests() {
   const postBooking = useCallback(
     async (userId, checkIn, checkOut, propertyId) => {
       try {
-        const response = await axios.post(`https://airbnc-k7rs.onrender.com/api/properties/${propertyId}/booking`, {
+        const response = await axios.post(`${url}/api/properties/${propertyId}/booking`, {
           guest_id: userId,
           check_in_date: checkIn,
           check_out_date: checkOut,
@@ -44,7 +45,7 @@ export function useBookingRequests() {
   const patchBooking = useCallback(
     async (bookingId, checkIn, checkOut) => {
       try {
-        const response = await axios.patch(`https://airbnc-k7rs.onrender.com/api/bookings/${bookingId}`, {
+        const response = await axios.patch(`${url}/api/bookings/${bookingId}`, {
           check_in_date: checkIn,
           check_out_date: checkOut,
         });
@@ -59,7 +60,7 @@ export function useBookingRequests() {
   const deleteBooking = useCallback(
     async (bookingId) => {
       try {
-        const response = await axios.delete(`https://airbnc-k7rs.onrender.com/api/bookings/${bookingId}`);
+        const response = await axios.delete(`${url}/api/bookings/${bookingId}`);
         return response;
       } catch (error) {
         setError(error);
