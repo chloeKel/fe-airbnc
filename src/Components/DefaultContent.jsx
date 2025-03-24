@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { StyledDefaultContent } from "../Styling/StyledDefaultContent";
+import { StyledDefaultContent } from "../Styling/DefaultContentStyle";
 import setDefaultContent from "../Utils/setDefaultContent";
-import { StyledButton } from "../Styling/StyledButton";
+import { StyledButton } from "../Styling/ButtonStyles";
 
 export default function DefaultContent({ component }) {
   const navigate = useNavigate();

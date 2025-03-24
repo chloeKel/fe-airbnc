@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyledButton } from "../../Styling/StyledButton";
+import { StyledButton } from "../../Styling/ButtonStyles";
 import useFetchReviews from "../../CustomHooks/useFetchReviews";
 
 export default function Reviews({ propertyId }) {
@@ -13,7 +13,7 @@ export default function Reviews({ propertyId }) {
       {reviews.length === 1 ? <StyledButton onClick={handleClick}>{reviews.length} Review</StyledButton> : <StyledButton onClick={handleClick}>{reviews.length} Reviews</StyledButton>}
       {activeReviews
         ? reviews.map((review) => {
-            const { review_id, rating, comment, guest, guest_avatar } = review;
+            const { review_id, comment, guest, guest_avatar } = review;
             return (
               <div className="review" key={review_id}>
                 <h3>{rating} stars</h3>

@@ -36,20 +36,3 @@ export const StyledCarouselImg = styled.img`
   object-position: center;
   border-radius: 10px;
 `;
-
-export const FavouriteButton = styled.button`
-  background: ${({ $asset }) => `url(${$asset})`};
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: transparent !important;
-  outline: none;
-  width: 40px;
-  height: 40px;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-  position: absolute;
-  bottom: 25px;
-  right: 15px;
-  z-index: 1;
-`;

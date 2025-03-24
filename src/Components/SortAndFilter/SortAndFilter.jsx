@@ -2,7 +2,7 @@ import { useState } from "react";
 import SetPrice from "./SetPrice";
 import SetSort from "./SetSort";
 import SetOrder from "./SetOrder";
-import { StyledButton } from "../../Styling/StyledButton";
+import { StyledButton } from "../../Styling/ButtonStyles";
 
 export default function SortAndFilter() {
   const [minPrice, setMinPrice] = useState(0);

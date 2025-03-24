@@ -1,4 +1,4 @@
-import { StyledHost, StyledAvatar } from "../Styling/PropListingStyle";
+import { StyledHost, StyledAvatar } from "../Styling/ListingStyle";
 
 export default function Host({ host, hostAvatar }) {
   return (

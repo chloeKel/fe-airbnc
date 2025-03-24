@@ -5,7 +5,7 @@ import { useBookingRequests } from "../../CustomHooks/useBookingRequests";
 import { getTodaysDate, getCheckOut } from "../../Utils/utils";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
-import { StyledButton } from "../../Styling/StyledButton";
+import { StyledButton } from "../../Styling/ButtonStyles";
 
 export default function Reserve() {
   const navigate = useNavigate();

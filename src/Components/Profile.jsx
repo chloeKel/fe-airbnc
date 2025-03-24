@@ -1,6 +1,6 @@
 import { useUserContext } from "../Contexts/Contexts";
 import useFetchUser from "../CustomHooks/useFetchUser";
-import { StyledButton } from "../Styling/StyledButton";
+import { StyledButton } from "../Styling/ButtonStyles";
 
 export default function Profile() {
   const { userId } = useUserContext();

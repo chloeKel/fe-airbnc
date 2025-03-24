@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useUserContext } from "../../Contexts/Contexts";
 import DefaultContent from "../DefaultContent";
 import ToggleFavourite from "./ToggleFavourite";
-import { FavouritesList, FavouriteCard, FavouritesText, FavouritesImage } from "../../Styling/StyledFavouritesCards";
+import { FavouritesList, FavouriteCard, FavouritesText, FavouritesImage } from "../../Styling/FavouritesStyle";
 import { useFetchFavourites } from "../../CustomHooks/useFavesRequests";
 
 export default function ViewFavourites() {

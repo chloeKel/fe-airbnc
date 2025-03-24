@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Carousel from "../Carousel";
 import AverageRating from "../Reviews/AverageRating";
-import { StyledPropsUl, StyledPropsLi, StyledPropsDiv } from "../../Styling/StyledPropertyCard";
+import { StyledPropsUl, StyledPropsLi, StyledPropsDiv } from "../../Styling/PropertiesStyle";
 
 import { Fragment } from "react";
 

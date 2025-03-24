@@ -8,8 +8,8 @@ import Host from "../Host";
 import Reserve from "../Bookings/Reserve";
 import AverageRating from "../Reviews/AverageRating";
 import Loading from "../Loading";
-import { StyledPropContainer, StyledStatsDiv } from "../../Styling/PropListingStyle";
-import { StyledButton } from "../../Styling/StyledButton";
+import { StyledPropContainer, StyledStatsDiv } from "../../Styling/ListingStyle";
+import { StyledButton } from "../../Styling/ButtonStyles";
 
 export default function PropertyListing() {
   const { userId } = useUserContext();

@@ -1,4 +1,4 @@
-import { StyledButton } from "../../Styling/StyledButton";
+import { StyledButton } from "../../Styling/ButtonStyles";
 
 export default function SetOrder({ order, setOrder }) {
   return (

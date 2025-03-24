@@ -1,4 +1,4 @@
-import { StyledAsset } from "../../Styling/StyledPropertyCard";
+import { StyledAsset } from "../../Styling/PropertiesStyle";
 
 export default function AverageRating({ avgRating }) {
   return (

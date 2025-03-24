@@ -1,32 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useBookingRequests } from "../../CustomHooks/useBookingRequests";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
-import { StyledButton } from "../../Styling/StyledButton";
+import { StyledButton } from "../../Styling/ButtonStyles";
 import { useModalContext } from "../../Contexts/Contexts";
 
-export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId }) {
-  const { patchBooking, deleteBooking } = useBookingRequests();
+export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, setBookings, userId }) {
+  const { fetchBookings, patchBooking, deleteBooking } = useBookingRequests();
   const { openModal, closeModal } = useModalContext();
   const [checkIn, setCheckIn] = useState(prevCheckIn);
   const [checkOut, setCheckOut] = useState(prevCheckOut);
+  const [isAmended, setIsAmended] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
-  // infinite loop happening here
+  useEffect(() => {
+    if (refresh) {
+      fetchBookings(userId).then((res) => setBookings(res));
+      setRefresh(false);
+    }
+  }, [refresh, fetchBookings, userId, setBookings, setRefresh]);
 
   const handleAmend = async (e) => {
     e.preventDefault();
-    await patchBooking(bookingId, checkIn, checkOut);
-    openModal(
-      <>
-        <BookingConfirmation msg="Booking updated" checkIn={checkIn} checkOut={checkOut} />
-        <StyledButton onClick={closeModal}>Close</StyledButton>
-      </>
-    );
+    setIsAmended(true);
   };
+
+  if (isAmended) {
+    (async () => {
+      await patchBooking(bookingId, checkIn, checkOut);
+      setRefresh(true);
+      openModal(
+        <>
+          <BookingConfirmation msg="Booking updated" checkIn={checkIn} checkOut={checkOut} />
+          <StyledButton onClick={closeModal}>Close</StyledButton>
+        </>
+      );
+      setIsAmended(false);
+    })();
+  }
 
   const handleDelete = async (e) => {
     e.preventDefault();
     await deleteBooking(bookingId);
+    setRefresh(true);
     openModal(
       <>
         <p>Your booking has been cancelled</p>

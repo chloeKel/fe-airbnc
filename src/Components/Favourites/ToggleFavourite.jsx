@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useUserContext, useErrorContext } from "../../Contexts/Contexts";
 import { useFavesRequests } from "../../CustomHooks/useFavesRequests";
-import { FavouriteButton } from "../../Styling/CarouselStyle";
+import { StyledFavouriteButton } from "../../Styling/ButtonStyles";
 
 export default function ToggleFavourite({ favourited, propertyId, favouriteId }) {
   const { userId } = useUserContext();
@@ -37,5 +37,5 @@ export default function ToggleFavourite({ favourited, propertyId, favouriteId })
     }
   };
 
-  return <FavouriteButton $asset={asset} onClick={() => handleClick(favourite)} />;
+  return <StyledFavouriteButton $asset={asset} onClick={() => handleClick(favourite)} />;
 }
