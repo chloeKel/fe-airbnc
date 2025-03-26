@@ -1,23 +1,26 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #ffffff;
-  background-color: #000000;
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #000000;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 
-  &:hover {
-    background-color: rgb(63, 63, 63);
+  &:active {
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
   }
-  &:focus,
-  &:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
+
+  @media (min-width: 768px) {
+    padding: 0.25em 0.75em;
   }
 `;
 
@@ -36,25 +39,4 @@ export const StyledFavouriteButton = styled.button`
   bottom: 30px;
   right: 10px;
   z-index: 1;
-`;
-
-export const StyledMenuButton = styled.button`
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 30px;
-  height: 30px;
-  z-index: 2;
-  background: ${({ $asset }) => `url(${$asset})`};
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: transparent !important;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-
-  &:focus {
-    background-color: transparent !important;
-  }
 `;

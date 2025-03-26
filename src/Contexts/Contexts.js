@@ -8,6 +8,3 @@ export const useErrorContext = () => useContext(ErrorContext);
 
 export const ModalContext = createContext();
 export const useModalContext = () => useContext(ModalContext);
-
-export const MenuContext = createContext();
-export const useMenuContext = () => useContext(MenuContext);

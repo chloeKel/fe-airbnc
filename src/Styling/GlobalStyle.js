@@ -35,13 +35,4 @@ margin: 0;
 padding: 0;
 }
 
-a {
-  font-weight: 500;
-  color: #000000;
-  text-decoration: inherit;
-}
-
-a:hover {
- color: #747bff;
-}
 `;

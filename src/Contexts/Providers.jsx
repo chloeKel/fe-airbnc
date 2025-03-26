@@ -1,13 +1,11 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
-import { ErrorContext, UserContext, ModalContext, useModalContext, MenuContext } from "./Contexts";
+import { ErrorContext, UserContext, ModalContext, useModalContext } from "./Contexts";
 import { PopUpOverlay, PopUpContent } from "../Styling/PopUpStyle";
 import useFetchUser from "../CustomHooks/useFetchUser";
 import setErrorMsg from "../Utils/setErrorMsg";
 import { StyledButton } from "../Styling/ButtonStyles";
-import { StyledMenuButton } from "../Styling/ButtonStyles";
-import Menu from "../Components/ExplorePage/Menu";
 
 export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(8);
@@ -92,28 +90,4 @@ export const ErrorProvider = ({ children }) => {
   );
 
   return <ErrorContext.Provider value={contextValue}>{children}</ErrorContext.Provider>;
-};
-
-export const MenuProvider = ({ children }) => {
-  const [showMenu, setShowMenu] = useState(false);
-
-  const asset = showMenu ? "/assets/close.svg" : "/assets/menu.svg";
-
-  const toggleMenu = () => setShowMenu((prevState) => !prevState);
-
-  useEffect(() => {
-    if (showMenu) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [showMenu]);
-
-  return (
-    <MenuContext.Provider value={{ toggleMenu }}>
-      {children}
-      <StyledMenuButton $asset={asset} onClick={toggleMenu} />
-      {showMenu && createPortal(<Menu />, document.body)}
-    </MenuContext.Provider>
-  );
 };
