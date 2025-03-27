@@ -1,26 +1,23 @@
-import { Link } from "react-router-dom";
 import { useUserContext } from "../../Contexts/Contexts";
-import { StyledNavUl, StyledNavLi, StyledNavAvatar } from "../../Styling/NavBarStyle";
+import { StyledNavDiv, StyledLink } from "../../Styling/NavigationStyles";
 
 export default function Navbar() {
-  const { userId, user } = useUserContext();
+  const { userId } = useUserContext();
 
   return (
-    <StyledNavUl>
-      <StyledNavLi>
-        <Link to="/">Explore</Link>
-      </StyledNavLi>
-      <StyledNavLi>
-        <Link to={`/users/${userId}/bookings`}>Bookings</Link>
-      </StyledNavLi>
-      <StyledNavLi>
-        <Link to={`users/${userId}/favourites`}>Favourites</Link>
-      </StyledNavLi>
-      <StyledNavLi>
-        <Link to={`/users/${userId}`}>
-          <StyledNavAvatar src={user.avatar} alt={`${user.first_name} ${user.surname}`} />
-        </Link>
-      </StyledNavLi>
-    </StyledNavUl>
+    <StyledNavDiv>
+      <StyledLink to="/" color="#ffffff">
+        Explore
+      </StyledLink>
+      <StyledLink to={`/users/${userId}/bookings`} color="#ffffff">
+        Bookings
+      </StyledLink>
+      <StyledLink to={`/users/${userId}/favourites`} color="#ffffff">
+        Favourites
+      </StyledLink>
+      <StyledLink to={`/users/${userId}`} color="#ffffff">
+        Profile
+      </StyledLink>
+    </StyledNavDiv>
   );
 }

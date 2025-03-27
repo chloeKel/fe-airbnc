@@ -1,26 +1,42 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  text-decoration: none;
-  background-color: #ffffff;
-  color: #000000;
-  cursor: pointer;
-  border: 3px solid;
-  padding: 0.25em 0.5em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
   position: relative;
+  align-self: center;
+  background-color: #ffffff;
+  border: 1px solid #1007fa;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 20px;
+  color: #1007fa;
+  padding: 0 18px;
+  line-height: 35px;
+  text-align: center;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 
-  &:active {
-    box-shadow: 0px 0px 0px 0px;
-    top: 5px;
-    left: 5px;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 70%;
+    transform: translateX(-50%) scaleX(0);
+    height: 1px;
+    bottom: 7px;
+    left: 50%;
+    background-color: #fa7807;
+    transition: transform 0.25s ease-out;
   }
 
-  @media (min-width: 768px) {
-    padding: 0.25em 0.75em;
+  &:hover::after {
+    transform: translateX(-50%) scaleX(1);
   }
 `;
 
@@ -36,7 +52,7 @@ export const StyledFavouriteButton = styled.button`
   cursor: pointer;
   transition: opacity 0.3s ease;
   position: absolute;
-  bottom: 30px;
+  bottom: 10px;
   right: 10px;
   z-index: 1;
 `;

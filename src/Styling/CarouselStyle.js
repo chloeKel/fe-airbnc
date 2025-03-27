@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledCarouselDiv = styled.div`
   width: 100%;
-  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,14 +24,12 @@ export const StyledCarouselLi = styled.li`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 300px;
   flex: 0 0 100%;
 `;
 
 export const StyledCarouselImg = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 230px;
   object-fit: cover;
   object-position: center;
-  border-radius: 10px;
 `;
