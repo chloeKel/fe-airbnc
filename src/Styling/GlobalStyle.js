@@ -3,20 +3,20 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
 body {
-background-color: #ffffff;
+// background-color: #FEFBE8;
+
+background: #fefce8;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  min-width: 320px;
-  min-height: 100vh;
-  max-width: 400px;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 600;
+  color: #2a5faf;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
 
 * {
 margin: 0;

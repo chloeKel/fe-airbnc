@@ -1,47 +1,48 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-export const StyledNavDiv = styled.div`
-  background-color: #1007fa;
-  width: 100%;
-  padding: 15px 5px 15px 5px;
-  margin: 0;
+export const NavContainer = styled.div`
+  width: 100vw;
+  height: 18vh;
+  display: grid;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-  gap: 12px;
-  border-bottom: 2px solid #ff7448;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLogo = styled.img`
+  height: 80%;
+  width: auto;
+  background: transparent;
+`;
+
+export const StyledNavBar = styled.div`
+  height: 20%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  text-align: center;
+  background: transparent;
+  border: 1px solid #2a5faf;
+`;
+
+export const StyledLink = styled(NavLink)`
   display: inline-block;
   position: relative;
   text-decoration: none;
-  color: ${(props) => props.color};
-  font-family: "Fraunces", serif;
-  font-optical-sizing: auto;
+  padding: 2px 0;
+  color: #2a5faf;
+  font-size: 1.1rem;
   font-weight: 700;
-  font-style: normal;
-  font-variation-settings: "SOFT" 0, "WONK" 0;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  font-size: 15px;
 
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 1.2px;
-    bottom: 0;
-    left: 0;
-    background-color: #ff7448;
-    transition: transform 0.25s ease-out;
+  &.active {
+    background-color: #2a5faf;
+    color: #fefce8;
   }
 
-  &:hover::after {
-    content: "";
-    transform: scaleX(1);
+  &.hover {
+    background-color: #2a5faf;
+    color: #fefce8;
   }
 `;

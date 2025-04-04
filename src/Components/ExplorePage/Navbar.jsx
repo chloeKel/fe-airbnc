@@ -1,23 +1,26 @@
 import { useUserContext } from "../../Contexts/Contexts";
-import { StyledNavDiv, StyledLink } from "../../Styling/NavigationStyles";
+import { NavContainer, StyledLink, StyledLogo, StyledNavBar } from "../../Styling/NavigationStyles";
 
 export default function Navbar() {
   const { userId } = useUserContext();
 
   return (
-    <StyledNavDiv>
-      <StyledLink to="/" color="#ffffff">
-        Explore
-      </StyledLink>
-      <StyledLink to={`/users/${userId}/bookings`} color="#ffffff">
-        Bookings
-      </StyledLink>
-      <StyledLink to={`/users/${userId}/favourites`} color="#ffffff">
-        Favourites
-      </StyledLink>
-      <StyledLink to={`/users/${userId}`} color="#ffffff">
-        Profile
-      </StyledLink>
-    </StyledNavDiv>
+    <NavContainer>
+      <StyledLogo src="/assets/logo.svg" alt="Airbnc" />
+      <StyledNavBar>
+        <StyledLink to="/" end>
+          Explore
+        </StyledLink>
+        <StyledLink to={`/users/${userId}/bookings`} end>
+          Bookings
+        </StyledLink>
+        <StyledLink to={`/users/${userId}/favourites`} end>
+          Favourites
+        </StyledLink>
+        <StyledLink to={`/users/${userId}`} end>
+          Profile
+        </StyledLink>
+      </StyledNavBar>
+    </NavContainer>
   );
 }

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const PropertiesContainer = styled.div`
+  height: 85vh;
+`;
+
 export const StyledPropsUl = styled.ul`
   list-style-type: none;
   padding: 0;
