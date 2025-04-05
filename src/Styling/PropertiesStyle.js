@@ -1,41 +1,79 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-export const PropertiesContainer = styled.div`
-  height: 85vh;
-`;
-
-export const StyledPropsUl = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-export const StyledPropsLi = styled.li`
-  width: 100%;
-  height: 100%;
-  padding: 14px 8px 25px 8px;
-`;
-
-export const StyledPropsDiv = styled.div`
-  width: 70%;
-  height: auto;
+export const StyledPropsContainer = styled.div`
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-`;
-
-export const StyledText = styled.p`
-  font-family: "Fraunces", serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  font-variation-settings: "SOFT" 0, "WONK" 0;
-  font-size: 15px;
-  color: #fa7807;
-  padding: 2px;
 `;
 
 export const StyledAsset = styled.img`
   width: 4vw;
   height: auto;
+`;
+
+export const StyledPropsWrapper = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 4;
+  grid-template-rows: 4;
+  grid-template-areas:
+    "a a a a"
+    "b b b b"
+    "c c d d"
+    "c c e e";
+  text-align: center;
+`;
+
+export const StyledName = styled.li`
+  grid-area: a;
+  border-bottom: 1px solid #2a5faf;
+  height: fit-content;
+  padding: 2.2rem;
+`;
+
+export const StyledPropertyLink = styled(NavLink)`
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: #2a5faf;
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  &.active {
+    background-color: #2a5faf;
+    color: #fefce8;
+  }
+
+  &.hover {
+    background-color: #2a5faf;
+    color: #fefce8;
+  }
+`;
+
+export const StyledCarouselContainer = styled.li`
+  grid-area: b;
+  padding: 0.5rem;
+`;
+
+export const StyledLocation = styled.li`
+  grid-area: c;
+  border: 1px solid #2a5faf;
+  line-height: 4rem;
+  padding: 0.5rem;
+`;
+
+export const StyledPrice = styled.li`
+  grid-area: d;
+  border-top: 1px solid #2a5faf;
+  padding: 0.5rem;
+`;
+
+export const StyledRating = styled.li`
+  grid-area: e;
+  border-top: 1px solid #2a5faf;
+  border-bottom: 1px solid #2a5faf;
+  padding: 0.5rem;
 `;

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const NavContainer = styled.div`
+  position: fixed;
+  top: 0;
   width: 100vw;
   height: 18vh;
   display: grid;
@@ -24,7 +26,7 @@ export const StyledNavBar = styled.div`
   grid-template-columns: 25% 25% 25% 25%;
   text-align: center;
   background: transparent;
-  border: 1px solid #2a5faf;
+  // border-top: 1px solid #2a5faf;
 `;
 
 export const StyledLink = styled(NavLink)`

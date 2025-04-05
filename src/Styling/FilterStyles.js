@@ -4,8 +4,7 @@ export const StyledFiltersContainer = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: row;
-  margin-bottom: 1rem;
-  margin-top: 2px;
+  margin: 18vh auto 0;
 `;
 
 export const StyledFilterContainer = styled.div`
@@ -24,6 +23,7 @@ export const StyledFilterButton = styled.button`
   padding: 4px 0;
   text-align: center;
   background: transparent;
+  border-top: 1px solid #2a5faf;
   border-bottom: 1px solid #2a5faf;
   border-right: 0.5px solid #2a5faf;
   border-left: 0.5px solid #2a5faf;
@@ -74,14 +74,27 @@ export const StyledSliderContainer = styled.div`
 
 export const StyledSliderWrapper = styled.div`
   position: relative;
+  margin-top: 0.7rem;
   width: 100%;
   height: auto;
   background: #fefce8;
   margin-bottom: 1rem;
 `;
 
+export const StyledPriceText = styled.div`
+  display: flex;
+  justify-content: space-between;
+  color: #2a5faf;
+  font-size: 1rem;
+  font-weight: 500;
+`;
+
 export const StyledRangeInput = styled.input`
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   width: 100%;
   pointer-events: auto;
   -webkit-appearance: none;
@@ -91,7 +104,7 @@ export const StyledRangeInput = styled.input`
     width: 100%;
     height: 1.3rem;
     background: #fefce8;
-    border: 1px solid #a4aafc;
+    border: 1px solid #2a5faf;
   }
 
   &::-webkit-slider-thumb {
@@ -112,7 +125,7 @@ export const StyledRangeInput = styled.input`
     width: 100%;
     height: 1.3rem;
     background: #fefce8;
-    border: 1px solid #a4aafc;
+    border: 1px solid #2a5faf;
   }
 
   &::-moz-range-thumb {
@@ -125,12 +138,4 @@ export const StyledRangeInput = styled.input`
     box-shadow: none;
     z-index: 1;
   }
-`;
-
-export const StyledPriceText = styled.div`
-  display: flex;
-  justify-content: space-between;
-  color: #2a5faf;
-  font-size: 1rem;
-  font-weight: 500;
 `;
