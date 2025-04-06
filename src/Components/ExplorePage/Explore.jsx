@@ -4,10 +4,11 @@ import { StyledFiltersContainer } from "../../Styling/FilterStyles";
 import Filter from "../SortAndFilter/Filter";
 import PriceSlider from "../SortAndFilter/PriceSlider";
 import PropertyCards from "./PropertyCards";
+import Loader from "../Loader";
 
 export default function Explore() {
   const { userId } = useUserContext();
-  const properties = useFetchProps(userId);
+  const { isLoading, properties } = useFetchProps(userId);
 
   return (
     <>
@@ -15,7 +16,7 @@ export default function Explore() {
         <PriceSlider />
         <Filter />
       </StyledFiltersContainer>
-      <PropertyCards properties={properties} />
+      {isLoading ? <Loader /> : <PropertyCards properties={properties} />}
     </>
   );
 }

@@ -52,7 +52,7 @@ export const StyledFavouriteButton = styled.button`
   cursor: pointer;
   transition: opacity 0.3s ease;
   position: absolute;
-  bottom: 10px;
+  bottom: 3px;
   right: 10px;
   z-index: 1;
 `;

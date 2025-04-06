@@ -4,6 +4,7 @@ export const StyledFiltersContainer = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   margin: 18vh auto 0;
 `;
 
@@ -16,6 +17,7 @@ export const StyledFilterContainer = styled.div`
 `;
 
 export const StyledFilterButton = styled.button`
+  width: 100%;
   position: relative;
   width: ${(props) => props.width};
   height: auto;
@@ -23,10 +25,10 @@ export const StyledFilterButton = styled.button`
   padding: 4px 0;
   text-align: center;
   background: transparent;
+  border-right: ${(props) => props.borderRight || "none"};
+  border-left: ${(props) => props.borderLeft || "none"};
   border-top: 1px solid #2a5faf;
   border-bottom: 1px solid #2a5faf;
-  border-right: 0.5px solid #2a5faf;
-  border-left: 0.5px solid #2a5faf;
   outline: none;
   color: #2a5faf;
   font-size: 1rem;
@@ -70,6 +72,7 @@ export const StyledSliderContainer = styled.div`
   width: 100%;
   position: relative;
   background: #fefce8;
+  height: fit-content;
 `;
 
 export const StyledSliderWrapper = styled.div`
@@ -78,7 +81,8 @@ export const StyledSliderWrapper = styled.div`
   width: 100%;
   height: auto;
   background: #fefce8;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  height: fit-content;
 `;
 
 export const StyledPriceText = styled.div`

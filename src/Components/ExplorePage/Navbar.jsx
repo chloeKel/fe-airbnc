@@ -8,9 +8,7 @@ export default function Navbar() {
     <NavContainer>
       <StyledLogo src="/assets/logo.svg" alt="Airbnc" />
       <StyledNavBar>
-        <StyledLink to="/" end>
-          Explore
-        </StyledLink>
+        <StyledLink to="/">Explore</StyledLink>
         <StyledLink to={`/users/${userId}/bookings`} end>
           Bookings
         </StyledLink>

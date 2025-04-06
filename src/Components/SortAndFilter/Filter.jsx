@@ -17,7 +17,7 @@ export default function Filter() {
   return (
     <StyledFilterContainer>
       <StyledFilterButton width="100%" onClick={() => setIsOpen((prevState) => !prevState)}>
-        <StyledArrowAsset src="/assets/blueArrow.svg" alt="down arrow" />
+        <StyledArrowAsset src="/assets/blueDownArrow.svg" alt="down arrow" />
         {selected}
       </StyledFilterButton>
       {isOpen && (

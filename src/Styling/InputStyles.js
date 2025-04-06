@@ -23,14 +23,6 @@ export const StyledBookingLabel = styled.label`
   align-items: center;
 `;
 
-// export const StyledBookingLabel = styled.label`
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: space-between;
-//   gap: 20px;
-// `;
-
 export const StyledDateInput = styled.input`
   display: flex;
   flex-direction: row;

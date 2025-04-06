@@ -6,6 +6,7 @@ const url = import.meta.env.VITE_API_URL;
 export default function useFetchProp(propertyId, userId) {
   const { setError } = useErrorContext();
   const [prop, setProp] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -16,11 +17,12 @@ export default function useFetchProp(propertyId, userId) {
           data: { property },
         } = await axios.get(endpoint);
         setProp(property);
+        setIsLoading(false);
       } catch (error) {
         setError(error);
       }
     })();
   }, [propertyId, userId, setError]);
 
-  return prop;
+  return { isLoading, prop };
 }

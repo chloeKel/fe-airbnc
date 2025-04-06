@@ -17,13 +17,13 @@ export const StyledPropsWrapper = styled.ul`
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 4;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 4;
   grid-template-areas:
-    "a a a a"
-    "b b b b"
-    "c c d d"
-    "c c e e";
+    "a a"
+    "b b"
+    "c d"
+    "c e";
   text-align: center;
 `;
 
@@ -60,9 +60,10 @@ export const StyledCarouselContainer = styled.li`
 
 export const StyledLocation = styled.li`
   grid-area: c;
-  border: 1px solid #2a5faf;
+  border-top: 1px solid #2a5faf;
+  border-bottom: 1px solid #2a5faf;
+  border-right: 1px solid #2a5faf;
   line-height: 4rem;
-  padding: 0.5rem;
 `;
 
 export const StyledPrice = styled.li`

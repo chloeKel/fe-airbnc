@@ -6,6 +6,7 @@ const url = import.meta.env.VITE_API_URL;
 export function useFetchFavourites(userId) {
   const { setError } = useErrorContext();
   const [favourites, setFavourites] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -14,13 +15,14 @@ export function useFetchFavourites(userId) {
           data: { favourites },
         } = await axios.get(`${url}/api/favourites/${userId}`);
         setFavourites(favourites);
+        setIsLoading(false);
       } catch (error) {
         setError(error);
       }
     })();
   }, [userId, setError]);
 
-  return favourites;
+  return { isLoading, favourites };
 }
 
 export function useFavesRequests() {

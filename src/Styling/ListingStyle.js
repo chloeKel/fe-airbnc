@@ -1,12 +1,39 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+export const StyledBackButton = styled(Link)`
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  background: url("/assets/blueLeftArrow.svg") no-repeat center;
+  background-size: contain;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  box-sizing: border-box;
+`;
 
 export const StyledPropContainer = styled.div`
+  width: 100vw;
+  margin: 18vh auto 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
+
+export const StyledPropInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 10px;
-  padding: 20px;
+  gap: 1rem;
+  padding: 0.8rem;
 `;
 
 export const StyledStatsDiv = styled.div`
@@ -30,35 +57,3 @@ export const StyledAvatar = styled.img`
   margin-right: 10px;
   object-fit: cover;
 `;
-
-// export const StyledHost = styled.div`
-//   background-color: #f9f9f9;
-//   border: 1px solid #ddd;
-//   border-radius: 12px;
-//   padding: 16px;
-//   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-//   max-width: 250px;
-//   text-align: center;
-//   font-size: 1rem;
-// `;
-
-// export const StyledPropContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   text-align: center;
-// `;
-
-// export const StyledStatsDiv = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   text-align: center;
-//   background-color: #f9f9f9;
-//   border: 1px solid #ddd;
-//   border-radius: 12px;
-//   padding: 16px;
-//   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-//   font-size: 1rem;
-// `;

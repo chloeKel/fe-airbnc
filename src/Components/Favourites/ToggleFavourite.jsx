@@ -11,7 +11,7 @@ export default function ToggleFavourite({ favourited, propertyId, favouriteId })
   const [favourite, setFavourite] = useState(favourited);
   const [pendingFave, setPendingFave] = useState({});
 
-  const asset = favouriteAsset ? "/assets/redHeart.svg" : "/assets/whiteHeart.svg";
+  const asset = favouriteAsset ? "/assets/favouriteHeart.svg" : "/assets/unfavouriteHeart.svg";
 
   const handleClick = async (favourite) => {
     setFavouriteAsset((prevState) => !prevState);
