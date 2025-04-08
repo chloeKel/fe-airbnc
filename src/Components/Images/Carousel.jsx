@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
-import { StyledCarouselDiv, StyledCarouselUl, StyledCarouselLi, StyledCarouselImg } from "../Styling/CarouselStyle";
-import ToggleFavourite from "./Favourites/ToggleFavourite";
+import { StyledCarouselDiv, StyledCarouselUl, StyledCarouselLi, StyledPropImg } from "../../Styling/CarouselStyle";
+import ToggleFavourite from "../Favourites/ToggleFavourite";
+import { StyledFaveButtonContainer } from "../../Styling/ButtonStyles";
 
 export default function Carousel({ images, name, favourited, propertyId, favouriteId }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,11 +43,13 @@ export default function Carousel({ images, name, favourited, propertyId, favouri
       <StyledCarouselUl $currentIndex={currentIndex} $images={images}>
         {images.map((img, index) => (
           <StyledCarouselLi key={index}>
-            <StyledCarouselImg src={img} alt={name} />
+            <StyledPropImg src={img} alt={name} />
           </StyledCarouselLi>
         ))}
       </StyledCarouselUl>
-      <ToggleFavourite favourited={favourited} propertyId={propertyId} favouriteId={favouriteId} />
+      <StyledFaveButtonContainer>
+        <ToggleFavourite favourited={favourited} propertyId={propertyId} favouriteId={favouriteId} unfavouriteAsset={"/assets/unfavouriteHeart.svg"} />
+      </StyledFaveButtonContainer>
     </StyledCarouselDiv>
   );
 }

@@ -1,9 +1,9 @@
-import { StyledAsset } from "../../Styling/PropertiesStyle";
+import { StyledRatingAsset } from "../../Styling/PropertiesStyle";
 
 export default function AverageRating({ avgRating }) {
   return (
     <p>
-      <StyledAsset src="/assets/yellowStar.svg" alt={`${avgRating} stars`} />
+      <StyledRatingAsset src="/assets/ratingStar.svg" alt={`${avgRating} stars`} />
       {avgRating}
     </p>
   );

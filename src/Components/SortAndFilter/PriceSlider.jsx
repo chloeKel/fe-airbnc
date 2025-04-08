@@ -36,15 +36,15 @@ export default function PriceSlider() {
       <>
         {isOpen ? (
           <>
-            <StyledFilterButton width="50%" borderRight="1px solid #2a5faf" onClick={handleClose}>
+            <StyledFilterButton width="50%" onClick={handleClose}>
               X
             </StyledFilterButton>
-            <StyledFilterButton width="50%" borderRight="1px solid #2a5faf" onClick={handleClose}>
+            <StyledFilterButton width="50%" onClick={handleClose}>
               Confirm
             </StyledFilterButton>
           </>
         ) : (
-          <StyledFilterButton width="100%" borderRight="1px solid #2a5faf" onClick={handleDropDown}>
+          <StyledFilterButton width="100%" onClick={handleDropDown}>
             Custom Price
             <StyledArrowAsset src="/assets/blueDownArrow.svg" alt="down arrow" />
           </StyledFilterButton>

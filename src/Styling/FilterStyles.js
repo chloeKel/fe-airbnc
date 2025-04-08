@@ -5,13 +5,13 @@ export const StyledFiltersContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 18vh auto 0;
+  margin: 21vh auto 0;
 `;
 
 export const StyledFilterContainer = styled.div`
   position: relative;
   font-family: inherit;
-  background: transparent;
+  background: #fefce8;
   width: 50%;
   overflow: visible;
 `;
@@ -25,9 +25,7 @@ export const StyledFilterButton = styled.button`
   padding: 4px 0;
   text-align: center;
   background: transparent;
-  border-right: ${(props) => props.borderRight || "none"};
-  border-left: ${(props) => props.borderLeft || "none"};
-  border-top: 1px solid #2a5faf;
+  border-right: 1px solid #2a5faf;
   border-bottom: 1px solid #2a5faf;
   outline: none;
   color: #2a5faf;

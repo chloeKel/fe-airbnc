@@ -7,9 +7,12 @@ export const StyledPropsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const StyledAsset = styled.img`
-  width: 4vw;
-  height: auto;
+export const StyledRatingAsset = styled.img`
+  width: 20px;
+  height: 20px;
+  background: transparent !important;
+  align-self: center;
+  justify-self: center;
 `;
 
 export const StyledPropsWrapper = styled.ul`
@@ -63,7 +66,7 @@ export const StyledLocation = styled.li`
   border-top: 1px solid #2a5faf;
   border-bottom: 1px solid #2a5faf;
   border-right: 1px solid #2a5faf;
-  line-height: 4rem;
+  line-height: 5rem;
 `;
 
 export const StyledPrice = styled.li`

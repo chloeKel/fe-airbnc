@@ -1,7 +1,6 @@
-// import { useState } from "react";
-// import { StyledButton } from "../../Styling/ButtonStyles";
 import useFetchReviews from "../../CustomHooks/useFetchReviews";
-import { StyledGuest, StyledReview, StyledReviewsContainer } from "../../Styling/ReviewsStyles";
+import { StyledRating, StyledReview, StyledReviewsContainer, StyledText } from "../../Styling/ReviewsStyles";
+import RenderStars from "../RenderStars";
 
 export default function Reviews({ propertyId }) {
   const { reviews, rating } = useFetchReviews(propertyId);
@@ -12,43 +11,12 @@ export default function Reviews({ propertyId }) {
         const { review_id, comment, guest } = review;
         return (
           <StyledReview key={review_id}>
-            <h3>{rating} stars</h3>
-            <p>{comment}</p>
-            <StyledGuest>
-              <p>{guest}</p>
-            </StyledGuest>
+            <StyledRating>{RenderStars(rating)}</StyledRating>
+            <StyledText>{comment}</StyledText>
+            <StyledText>{guest}</StyledText>
           </StyledReview>
         );
       })}
     </StyledReviewsContainer>
   );
 }
-
-// import { useState } from "react";
-// import { StyledButton } from "../../Styling/ButtonStyles";
-// import useFetchReviews from "../../CustomHooks/useFetchReviews";
-// export default function Reviews({ propertyId }) {
-//   const { reviews, rating } = useFetchReviews(propertyId);
-//   const [activeReviews, setActiveReviews] = useState(false);
-
-//   const handleClick = () => setActiveReviews((display) => !display);
-
-//   return (
-//     <>
-//       {reviews.length === 1 ? <StyledButton onClick={handleClick}>{reviews.length} Review</StyledButton> : <StyledButton onClick={handleClick}>{reviews.length} Reviews</StyledButton>}
-//       {activeReviews
-//         ? reviews.map((review) => {
-//             const { review_id, comment, guest, guest_avatar } = review;
-//             return (
-//               <div className="review" key={review_id}>
-//                 <h3>{rating} stars</h3>
-//                 <p>{comment}</p>
-//                 <img src={guest_avatar} alt={guest} />
-//                 <p>{guest}</p>
-//               </div>
-//             );
-//           })
-//         : null}
-//     </>
-//   );
-// }

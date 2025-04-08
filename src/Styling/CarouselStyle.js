@@ -27,9 +27,10 @@ export const StyledCarouselLi = styled.li`
   flex: 0 0 100%;
 `;
 
-export const StyledCarouselImg = styled.img`
+export const StyledPropImg = styled.img`
   width: 100%;
   height: 230px;
   object-fit: cover;
   object-position: center;
+  border-radius: 3px;
 `;

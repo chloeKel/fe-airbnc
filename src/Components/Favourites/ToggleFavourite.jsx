@@ -3,7 +3,7 @@ import { useUserContext, useErrorContext } from "../../Contexts/Contexts";
 import { useFavesRequests } from "../../CustomHooks/useFavesRequests";
 import { StyledFavouriteButton } from "../../Styling/ButtonStyles";
 
-export default function ToggleFavourite({ favourited, propertyId, favouriteId }) {
+export default function ToggleFavourite({ favourited, propertyId, favouriteId, unfavouriteAsset }) {
   const { userId } = useUserContext();
   const { setError } = useErrorContext();
   const { postFavourite, deleteFavourite } = useFavesRequests();
@@ -11,7 +11,7 @@ export default function ToggleFavourite({ favourited, propertyId, favouriteId })
   const [favourite, setFavourite] = useState(favourited);
   const [pendingFave, setPendingFave] = useState({});
 
-  const asset = favouriteAsset ? "/assets/favouriteHeart.svg" : "/assets/unfavouriteHeart.svg";
+  const asset = favouriteAsset ? "/assets/favouriteHeart.svg" : unfavouriteAsset;
 
   const handleClick = async (favourite) => {
     setFavouriteAsset((prevState) => !prevState);

@@ -19,41 +19,66 @@ export const StyledBackButton = styled(Link)`
 
 export const StyledPropContainer = styled.div`
   width: 100vw;
-  margin: 18vh auto 0;
-  top: 0;
-  bottom: 0;
-  position: fixed;
-  overflow-y: scroll;
+  margin-top: 21vh;
+  overflow-y: auto;
   overflow-x: hidden;
+  height: calc(100vh - 20vh);
 `;
 
-export const StyledPropInfo = styled.div`
+export const StyledHeading = styled.div`
+  width: 100vw;
+  height: auto;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 0.8rem;
-`;
-
-export const StyledStatsDiv = styled.div`
-  margin: auto;
-  grid-direction: row;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2a5faf;
+  padding: 1rem;
 `;
 
 export const StyledHost = styled.div`
   display: flex;
-  margin-top: auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #2a5faf;
+`;
+
+export const StyledPropInfo = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+`;
+
+export const StyledStatsDiv = styled.div`
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 0.5rem 0;
+
+  > * {
+    border-top: 1px solid #2a5faf;
+    border-bottom: 1px solid #2a5faf;
+    border-right: 1px solid #2a5faf;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  > *:first-child {
+    border-left: 1px solid #2a5faf;
+  }
 `;
 
 export const StyledAvatar = styled.img`
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
   object-fit: cover;
 `;

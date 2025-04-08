@@ -40,6 +40,13 @@ export const StyledButton = styled.button`
   }
 `;
 
+export const StyledFaveButtonContainer = styled.div`
+  position: absolute;
+  bottom: 3px;
+  right: 6px;
+  z-index: 1;
+`;
+
 export const StyledFavouriteButton = styled.button`
   background: ${({ $asset }) => `url(${$asset})`};
   background-size: contain;
@@ -47,12 +54,8 @@ export const StyledFavouriteButton = styled.button`
   background-color: transparent !important;
   outline: none;
   width: 40px;
-  height: 40px;
+  height: 32px;
   border: none;
   cursor: pointer;
   transition: opacity 0.3s ease;
-  position: absolute;
-  bottom: 3px;
-  right: 10px;
-  z-index: 1;
 `;

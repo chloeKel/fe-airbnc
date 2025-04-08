@@ -1,4 +1,4 @@
-import Carousel from "../Carousel";
+import Carousel from "../Images/Carousel";
 import AverageRating from "../Reviews/AverageRating";
 import { StyledPropsContainer, StyledPropsWrapper, StyledName, StyledCarouselContainer, StyledLocation, StyledPrice, StyledRating, StyledPropertyLink } from "../../Styling/PropertiesStyle";
 

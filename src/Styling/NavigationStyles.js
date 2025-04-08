@@ -6,27 +6,29 @@ export const NavContainer = styled.div`
   bottom: 0;
   position: fixed;
   width: 100vw;
-  height: 18vh;
+  height: 20vh;
   display: grid;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: transparent;
+  background: #fefce8;
 `;
 
 export const StyledLogo = styled.img`
   height: 80%;
   width: auto;
-  background: transparent;
+  background: transparent !important;
 `;
 
 export const StyledNavBar = styled.div`
-  height: 20%;
+  height: fit-content;
   width: 100%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   text-align: center;
-  background: transparent;
+  background: #fefce8;
+  border-bottom: 1px solid #2a5faf;
+  padding-bottom: 0.5rem;
 `;
 
 export const StyledLink = styled(NavLink)`
