@@ -34,7 +34,7 @@ export const StyledDateInput = styled.input`
   border-radius: 5px;
   padding: 2px;
   margin: 5px;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Satoshi", sans-serif;
   line-height: 1.5;
   font-weight: 400;
   outline: none;

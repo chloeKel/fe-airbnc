@@ -15,29 +15,9 @@ export const StyledThumbnails = styled.div`
 `;
 
 export const StyledThumbnail = styled.img`
-    width: ${(props) => props.width}vw;
+  width: ${(props) => props.width}vw;
   height: auto
   object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;
- 
-//   transition: border 0.3s ease;
-  
-//   &:hover {
-//     border: 1px solid #2a5faf;
-//   }
-
-//   &:active {
-//     border: 1px solid #2a5faf;
-//   }
-
-//   transition: opacity;
-  
-//   &:hover {
-//     opacity: 0.5;
-//   }
-
-//   &:active {
-//     opacity: 0.5; 
-//   }
 `;
