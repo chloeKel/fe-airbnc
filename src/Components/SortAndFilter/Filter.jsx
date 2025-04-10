@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { StyledFilterContainer, StyledFilterButton, StyledArrowAsset, StyledDropdown, StyledOptions } from "../../Styling/FilterStyles";
 
-export default function Filter() {
+export default function Filter({ setSort }) {
   const [selected, setSelected] = useState("Most popular");
   const [isOpen, setIsOpen] = useState(false);
-
   const options = ["Most popular", "Highest price first", "Lowest price first"];
 
   const handleSelect = (option) => {
     setSelected(option);
+    setSort(option);
     setIsOpen(false);
-    console.log("Selected:", option);
-    // GET request
   };
 
   return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { StyledRangeContainer, StyledFilterButton, StyledArrowAsset, StyledSliderContainer, StyledSliderWrapper, StyledRangeInput, StyledPriceText } from "../../Styling/FilterStyles";
 
-export default function PriceSlider() {
+export default function PriceSlider({ setMinPrice, setMaxPrice }) {
   const step = 10;
   const minRange = 50;
   const maxRange = 1000;
@@ -27,6 +27,12 @@ export default function PriceSlider() {
     setIsOpen((display) => !display);
   };
 
+  const handleConfirm = () => {
+    setMaxPrice(max);
+    setMinPrice(min);
+    setIsOpen(false);
+  };
+
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -39,7 +45,7 @@ export default function PriceSlider() {
             <StyledFilterButton width="50%" onClick={handleClose}>
               X
             </StyledFilterButton>
-            <StyledFilterButton width="50%" onClick={handleClose}>
+            <StyledFilterButton width="50%" onClick={handleConfirm}>
               Confirm
             </StyledFilterButton>
           </>

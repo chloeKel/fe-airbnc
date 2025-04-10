@@ -1,11 +1,11 @@
 import { styled } from "styled-components";
 
 export const StyledFiltersContainer = styled.div`
-  width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 21vh auto 0;
+  width: 100vw;
+  margin-top: 20.5vh;
 `;
 
 export const StyledFilterContainer = styled.div`
@@ -13,7 +13,6 @@ export const StyledFilterContainer = styled.div`
   font-family: inherit;
   background: #fefce8;
   width: 50%;
-  overflow: visible;
 `;
 
 export const StyledFilterButton = styled.button`
