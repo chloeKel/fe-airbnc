@@ -4,8 +4,9 @@ import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
 import { StyledButton } from "../../Styling/ButtonStyles";
 import { useModalContext } from "../../Contexts/Contexts";
+import LeaveReview from "../Reviews/LeaveReview";
 
-export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, setBookings, userId }) {
+export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, setBookings, userId, propId }) {
   const { fetchBookings, patchBooking, deleteBooking } = useBookingRequests();
   const { openModal, closeModal } = useModalContext();
   const [checkIn, setCheckIn] = useState(prevCheckIn);
@@ -51,35 +52,52 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, set
     );
   };
 
+  const isTimeForReview = (d) => {
+    const date = new Date();
+    const checkOut = new Date(d);
+    return date.getTime() > checkOut.getTime();
+  };
+
   return (
     <>
-      <StyledButton
-        onClick={() => {
-          openModal(
-            <>
-              <h3>Amend booking</h3>
-              <BookingForm handleSubmit={handleAmend} checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
-              <StyledButton onClick={closeModal}>Close</StyledButton>
-            </>
-          );
-        }}
-      >
-        Amend
-      </StyledButton>
-      <StyledButton
-        onClick={() => {
-          openModal(
-            <>
-              <h3>Cancel Booking</h3>
-              <p>Are you sure you would like to cancel?</p>
-              <StyledButton onClick={handleDelete}>Confirm</StyledButton>
-              <StyledButton onClick={closeModal}>Close</StyledButton>
-            </>
-          );
-        }}
-      >
-        Cancel
-      </StyledButton>
+      {isTimeForReview ? (
+        <LeaveReview propId={propId} checkOut={checkOut} />
+      ) : (
+        <>
+          <StyledButton
+            $width="50%"
+            $bordertop="1px solid #2a5faf"
+            $borderleft="1px solid #2a5faf"
+            onClick={() => {
+              openModal(
+                <>
+                  <h3>Amend booking</h3>
+                  <BookingForm handleSubmit={handleAmend} checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
+                  <StyledButton onClick={closeModal}>Close</StyledButton>
+                </>
+              );
+            }}
+          >
+            Amend
+          </StyledButton>
+          <StyledButton
+            $width="50%"
+            $bordertop="1px solid #2a5faf"
+            onClick={() => {
+              openModal(
+                <>
+                  <h3>Cancel Booking</h3>
+                  <p>Are you sure you would like to cancel?</p>
+                  <StyledButton onClick={handleDelete}>Confirm</StyledButton>
+                  <StyledButton onClick={closeModal}>Close</StyledButton>
+                </>
+              );
+            }}
+          >
+            Cancel
+          </StyledButton>
+        </>
+      )}
     </>
   );
 }

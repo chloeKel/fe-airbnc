@@ -15,8 +15,8 @@ export const StyledThumbnails = styled.div`
 `;
 
 export const StyledThumbnail = styled.img`
-  width: ${(props) => props.width}vw;
-  height: auto
+  width: ${({ $width }) => $width};
+  height: auto;
   object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;

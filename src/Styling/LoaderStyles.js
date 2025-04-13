@@ -10,9 +10,9 @@ const animation = keyframes`
 
 export const StyledLoadingDiv = styled.div`
   position: fixed;
-  top: 60%;
+  top: 50%;
   left: 50%;
-  transform: translate(-60%, -50%);
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +27,7 @@ export const StyledLoader = styled.img`
   opacity: 0;
   animation-name: ${animation};
   animation-duration: 2s;
-  animation-delay: ${(props) => props.$delay};
+  animation-delay: ${({ $delay }) => $delay};
   animation-iteration-count: infinite;
   animation-fill-mode: both;
 `;

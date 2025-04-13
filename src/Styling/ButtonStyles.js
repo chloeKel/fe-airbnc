@@ -1,43 +1,22 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
+  width: 100%;
   position: relative;
-  align-self: center;
-  background-color: #ffffff;
-  border: 1px solid #1007fa;
-  border-radius: 30px;
+  width: ${({ $width }) => $width};
+  height: auto;
   cursor: pointer;
-  font-family: "Fraunces", serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-variation-settings: "SOFT" 0, "WONK" 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 20px;
-  color: #1007fa;
-  padding: 0 18px;
-  line-height: 35px;
+  padding: 0.5rem 0;
   text-align: center;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-
-  &::after {
-    content: "";
-    position: absolute;
-    width: 70%;
-    transform: translateX(-50%) scaleX(0);
-    height: 1px;
-    bottom: 7px;
-    left: 50%;
-    background-color: #fa7807;
-    transition: transform 0.25s ease-out;
-  }
-
-  &:hover::after {
-    transform: translateX(-50%) scaleX(1);
-  }
+  background: transparent;
+  border-right: 1px solid #2a5faf;
+  border-bottom: 1px solid #2a5faf;
+  border-left: ${({ $borderleft }) => $borderleft || "transparent"};
+  border-top: ${({ $bordertop }) => $bordertop || "transparent"};
+  outline: none;
+  color: #2a5faf;
+  font-size: 1rem;
+  font-weight: 500;
 `;
 
 export const StyledFaveButtonContainer = styled.div`

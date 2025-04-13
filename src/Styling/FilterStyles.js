@@ -1,35 +1,23 @@
 import { styled } from "styled-components";
 
 export const StyledFiltersContainer = styled.div`
+  width: 100vw;
+  position: fixed;
+  top: 20vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100vw;
-  margin-top: 20.5vh;
+  background: #fefce8;
+  z-index: 1000;
 `;
 
 export const StyledFilterContainer = styled.div`
-  position: relative;
   font-family: inherit;
   background: #fefce8;
   width: 50%;
-`;
-
-export const StyledFilterButton = styled.button`
-  width: 100%;
-  position: relative;
-  width: ${(props) => props.width};
-  height: auto;
-  cursor: pointer;
-  padding: 4px 0;
-  text-align: center;
-  background: transparent;
-  border-right: 1px solid #2a5faf;
-  border-bottom: 1px solid #2a5faf;
-  outline: none;
-  color: #2a5faf;
-  font-size: 1rem;
-  font-weight: 500;
+  > *:last-child {
+    border-right: none;
+  }
 `;
 
 export const StyledArrowAsset = styled.img`

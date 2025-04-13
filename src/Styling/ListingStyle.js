@@ -19,10 +19,11 @@ export const StyledBackButton = styled(Link)`
 
 export const StyledPropContainer = styled.div`
   width: 100vw;
-  margin-top: 21vh;
+  margin-top: 20vh;
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100vh - 20vh);
+  padding-bottom: 2rem;
 `;
 
 export const StyledHeading = styled.div`
@@ -70,8 +71,8 @@ export const StyledStatsDiv = styled.div`
     align-items: center;
   }
 
-  > *:first-child {
-    border-left: 1px solid #2a5faf;
+  > *:last-child {
+    border-right: none;
   }
 `;
 

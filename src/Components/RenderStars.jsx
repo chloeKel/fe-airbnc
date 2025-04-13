@@ -9,11 +9,11 @@ export default function RenderStars(rating) {
   }
 
   if (rating % 1 !== 0) {
-    stars.push(<StyledRatingAsset key="half star" src="/assets/ratingHalfStar.svg" alt="half star" />);
+    stars.push(<StyledRatingAsset key={`half-star-${rating}`} src="/assets/ratingHalfStar.svg" alt="half star" />);
   }
 
   for (let i = Math.ceil(rating); i < total; i++) {
-    stars.push(<StyledRatingAsset key="empty star" src="/assets/ratingEmptyStar.svg" alt="empty star" />);
+    stars.push(<StyledRatingAsset key={`empty-star-${i}`} src="/assets/ratingEmptyStar.svg" alt="empty star" />);
   }
   return stars;
 }

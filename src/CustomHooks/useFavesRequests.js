@@ -48,7 +48,6 @@ export function useFavesRequests() {
         const { data } = await axios.delete(`${url}/api/favourites/${favouriteId}`);
         return data;
       } catch (error) {
-        console.error(error);
         setError(error);
       }
     },

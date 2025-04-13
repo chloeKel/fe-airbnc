@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useErrorContext } from "../Contexts/Contexts";
 const url = import.meta.env.VITE_API_URL;
 
-export default function useFetchReviews(propertyId) {
+export function useFetchReviews(propertyId) {
   const { setError } = useErrorContext();
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState("");
@@ -23,4 +23,27 @@ export default function useFetchReviews(propertyId) {
   }, [propertyId, setError]);
 
   return { reviews, rating };
+}
+
+export function usePostReview() {
+  const { setError } = useErrorContext();
+
+  const postFavourite = useCallback(
+    async (propId, userId, rating, comment) => {
+      console.log(propId, userId, rating, comment);
+      try {
+        const { data } = await axios.post(`${url}/api/properties/${propId}/reviews`, {
+          guest_id: userId,
+          rating: rating,
+          comment: comment,
+        });
+        return data;
+      } catch (error) {
+        setError(error);
+      }
+    },
+    [setError]
+  );
+
+  return postFavourite;
 }

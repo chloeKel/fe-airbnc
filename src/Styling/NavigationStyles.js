@@ -7,11 +7,12 @@ export const NavContainer = styled.div`
   position: fixed;
   width: 100vw;
   height: 20vh;
-  display: grid;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #fefce8;
+  border-bottom: 1px solid #2a5faf;
+  z-index: 999;
 `;
 
 export const StyledLogo = styled.img`
@@ -21,24 +22,19 @@ export const StyledLogo = styled.img`
 `;
 
 export const StyledNavBar = styled.div`
-  height: fit-content;
   width: 100%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   text-align: center;
-  background: #fefce8;
-  border-bottom: 1px solid #2a5faf;
-  padding-bottom: 0.5rem;
 `;
 
 export const StyledLink = styled(NavLink)`
   display: inline-block;
   position: relative;
   text-decoration: none;
-  padding: 2px 0;
+  padding: 0.5rem 0;
   color: #2a5faf;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: ${({ $fontsize }) => $fontsize || "1rem"};
 
   &.active {
     background-color: #2a5faf;

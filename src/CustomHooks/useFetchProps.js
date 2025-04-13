@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useErrorContext } from "../Contexts/Contexts";
 const url = import.meta.env.VITE_API_URL;
 
@@ -7,6 +7,7 @@ export default function useFetchProps(userId, sort = null, minprice = null, maxp
   const { setError } = useErrorContext();
   const [properties, setProperties] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const containerRef = useRef(null);
 
   let endpoint;
   switch (sort) {
@@ -26,6 +27,9 @@ export default function useFetchProps(userId, sort = null, minprice = null, maxp
   if (minprice !== null && maxprice !== null) endpoint = `${url}/api/properties?user_id=${userId}&minprice=${minprice}&maxprice=${maxprice}&sort=price_per_night&order=asc`;
 
   useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
     (async () => {
       try {
         const {
@@ -39,5 +43,5 @@ export default function useFetchProps(userId, sort = null, minprice = null, maxp
     })();
   }, [userId, setError, endpoint]);
 
-  return { isLoading, properties };
+  return { isLoading, properties, containerRef };
 }

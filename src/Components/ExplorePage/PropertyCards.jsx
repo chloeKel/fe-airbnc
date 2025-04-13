@@ -1,18 +1,17 @@
 import Carousel from "../Images/Carousel";
 import AverageRating from "../Reviews/AverageRating";
-import { StyledPropsContainer, StyledPropsWrapper, StyledName, StyledCarouselContainer, StyledLocation, StyledPrice, StyledRating, StyledPropertyLink } from "../../Styling/PropertiesStyle";
+import { StyledPropsContainer, StyledPropsWrapper, StyledName, StyledCarouselContainer, StyledLocation, StyledPrice, StyledRating } from "../../Styling/PropertiesStyle";
+import { StyledLink } from "../../Styling/NavigationStyles";
 
-export default function PropertyCards({ properties }) {
+export default function PropertyCards({ properties, containerRef, height }) {
   return (
-    <StyledPropsContainer>
+    <StyledPropsContainer ref={containerRef} $height={`${height}px`}>
       {properties.map((property) => {
         const { name, location, price_per_night, average_rating, favourited, favourite_id, property_id, images } = property;
         return (
           <StyledPropsWrapper key={property_id}>
             <StyledName>
-              <StyledPropertyLink to={`/property/${property_id}`} color="#1007fa">
-                {name}
-              </StyledPropertyLink>
+              <StyledLink to={`/property/${property_id}`}>{name}</StyledLink>
             </StyledName>
             <StyledCarouselContainer>
               <Carousel images={images} name={name} favourited={favourited} propertyId={property_id} favouriteId={favourite_id} />

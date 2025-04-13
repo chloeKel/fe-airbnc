@@ -1,49 +1,56 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useUserContext } from "../../Contexts/Contexts";
-import { Link } from "react-router-dom";
 import AmendBooking from "./AmendBooking";
 import DefaultContent from "../DefaultContent";
-import { formatDateString } from "../../Utils/utils";
-import { StyledBookingsDiv, StyledBookingsImg, StyledBookingsLi, StyledBookingsUl } from "../../Styling/BookingsStyles";
+import Loader from "../Loader";
+import { formatDateString, getBookingDuration } from "../../Utils/utils";
+import { StyledButtonContainer, StyledBookingsImg, StyledBookingsLi, StyledBookingsUl, StyledInfo } from "../../Styling/BookingsStyles";
+import { StyledLink } from "../../Styling/NavigationStyles";
 import { useBookingRequests } from "../../CustomHooks/useBookingRequests";
 
 export default function Bookings() {
   const { userId } = useUserContext();
   const { fetchBookings } = useBookingRequests(userId);
+  const [loading, setLoading] = useState(true);
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
     fetchBookings(userId).then((res) => setBookings(res));
+    setLoading(false);
   }, [fetchBookings, userId]);
 
   return (
     <>
-      {bookings.length === 0 ? (
-        <DefaultContent component="bookings" />
+      {loading ? (
+        <Loader />
       ) : (
         <>
-          <h2>Bookings</h2>
-          <StyledBookingsUl>
-            {bookings.map((booking, index) => {
-              const { booking_id, image, check_in_date, check_out_date, property_userId, property_name } = booking;
-              const checkIn = formatDateString(check_in_date);
-              const checkOut = formatDateString(check_out_date);
-              return (
-                <StyledBookingsLi key={`${booking_id}-${index}`}>
-                  <StyledBookingsImg src={image} alt={property_name} />
-                  <h3>
-                    <Link to={`/property/${property_userId}`}>{property_name}</Link>
-                  </h3>
-                  <p>Booking reference: {booking_id}</p>
-                  <p>Check-in-date: {checkIn.split("-").reverse().join("-")}</p>
-                  <p>Check-out-date: {checkOut.split("-").reverse().join("-")}</p>
-                  <StyledBookingsDiv>
-                    <AmendBooking prevCheckIn={checkIn} prevCheckOut={checkOut} bookingId={booking_id} setBookings={setBookings} userId={userId} />
-                  </StyledBookingsDiv>
-                </StyledBookingsLi>
-              );
-            })}
-          </StyledBookingsUl>
+          {bookings.length === 0 ? (
+            <DefaultContent component="bookings" />
+          ) : (
+            <StyledBookingsUl>
+              {bookings.map((booking) => {
+                const { booking_id, image, check_in_date, check_out_date, property_id, property_name } = booking;
+                const checkIn = formatDateString(check_in_date);
+                const checkOut = formatDateString(check_out_date);
+                return (
+                  <Fragment key={booking_id}>
+                    <StyledBookingsLi key={booking_id}>
+                      <StyledBookingsImg src={image} alt={property_name} />
+                      <StyledInfo>
+                        <StyledLink to={`/property/${property_id}`}>{property_name}</StyledLink>
+                        <p>{getBookingDuration(checkIn, checkOut)}</p>
+                        <p>Booking reference: {booking_id}</p>
+                      </StyledInfo>
+                    </StyledBookingsLi>
+                    <StyledButtonContainer>
+                      <AmendBooking prevCheckIn={checkIn} prevCheckOut={checkOut} bookingId={booking_id} setBookings={setBookings} userId={userId} propId={property_id} />
+                    </StyledButtonContainer>
+                  </Fragment>
+                );
+              })}
+            </StyledBookingsUl>
+          )}
         </>
       )}
     </>

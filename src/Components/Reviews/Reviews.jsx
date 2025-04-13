@@ -1,4 +1,4 @@
-import useFetchReviews from "../../CustomHooks/useFetchReviews";
+import { useFetchReviews } from "../../CustomHooks/useFetchReviews";
 import { StyledRating, StyledReview, StyledReviewsContainer, StyledText } from "../../Styling/ReviewsStyles";
 import RenderStars from "../RenderStars";
 
@@ -12,8 +12,8 @@ export default function Reviews({ propertyId }) {
         return (
           <StyledReview key={review_id}>
             <StyledRating>{RenderStars(rating)}</StyledRating>
-            <StyledText>{comment}</StyledText>
-            <StyledText>{guest}</StyledText>
+            <StyledText $height="10vh">{comment}</StyledText>
+            <StyledText $height="fit-content">{guest}</StyledText>
           </StyledReview>
         );
       })}

@@ -41,7 +41,9 @@ export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckI
             }}
           />
         </StyledBookingLabel>
-        <StyledButton type="submit">Confirm</StyledButton>
+        <StyledButton type="submit" $width="50%" $borderleft="1px solid #2a5faf" $bordertop="1px solid #2a5faf">
+          Confirm
+        </StyledButton>
       </StyledBookingForm>
     </StyledBookingDiv>
   );

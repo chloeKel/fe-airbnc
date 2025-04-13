@@ -12,7 +12,7 @@ export default function Gallery({ images, name }) {
       <StyledPropImg src={mainImg} alt={name} />
       <StyledThumbnails>
         {thumbnails.map((img, index) => (
-          <StyledThumbnail key={index} src={img} alt={name} onClick={() => setMainImg(img)} width={thumbnailWidth} />
+          <StyledThumbnail key={index} src={img} alt={name} onClick={() => setMainImg(img)} $width={`${thumbnailWidth}vw`} />
         ))}
       </StyledThumbnails>
     </StyledGallery>

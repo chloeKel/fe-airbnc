@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 export const FavouritesList = styled.article`
+  width: 100vw;
+  margin-top: 21vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 20vh);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  padding: 10px;
-  border-style: solid;
-  border-color: red;
 `;
 
 export const FavouriteCard = styled.div`
@@ -15,8 +17,6 @@ export const FavouriteCard = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border-style: solid;
-  border-color: blue;
 `;
 
 export const FavouritesText = styled.div`
@@ -27,8 +27,6 @@ export const FavouritesText = styled.div`
   gap: 5px;
   margin-bottom: 0;
   padding: 0;
-  border-style: solid;
-  border-color: orange;
 `;
 
 export const FavouritesImage = styled.div`
@@ -40,6 +38,4 @@ export const FavouritesImage = styled.div`
     border-radius: 8px;
     object-fit: cover;
   }
-  border-style: solid;
-  border-color: purple;
 `;

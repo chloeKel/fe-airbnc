@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { StyledFilterContainer, StyledFilterButton, StyledArrowAsset, StyledDropdown, StyledOptions } from "../../Styling/FilterStyles";
+import { StyledFilterContainer, StyledArrowAsset, StyledDropdown, StyledOptions } from "../../Styling/FilterStyles";
+import { StyledButton } from "../../Styling/ButtonStyles";
 
 export default function Filter({ setSort }) {
   const [selected, setSelected] = useState("Most popular");
@@ -14,10 +15,10 @@ export default function Filter({ setSort }) {
 
   return (
     <StyledFilterContainer>
-      <StyledFilterButton width="100%" onClick={() => setIsOpen((prevState) => !prevState)}>
+      <StyledButton onClick={() => setIsOpen((prevState) => !prevState)} $width="100%">
         <StyledArrowAsset src="/assets/blueDownArrow.svg" alt="down arrow" />
         {selected}
-      </StyledFilterButton>
+      </StyledButton>
       {isOpen && (
         <StyledDropdown>
           {options

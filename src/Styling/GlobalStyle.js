@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 * {
@@ -11,14 +11,17 @@ box-sizing: border-box;
 
 body {
 background: #fefce8;
-display: flex;
-flex-direction: column;
-justify-content: center;
-text-align: center;
-width: 100vw;
-height: 100vh;
 font-family: 'Satoshi', sans-serif;
-font-weight: 600;
+font-weight: 500;
 color: #2a5faf;
+font-size: 16px;
 }
+`;
+
+export const StyledBody = styled.div`
+  width: 100vw;
+  position: relative;
+  top: ${({ $height }) => $height};
+  //   border: 2px dashed red;
+  //   background: rgba(255, 0, 0, 0.1);
 `;

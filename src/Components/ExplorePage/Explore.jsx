@@ -6,21 +6,23 @@ import Filter from "../SortAndFilter/Filter";
 import PriceSlider from "../SortAndFilter/PriceSlider";
 import PropertyCards from "./PropertyCards";
 import Loader from "../Loader";
+import useMeasure from "../../CustomHooks/useMeasure";
 
 export default function Explore() {
   const { userId } = useUserContext();
+  const { height, nodeRef } = useMeasure();
   const [sort, setSort] = useState(null);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
-  const { isLoading, properties } = useFetchProps(userId, sort, minPrice, maxPrice);
+  const { isLoading, properties, containerRef } = useFetchProps(userId, sort, minPrice, maxPrice);
 
   return (
     <>
-      <StyledFiltersContainer>
+      <StyledFiltersContainer ref={nodeRef}>
         <PriceSlider setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} />
         <Filter setSort={setSort} />
       </StyledFiltersContainer>
-      {isLoading ? <Loader /> : <PropertyCards properties={properties} />}
+      {isLoading ? <Loader /> : <PropertyCards properties={properties} containerRef={containerRef} height={height} />}
     </>
   );
 }

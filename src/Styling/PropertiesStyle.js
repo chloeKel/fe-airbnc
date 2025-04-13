@@ -1,10 +1,14 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
 
 export const StyledPropsContainer = styled.div`
-  overflow-y: scroll;
+  position: relative;
+  top: ${({ $height }) => $height};
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  // border: 2px dashed blue;
+  // background: rgba(0, 0, 255, 0.1);
 `;
 
 export const StyledRatingAsset = styled.img`
@@ -35,25 +39,6 @@ export const StyledName = styled.li`
   border-bottom: 1px solid #2a5faf;
   height: fit-content;
   padding: 2.2rem;
-`;
-
-export const StyledPropertyLink = styled(NavLink)`
-  display: inline-block;
-  position: relative;
-  text-decoration: none;
-  color: #2a5faf;
-  font-size: 1.1rem;
-  font-weight: 700;
-
-  &.active {
-    background-color: #2a5faf;
-    color: #fefce8;
-  }
-
-  &.hover {
-    background-color: #2a5faf;
-    color: #fefce8;
-  }
 `;
 
 export const StyledCarouselContainer = styled.li`

@@ -1,21 +1,23 @@
 import { useUserContext } from "../../Contexts/Contexts";
 import { NavContainer, StyledLink, StyledLogo, StyledNavBar } from "../../Styling/NavigationStyles";
 
-export default function Navbar() {
+export default function Navbar({ nodeRef }) {
   const { userId } = useUserContext();
 
   return (
-    <NavContainer>
+    <NavContainer ref={nodeRef}>
       <StyledLogo src="/assets/logo.svg" alt="Airbnc" />
       <StyledNavBar>
-        <StyledLink to="/">Explore</StyledLink>
-        <StyledLink to={`/users/${userId}/bookings`} end>
+        <StyledLink $fontsize="1.1rem" to="/">
+          Explore
+        </StyledLink>
+        <StyledLink $fontsize="1.1rem" to={`/users/${userId}/bookings`} end>
           Bookings
         </StyledLink>
-        <StyledLink to={`/users/${userId}/favourites`} end>
+        <StyledLink $fontsize="1.1rem" to={`/users/${userId}/favourites`} end>
           Favourites
         </StyledLink>
-        <StyledLink to={`/users/${userId}`} end>
+        <StyledLink $fontsize="1.1rem" to={`/users/${userId}`} end>
           Profile
         </StyledLink>
       </StyledNavBar>

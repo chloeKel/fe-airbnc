@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { StyledRangeContainer, StyledFilterButton, StyledArrowAsset, StyledSliderContainer, StyledSliderWrapper, StyledRangeInput, StyledPriceText } from "../../Styling/FilterStyles";
+import { StyledRangeContainer, StyledArrowAsset, StyledSliderContainer, StyledSliderWrapper, StyledRangeInput, StyledPriceText } from "../../Styling/FilterStyles";
+import { StyledButton } from "../../Styling/ButtonStyles";
 
 export default function PriceSlider({ setMinPrice, setMaxPrice }) {
   const step = 10;
@@ -42,18 +43,18 @@ export default function PriceSlider({ setMinPrice, setMaxPrice }) {
       <>
         {isOpen ? (
           <>
-            <StyledFilterButton width="50%" onClick={handleClose}>
+            <StyledButton $width="50%" onClick={handleClose}>
               X
-            </StyledFilterButton>
-            <StyledFilterButton width="50%" onClick={handleConfirm}>
+            </StyledButton>
+            <StyledButton $width="50%" onClick={handleConfirm}>
               Confirm
-            </StyledFilterButton>
+            </StyledButton>
           </>
         ) : (
-          <StyledFilterButton width="100%" onClick={handleDropDown}>
+          <StyledButton $width="100%" onClick={handleDropDown}>
             Custom Price
             <StyledArrowAsset src="/assets/blueDownArrow.svg" alt="down arrow" />
-          </StyledFilterButton>
+          </StyledButton>
         )}
       </>
       {isOpen && (
