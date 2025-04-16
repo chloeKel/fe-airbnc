@@ -1,19 +1,32 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function useMeasure() {
-  const [height, setHeight] = useState(0);
-  const nodeRef = useRef();
+  const measureRef = useRef();
 
-  useLayoutEffect(() => {
-    if (nodeRef.current) {
-      const measure = () => {
-        setHeight(nodeRef.current.getBoundingClientRect().height);
-      };
-      measure();
-      window.addEventListener("resize", measure);
-      return () => window.removeEventListener("resize", measure);
-    }
-  }, []);
+  const getDimensions = () => ({
+    width: measureRef.current.offsetWidth,
+    height: measureRef.current.offsetHeight,
+  });
 
-  return { nodeRef, height };
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions(getDimensions());
+    };
+    let dimensionsTimeout = setTimeout(() => {
+      if (measureRef.current) {
+        setDimensions(getDimensions());
+      }
+    }, 100);
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearTimeout(dimensionsTimeout);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [measureRef]);
+
+  return { measureRef, dimensions };
 }

@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const FavouritesList = styled.article`
+  position: absolute;
   width: 100vw;
-  margin-top: 21vh;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - 20vh);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;

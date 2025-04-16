@@ -10,7 +10,10 @@ import useMeasure from "../../CustomHooks/useMeasure";
 
 export default function Explore() {
   const { userId } = useUserContext();
-  const { height, nodeRef } = useMeasure();
+  const {
+    measureRef,
+    dimensions: { height },
+  } = useMeasure();
   const [sort, setSort] = useState(null);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
@@ -18,7 +21,7 @@ export default function Explore() {
 
   return (
     <>
-      <StyledFiltersContainer ref={nodeRef}>
+      <StyledFiltersContainer ref={measureRef}>
         <PriceSlider setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} />
         <Filter setSort={setSort} />
       </StyledFiltersContainer>

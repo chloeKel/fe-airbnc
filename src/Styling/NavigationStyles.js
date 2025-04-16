@@ -35,14 +35,30 @@ export const StyledLink = styled(NavLink)`
   padding: 0.5rem 0;
   color: #2a5faf;
   font-size: ${({ $fontsize }) => $fontsize || "1rem"};
+  background-color: transparent !important;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
-  &.active {
-    background-color: #2a5faf;
-    color: #fefce8;
+  span {
+    position: relative;
+    display: inline-block;
   }
 
-  &.hover {
-    background-color: #2a5faf;
-    color: #fefce8;
+  &:hover,
+  &:focus,
+  &.active {
+    font-weight: 800;
+  }
+
+  &:hover span::before,
+  &:focus span::before,
+  &.active span::before {
+    font-weight: 800;
   }
 `;

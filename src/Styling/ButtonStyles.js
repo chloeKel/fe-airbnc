@@ -14,7 +14,8 @@ export const StyledButton = styled.button`
   border-left: ${({ $borderleft }) => $borderleft || "transparent"};
   border-top: ${({ $bordertop }) => $bordertop || "transparent"};
   outline: none;
-  color: #2a5faf;
+  color: ${({ $color }) => $color || "#2a5faf"};
+  background: ${({ $background }) => $background || "none"};
   font-size: 1rem;
   font-weight: 500;
 `;

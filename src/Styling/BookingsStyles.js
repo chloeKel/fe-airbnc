@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 export const StyledBookingsUl = styled.ul`
   width: 100vw;
-  margin-top: 20vh;
+  position: absolute;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - 20vh);
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -22,6 +21,7 @@ export const StyledBookingsImg = styled.img`
   object-fit: cover;
   display: flex;
   align-self: center;
+  padding: 0.5rem 0.5rem;
 `;
 
 export const StyledBookingsLi = styled.li`
@@ -39,6 +39,7 @@ export const StyledInfo = styled.div`
   grid-template-columns: auto;
   grid-template-rows: repeat(3, 1fr);
   font-weight: 500;
+  text-align: center;
 
   > * {
     display: flex;

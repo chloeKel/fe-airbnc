@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 import { StyledButton } from "../../Styling/ButtonStyles";
 import { getCheckOut } from "../../Utils/utils";
-import { StyledBookingDiv, StyledBookingForm, StyledBookingLabel, StyledDateInput } from "../../Styling/InputStyles";
+import useMeasure from "../../CustomHooks/useMeasure";
+import { StyledBookingDiv, StyledBookingForm, StyledDateInput } from "../../Styling/InputStyles";
 
 export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckIn, setCheckOut }) {
   const [arrivePicker, setArrivePicker] = useState(checkIn);
   const [departPicker, setDepartPicker] = useState(checkOut);
+  const {
+    measureRef,
+    dimensions: { width },
+  } = useMeasure();
+
+  console.log(width);
 
   useEffect(() => {
     if (arrivePicker !== checkIn && departPicker !== checkOut) {
@@ -17,9 +24,10 @@ export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckI
   return (
     <StyledBookingDiv>
       <StyledBookingForm onSubmit={handleSubmit}>
-        <StyledBookingLabel>
+        <label>
           Check In Date
           <StyledDateInput
+            ref={measureRef}
             type="date"
             value={arrivePicker}
             onChange={(e) => {
@@ -29,8 +37,8 @@ export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckI
               setDepartPicker(depart);
             }}
           />
-        </StyledBookingLabel>
-        <StyledBookingLabel>
+        </label>
+        <label>
           Check Out Date
           <StyledDateInput
             type="date"
@@ -40,11 +48,11 @@ export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckI
               setDepartPicker(depart);
             }}
           />
-        </StyledBookingLabel>
-        <StyledButton type="submit" $width="50%" $borderleft="1px solid #2a5faf" $bordertop="1px solid #2a5faf">
-          Confirm
-        </StyledButton>
+        </label>
       </StyledBookingForm>
+      <StyledButton type="submit" $width={`${width}px`} $color="#fefce8" $background="#2a5faf">
+        Confirm
+      </StyledButton>
     </StyledBookingDiv>
   );
 }

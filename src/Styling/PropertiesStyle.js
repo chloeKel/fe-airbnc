@@ -7,8 +7,6 @@ export const StyledPropsContainer = styled.div`
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  // border: 2px dashed blue;
-  // background: rgba(0, 0, 255, 0.1);
 `;
 
 export const StyledRatingAsset = styled.img`

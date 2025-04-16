@@ -22,6 +22,4 @@ export const StyledBody = styled.div`
   width: 100vw;
   position: relative;
   top: ${({ $height }) => $height};
-  //   border: 2px dashed red;
-  //   background: rgba(255, 0, 0, 0.1);
 `;

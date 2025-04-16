@@ -7,39 +7,46 @@ export const StyledBookingForm = styled.form`
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 600px;
 `;
 
 export const StyledBookingDiv = styled.div`
+  width: 100vw;
+  height: fit-content;
+  padding: 0.5rem 0.5rem;
   display: flex;
-  justify-content: center;
-  gap: 30px;
-  width: 100%;
-`;
-
-export const StyledBookingLabel = styled.label`
-  display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  jusify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 export const StyledDateInput = styled.input`
   display: flex;
   flex-direction: row;
-  margin-top: 5px;
-  width: 150px;
-  background-color: #ffffff;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 2px;
-  margin: 5px;
+  text-align: center;
+  margin: 0.5rem 0;
+  padding: 0.2rem 0.2rem;
+  width: fit-content;
+  background-color: #fefce8;
+  color: #2a5faf;
+  border: 1px solid #2a5faf;
   font-family: "Satoshi", sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 500;
+  font-size: 1rem;
   outline: none;
+  -webkit-appearance: none;
 
   &:focus {
-    border-color: #000000;
+    border: 2px solid #2a5faf;
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    position: relative;
+    background-image: url("/assets/calendar.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 1rem;
   }
 `;

@@ -30,4 +30,5 @@ export const StyledLoader = styled.img`
   animation-delay: ${({ $delay }) => $delay};
   animation-iteration-count: infinite;
   animation-fill-mode: both;
+  margin-top: 100px;
 `;

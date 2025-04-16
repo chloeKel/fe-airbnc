@@ -5,8 +5,9 @@ export const StyledBackButton = styled(Link)`
   width: 2rem;
   height: 2rem;
   position: absolute;
-  top: 8px;
-  left: 16px;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
   background: url("/assets/blueLeftArrow.svg") no-repeat center;
   background-size: contain;
   border: none;
@@ -18,11 +19,10 @@ export const StyledBackButton = styled(Link)`
 `;
 
 export const StyledPropContainer = styled.div`
+  position: absolute;
   width: 100vw;
-  margin-top: 20vh;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - 20vh);
   padding-bottom: 2rem;
 `;
 

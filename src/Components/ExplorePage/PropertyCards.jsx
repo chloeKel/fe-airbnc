@@ -11,7 +11,9 @@ export default function PropertyCards({ properties, containerRef, height }) {
         return (
           <StyledPropsWrapper key={property_id}>
             <StyledName>
-              <StyledLink to={`/property/${property_id}`}>{name}</StyledLink>
+              <StyledLink to={`/property/${property_id}`}>
+                <span>{name}</span>
+              </StyledLink>
             </StyledName>
             <StyledCarouselContainer>
               <Carousel images={images} name={name} favourited={favourited} propertyId={property_id} favouriteId={favourite_id} />

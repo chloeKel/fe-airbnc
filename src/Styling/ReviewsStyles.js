@@ -28,6 +28,7 @@ export const StyledText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 export const StyledRating = styled.div`

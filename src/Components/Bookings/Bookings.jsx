@@ -38,7 +38,9 @@ export default function Bookings() {
                     <StyledBookingsLi key={booking_id}>
                       <StyledBookingsImg src={image} alt={property_name} />
                       <StyledInfo>
-                        <StyledLink to={`/property/${property_id}`}>{property_name}</StyledLink>
+                        <StyledLink to={`/property/${property_id}`}>
+                          <span>{property_name}</span>
+                        </StyledLink>
                         <p>{getBookingDuration(checkIn, checkOut)}</p>
                         <p>Booking reference: {booking_id}</p>
                       </StyledInfo>
