@@ -150,3 +150,19 @@ export const StyledTextArea = styled.textarea`
     -webkit-text-fill-color: #2a5faf;
   }
 `;
+
+export const StyledComment = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  padding: 0.5rem 0;
+  text-align: center;
+`;
+
+export const StyledReviewContainer = styled.div`
+  wdith: 50vw;
+  border-right: 1px solid #2a5faf;
+  border-left: 1px solid #2a5faf;
+  padding: 1rem;
+`;

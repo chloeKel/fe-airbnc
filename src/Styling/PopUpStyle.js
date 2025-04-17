@@ -6,18 +6,18 @@ export const PopUpOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: transparent;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
 export const PopUpContent = styled.div`
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  background: #2a5faf;
+  padding: 1rem;
   text-align: center;
-  max-width: 400px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  color: black;
+  max-width: 300px;
+  border: 1px solid #fefce8;
+  color: #fefce8;
 `;

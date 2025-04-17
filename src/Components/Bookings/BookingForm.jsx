@@ -12,8 +12,6 @@ export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckI
     dimensions: { width },
   } = useMeasure();
 
-  console.log(width);
-
   useEffect(() => {
     if (arrivePicker !== checkIn && departPicker !== checkOut) {
       setCheckIn(arrivePicker);

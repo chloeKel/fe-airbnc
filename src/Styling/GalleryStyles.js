@@ -16,7 +16,7 @@ export const StyledThumbnails = styled.div`
 
 export const StyledThumbnail = styled.img`
   width: ${({ $width }) => $width};
-  height: auto;
+  height: ${({ $height }) => $height};
   object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;

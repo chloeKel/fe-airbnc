@@ -1,22 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-export const StyledBackButton = styled(Link)`
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 1000;
-  background: url("/assets/blueLeftArrow.svg") no-repeat center;
-  background-size: contain;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: inline-block;
-  text-decoration: none;
-  box-sizing: border-box;
-`;
 
 export const StyledPropContainer = styled.div`
   position: absolute;

@@ -7,7 +7,7 @@ import ViewFavourites from "./Components/Favourites/ViewFavourites";
 import Explore from "./Components/ExplorePage/Explore";
 import Navbar from "./Components/ExplorePage/Navbar";
 import useMeasure from "./CustomHooks/useMeasure";
-import { StyledBackButton } from "./Styling/ListingStyle";
+import { StyledBackButton } from "./Styling/ButtonStyles";
 import { StyledBody } from "./Styling/GlobalStyle";
 
 function App() {

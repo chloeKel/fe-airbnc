@@ -5,7 +5,6 @@ import { ErrorContext, UserContext, ModalContext, useModalContext } from "./Cont
 import { PopUpOverlay, PopUpContent } from "../Styling/PopUpStyle";
 import useFetchUser from "../CustomHooks/useFetchUser";
 import setErrorMsg from "../Utils/setErrorMsg";
-import { StyledButton } from "../Styling/ButtonStyles";
 
 export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(8);
@@ -59,32 +58,25 @@ export const ErrorProvider = ({ children }) => {
   const navigate = useNavigate();
   const { openModal, closeModal } = useModalContext();
   const [error, setError] = useState(null);
-  const [redirect, setRedirect] = useState(true);
 
   useEffect(() => {
     if (error) {
       openModal(
         <>
           <p>{setErrorMsg(error.status)}</p>
-          <StyledButton
-            onClick={() => {
-              setError(null);
-              if (redirect) navigate(-1);
-              closeModal();
-            }}
-          >
-            {redirect ? "Explore" : "Back"}
-          </StyledButton>
         </>
       );
+      setTimeout(() => {
+        setError(null);
+        closeModal();
+      }, 2500);
     }
-  }, [error, openModal, closeModal, navigate, redirect]);
+  }, [error, openModal, closeModal, navigate]);
 
   const contextValue = useMemo(
     () => ({
       error,
       setError,
-      setRedirect,
     }),
     [error]
   );

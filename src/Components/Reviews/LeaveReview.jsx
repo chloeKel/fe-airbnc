@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { StyledLeaveReview, StyledTextArea, StyledRatingBar, StyledStarButton, StyledStarAsset } from "../../Styling/ReviewsStyles";
+import { StyledLink } from "../../Styling/NavigationStyles";
+import { StyledArrowAsset } from "../../Styling/FilterStyles";
 import { useUserContext } from "../../Contexts/Contexts";
-import { usePostReview } from "../../CustomHooks/useFetchReviews";
+import { useReviews } from "../../CustomHooks/useReviews";
 import { StyledButton } from "../../Styling/ButtonStyles";
 
 export default function LeaveReview({ propId }) {
   const { userId } = useUserContext();
-  const postFavourite = usePostReview();
+  const { postReview } = useReviews();
   const [rating, setRating] = useState(null);
   const [review, setReview] = useState(null);
+  const [hasReviewed, setHasReviewed] = useState(false);
 
   const handleInteract = (e, i) => {
     const { left, width } = e.target.getBoundingClientRect();
@@ -29,26 +32,36 @@ export default function LeaveReview({ propId }) {
   };
 
   const handleSubmit = async () => {
-    const response = await postFavourite(propId, userId, Number(rating), review);
-    console.log(response);
+    await postReview(propId, userId, rating, review);
+    setHasReviewed(true);
   };
 
   return (
     <StyledLeaveReview>
-      <label>Leave a review...</label>
-      <StyledRatingBar>
-        {[...Array(5)].map((_, i) => {
-          return (
-            <StyledStarButton key={i} onClick={(e) => handleInteract(e, i)} onMouseMove={(e) => handleInteract(e, i)}>
-              <StyledStarAsset src={handleAsset(i)} />
-            </StyledStarButton>
-          );
-        })}
-      </StyledRatingBar>
-      <StyledTextArea onChange={handleChange} rows="5" autoComplete="off" autoCorrect="on" maxLength="500" aria-label="Leave a review..."></StyledTextArea>
-      <StyledButton onClick={handleSubmit} $width="50%" $borderleft="1px solid #2a5faf" $bordertop="1px solid #2a5faf">
-        Submit
-      </StyledButton>
+      {hasReviewed ? (
+        <StyledLink to={`/property/${propId}`}>
+          <span style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "0.5rem" }}>
+            Book again? <StyledArrowAsset src="/assets/blueRightArrow.svg" alt="down arrow" />
+          </span>
+        </StyledLink>
+      ) : (
+        <>
+          <label>Leave a review...</label>
+          <StyledRatingBar>
+            {[...Array(5)].map((_, i) => {
+              return (
+                <StyledStarButton key={i} onClick={(e) => handleInteract(e, i)} onMouseMove={(e) => handleInteract(e, i)}>
+                  <StyledStarAsset src={handleAsset(i)} />
+                </StyledStarButton>
+              );
+            })}
+          </StyledRatingBar>
+          <StyledTextArea onChange={handleChange} rows="5" autoComplete="off" autoCorrect="on" maxLength="500" aria-label="Leave a review..."></StyledTextArea>
+          <StyledButton onClick={handleSubmit} $width="50%" $borderleft="1px solid #2a5faf" $bordertop="1px solid #2a5faf">
+            Submit
+          </StyledButton>
+        </>
+      )}
     </StyledLeaveReview>
   );
 }
