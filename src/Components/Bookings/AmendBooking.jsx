@@ -5,12 +5,15 @@ import BookingConfirmation from "./BookingConfirmation";
 import { StyledButton } from "../../Styling/ButtonStyles";
 import { useModalContext } from "../../Contexts/Contexts";
 import LeaveReview from "../Reviews/LeaveReview";
+import { StyledButtonContainer } from "../../Styling/BookingsStyles";
 
-export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, setBookings, userId, propId }) {
+export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, setBookings, userId, propId, height }) {
   const { fetchBookings, patchBooking, deleteBooking } = useBookingRequests();
   const { openModal, closeModal } = useModalContext();
   const [checkIn, setCheckIn] = useState(prevCheckIn);
   const [checkOut, setCheckOut] = useState(prevCheckOut);
+  const [isAmendOpen, setIsAmendOpen] = useState(false);
+  const [isCloseOpen, setIsCloseOpen] = useState(false);
   const [isAmended, setIsAmended] = useState(false);
   const [refresh, setRefresh] = useState(false);
 
@@ -33,7 +36,9 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, set
       openModal(
         <>
           <BookingConfirmation msg="Booking updated" checkIn={checkIn} checkOut={checkOut} />
-          <StyledButton onClick={closeModal}>Close</StyledButton>
+          <StyledButton onClick={closeModal} $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+            Close
+          </StyledButton>
         </>
       );
       setIsAmended(false);
@@ -47,7 +52,9 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, set
     openModal(
       <>
         <p>Your booking has been cancelled</p>
-        <StyledButton onClick={closeModal}>Close</StyledButton>
+        <StyledButton onClick={closeModal} $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+          Close
+        </StyledButton>
       </>
     );
   };
@@ -60,43 +67,41 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, set
 
   return (
     <>
-      {isTimeForReview ? (
+      {isTimeForReview(checkOut) ? (
         <LeaveReview propId={propId} checkOut={checkOut} />
       ) : (
-        <>
-          <StyledButton
-            $width="50%"
-            $bordertop="1px solid #2a5faf"
-            $borderleft="1px solid #2a5faf"
-            onClick={() => {
-              openModal(
-                <>
-                  <h3>Amend booking</h3>
-                  <BookingForm handleSubmit={handleAmend} checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
-                  <StyledButton onClick={closeModal}>Close</StyledButton>
-                </>
-              );
-            }}
-          >
-            Amend
+        !isAmendOpen &&
+        !isCloseOpen && (
+          <StyledButtonContainer $height={`${height}px`}>
+            <StyledButton onClick={() => setIsAmendOpen(true)} $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+              Amend
+            </StyledButton>
+            <StyledButton onClick={() => setIsCloseOpen(true)} $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+              Cancel
+            </StyledButton>
+          </StyledButtonContainer>
+        )
+      )}
+      {isAmendOpen && (
+        <div style={{ paddingBottom: "1rem" }}>
+          <BookingForm handleSubmit={handleAmend} checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
+          <StyledButton onClick={() => setIsAmendOpen(false)} $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+            Close
           </StyledButton>
-          <StyledButton
-            $width="50%"
-            $bordertop="1px solid #2a5faf"
-            onClick={() => {
-              openModal(
-                <>
-                  <h3>Cancel Booking</h3>
-                  <p>Are you sure you would like to cancel?</p>
-                  <StyledButton onClick={handleDelete}>Confirm</StyledButton>
-                  <StyledButton onClick={closeModal}>Close</StyledButton>
-                </>
-              );
-            }}
-          >
-            Cancel
-          </StyledButton>
-        </>
+        </div>
+      )}
+      {isCloseOpen && (
+        <div style={{ paddingTop: "1rem" }}>
+          <p>Are you sure you would like to cancel?</p>
+          <StyledButtonContainer>
+            <StyledButton onClick={handleDelete} $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+              Confirm
+            </StyledButton>
+            <StyledButton onClick={() => setIsCloseOpen(false)} $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+              Close
+            </StyledButton>
+          </StyledButtonContainer>
+        </div>
       )}
     </>
   );

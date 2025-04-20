@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useReviews } from "../../CustomHooks/useReviews";
-import { StyledRating, StyledReview, StyledReviewsContainer, StyledText } from "../../Styling/ReviewsStyles";
+import { StyledReview, StyledReviewsContainer, StyledStars, StyledText } from "../../Styling/ReviewsStyles";
 import RenderStars from "../RenderStars";
 
-export default function Reviews({ propertyId }) {
+export default function Reviews({ propertyId, height }) {
   const { fetchReviews } = useReviews();
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState("");
@@ -21,9 +21,9 @@ export default function Reviews({ propertyId }) {
         const { review_id, comment, guest } = review;
         return (
           <StyledReview key={review_id}>
-            <StyledRating>{RenderStars(rating)}</StyledRating>
-            <StyledText $height="10vh">{comment}</StyledText>
-            <StyledText $height="fit-content">{guest}</StyledText>
+            <StyledStars $height={`${height / 1.5}px`}>{RenderStars(rating)}</StyledStars>
+            <StyledText $height={`${height * 2}px`}>{comment}</StyledText>
+            <StyledText $height={`${height / 1.5}px`}>{guest}</StyledText>
           </StyledReview>
         );
       })}

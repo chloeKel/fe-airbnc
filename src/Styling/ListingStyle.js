@@ -5,12 +5,11 @@ export const StyledPropContainer = styled.div`
   width: 100vw;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-bottom: 2rem;
 `;
 
 export const StyledHeading = styled.div`
-  width: 100vw;
-  height: auto;
+  width: 100%;
+  height: ${({ $height }) => $height};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,32 +18,33 @@ export const StyledHeading = styled.div`
 `;
 
 export const StyledHost = styled.div`
+  width: 100%;
+  height: ${({ $height }) => $height};
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0.8rem 0;
   border-bottom: 1px solid #2a5faf;
+  margin-bottom: 0.5rem;
 `;
 
 export const StyledPropInfo = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
 `;
 
 export const StyledStatsDiv = styled.div`
-  width: 100vw;
+  width: 100%;
+  height: ${({ $height }) => $height};
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  padding: 0.5rem 0;
+  border-top: 1px solid #2a5faf;
+  margin-top: 0.5rem;
 
   > * {
-    border-top: 1px solid #2a5faf;
     border-bottom: 1px solid #2a5faf;
     border-right: 1px solid #2a5faf;
     padding: 1rem 0;
@@ -64,4 +64,16 @@ export const StyledAvatar = styled.img`
   height: 30px;
   margin-right: 10px;
   object-fit: cover;
+`;
+
+export const StyledDesc = styled.p`
+  width: 100%;
+  height: ${({ $height }) => $height};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  border-bottom: 1px solid #2a5faf;
 `;

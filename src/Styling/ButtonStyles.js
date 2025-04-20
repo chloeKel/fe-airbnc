@@ -31,13 +31,30 @@ export const StyledFavouriteButton = styled.button`
   background: ${({ $asset }) => `url(${$asset})`};
   background-size: contain;
   background-repeat: no-repeat;
-  background-color: transparent !important;
-  outline: none;
   width: 40px;
   height: 32px;
-  border: none;
-  cursor: pointer;
   transition: opacity 0.3s ease;
+  background-color: transparent !important;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
 `;
 
 export const StyledBackButton = styled(Link)`

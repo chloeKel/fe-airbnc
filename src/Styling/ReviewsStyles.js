@@ -17,28 +17,30 @@ export const StyledReview = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
   border-bottom: 1px solid #2a5faf;
 `;
 
 export const StyledText = styled.div`
   height: ${({ $height }) => $height};
-  padding: 10px;
   border-top: 1px solid #2a5faf;
   border-right: 1px solid #2a5faf;
+  padding: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 `;
 
-export const StyledRating = styled.div`
+export const StyledStars = styled.div`
   width: 100%;
-  padding: 10px;
+  height: ${({ $height }) => $height || "auto"};
   border-top: 1px solid #2a5faf;
   border-right: 1px solid #2a5faf;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  background: transparent !important;
 `;
 
 export const StyledLeaveReview = styled.div`
@@ -109,7 +111,7 @@ export const StyledStarButton = styled.button`
   }
 `;
 
-export const StyledStarAsset = styled.img`
+export const StyledStar = styled.img`
   position: absolute;
   top: 0;
   left: 0;
@@ -162,7 +164,17 @@ export const StyledComment = styled.p`
 
 export const StyledReviewContainer = styled.div`
   wdith: 50vw;
-  border-right: 1px solid #2a5faf;
-  border-left: 1px solid #2a5faf;
-  padding: 1rem;
+  height: ${({ $height }) => $height};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StyledStarAsset = styled.img`
+  width: 25px;
+  height: 25px;
+  background: transparent !important;
+  align-self: center;
+  justify-self: center;
 `;

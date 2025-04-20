@@ -3,7 +3,7 @@ import { useReviews } from "../../CustomHooks/useReviews";
 import { StyledRatingBar, StyledComment, StyledReviewContainer } from "../../Styling/ReviewsStyles";
 import RenderStars from "../RenderStars";
 
-export default function ShowReview({ propId, userId }) {
+export default function ShowReview({ propId, userId, height }) {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
   const { fetchSingleReview } = useReviews();
@@ -16,7 +16,7 @@ export default function ShowReview({ propId, userId }) {
   });
 
   return (
-    <StyledReviewContainer>
+    <StyledReviewContainer $height={`${height}px`}>
       <StyledRatingBar>{RenderStars(rating)}</StyledRatingBar>
       <StyledComment>{review}</StyledComment>
     </StyledReviewContainer>

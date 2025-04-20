@@ -7,7 +7,7 @@ import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
 import { StyledButton } from "../../Styling/ButtonStyles";
 
-export default function Reserve() {
+export default function Reserve({ height }) {
   const navigate = useNavigate();
   const { userId } = useUserContext();
   const { openModal, closeModal } = useModalContext();
@@ -15,21 +15,24 @@ export default function Reserve() {
   const { id: propertyId } = useParams();
   const [checkIn, setCheckIn] = useState(getTodaysDate());
   const [checkOut, setCheckOut] = useState(getCheckOut(checkIn));
-  const [booking, setBooking] = useState({});
 
   const handleBooking = async (e) => {
     e.preventDefault();
     const response = await postBooking(userId, checkIn, checkOut, propertyId);
-    setBooking(response);
     openModal(
       <>
-        <BookingConfirmation msg={booking.msg} checkIn={checkIn} checkOut={checkOut} />
-        <StyledButton onClick={closeModal}>Close</StyledButton>
+        <BookingConfirmation msg={response.data.msg} checkIn={checkIn} checkOut={checkOut} />
+        <StyledButton onClick={closeModal} $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+          Close
+        </StyledButton>
         <StyledButton
           onClick={() => {
             navigate(`/users/${userId}/bookings`);
             closeModal();
           }}
+          $width="40vw"
+          $bordertop="1px solid #2a5faf"
+          $borderleft="1px solid #2a5faf"
         >
           View Bookings
         </StyledButton>
@@ -37,5 +40,5 @@ export default function Reserve() {
     );
   };
 
-  return <BookingForm handleSubmit={handleBooking} checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />;
+  return <BookingForm handleSubmit={handleBooking} checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} height={height} />;
 }

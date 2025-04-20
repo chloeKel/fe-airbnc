@@ -3,12 +3,13 @@ import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { ErrorContext, UserContext, ModalContext, useModalContext } from "./Contexts";
 import { PopUpOverlay, PopUpContent } from "../Styling/PopUpStyle";
-import useFetchUser from "../CustomHooks/useFetchUser";
+import { useFetchUser } from "../CustomHooks/useFetchUser";
 import setErrorMsg from "../Utils/setErrorMsg";
+import Loader from "../Components/Loader";
 
 export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(8);
-  const user = useFetchUser(userId);
+  const { user } = useFetchUser(userId);
 
   const contextValue = useMemo(
     () => ({
@@ -25,7 +26,7 @@ export const UserProvider = ({ children }) => {
 export const ModalProvider = ({ children }) => {
   const modalRoot = document.getElementById("modal-root");
   const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState(<div>Loading...</div>);
+  const [modalContent, setModalContent] = useState(<Loader />);
 
   const openModal = useCallback(
     (content) => {

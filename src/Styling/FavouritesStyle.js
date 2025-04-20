@@ -7,15 +7,21 @@ export const FavouritesList = styled.article`
   overflow-x: hidden;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  text-align: center;
 `;
 
 export const FavouriteCard = styled.div`
+  height: ${({ $height }) => $height};
   position: relative;
-  border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: 1px solid #2a5faf;
+  &:nth-child(odd) {
+    border-right: 1px solid #2a5faf;
+  }
 `;
 
 export const FavouritesText = styled.div`
@@ -23,18 +29,18 @@ export const FavouritesText = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  margin-bottom: 0;
-  padding: 0;
+  gap: 1rem;
 `;
 
-export const FavouritesImage = styled.div`
+export const ImageContainer = styled.div`
   position: relative;
-  overflow: hidden;
+  z-index: 1;
+
   img {
-    width: 100%;
+    width: 50vw;
     height: auto;
-    border-radius: 8px;
     object-fit: cover;
+    border-top: 1px solid #2a5faf;
+    border-bottom: 1px solid #2a5faf;
   }
 `;

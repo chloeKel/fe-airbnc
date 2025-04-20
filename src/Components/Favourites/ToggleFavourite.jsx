@@ -31,7 +31,6 @@ export default function ToggleFavourite({ favourited, propertyId, favouriteId, u
         setFavourite(true);
       }
     } catch (error) {
-      console.error(error);
       setFavourite((prevState) => !prevState);
       setError(error);
     }

@@ -25,8 +25,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Explore />} />
           <Route path="property/:id" element={<PropertyListing setShowBackButton={setShowBackButton} />} />
-          <Route path="users/:id" element={<Profile />} />
-          <Route path="users/:id/bookings" element={<Bookings />} />
+          <Route path="users/:id" element={<Profile height={height} />} />
+          <Route path="users/:id/bookings" element={<Bookings height={height} />} />
           <Route path="users/:id/favourites" element={<ViewFavourites />} />
         </Routes>
       </StyledBody>

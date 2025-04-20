@@ -1,35 +1,45 @@
 import styled from "styled-components";
 
 export const StyledBookingForm = styled.form`
-  margin: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  text-align: center;
+  width: 100vw;
+  height: fit-content;
 `;
 
 export const StyledBookingDiv = styled.div`
-  width: 100vw;
-  height: fit-content;
-  padding: 0.5rem 0.5rem;
-  display: flex;
-  flex-direction: column;
-  jusify-content: center;
-  align-items: center;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+
+  > * {
+    width: 100%;
+    height: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #2a5faf;
+  }
 `;
 
 export const StyledDateInput = styled.input`
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  height: 15vw;
+  align-self: center;
+  justify-self: center;
   text-align: center;
-  margin: 0.5rem 0;
-  padding: 0.2rem 0.2rem;
-  width: fit-content;
   background-color: #fefce8;
   color: #2a5faf;
-  border: 1px solid #2a5faf;
+  border-bottom: 1px solid #2a5faf;
+  border-left: 1px solid #2a5faf;
+  border-top: none !important;
+  border-right: none !important;
   font-family: "Satoshi", sans-serif;
   line-height: 1.5;
   font-weight: 500;

@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
 import { StyledButton } from "../../Styling/ButtonStyles";
-import { getCheckOut } from "../../Utils/utils";
-import useMeasure from "../../CustomHooks/useMeasure";
+import { getCheckOut, getTodaysDate } from "../../Utils/utils";
 import { StyledBookingDiv, StyledBookingForm, StyledDateInput } from "../../Styling/InputStyles";
+import { StyledButtonContainer } from "../../Styling/BookingsStyles";
 
-export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckIn, setCheckOut }) {
+export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckIn, setCheckOut, height }) {
   const [arrivePicker, setArrivePicker] = useState(checkIn);
   const [departPicker, setDepartPicker] = useState(checkOut);
-  const {
-    measureRef,
-    dimensions: { width },
-  } = useMeasure();
 
   useEffect(() => {
     if (arrivePicker !== checkIn && departPicker !== checkOut) {
@@ -20,37 +16,37 @@ export default function BookingForm({ handleSubmit, checkIn, checkOut, setCheckI
   }, [checkIn, checkOut, setCheckIn, setCheckOut, arrivePicker, departPicker]);
 
   return (
-    <StyledBookingDiv>
-      <StyledBookingForm onSubmit={handleSubmit}>
-        <label>
-          Check In Date
-          <StyledDateInput
-            ref={measureRef}
-            type="date"
-            value={arrivePicker}
-            onChange={(e) => {
-              const arrive = e.target.value;
-              const depart = getCheckOut(arrive);
-              setArrivePicker(arrive);
-              setDepartPicker(depart);
-            }}
-          />
-        </label>
-        <label>
-          Check Out Date
-          <StyledDateInput
-            type="date"
-            value={departPicker}
-            onChange={(e) => {
-              const depart = e.target.value;
-              setDepartPicker(depart);
-            }}
-          />
-        </label>
-      </StyledBookingForm>
-      <StyledButton type="submit" $width={`${width}px`} $color="#fefce8" $background="#2a5faf">
-        Confirm
-      </StyledButton>
-    </StyledBookingDiv>
+    <StyledBookingForm onSubmit={handleSubmit}>
+      <StyledBookingDiv>
+        <label>Check In Date</label>
+        <StyledDateInput
+          type="date"
+          min={getTodaysDate()}
+          value={arrivePicker}
+          onChange={(e) => {
+            const arrive = e.target.value;
+            const depart = getCheckOut(arrive);
+            setArrivePicker(arrive);
+            setDepartPicker(depart);
+          }}
+        />
+
+        <label>Check Out Date</label>
+        <StyledDateInput
+          type="date"
+          min={getTodaysDate()}
+          value={departPicker}
+          onChange={(e) => {
+            const depart = e.target.value;
+            setDepartPicker(depart);
+          }}
+        />
+      </StyledBookingDiv>
+      <StyledButtonContainer $height={`${height}px`}>
+        <StyledButton type="submit" $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+          Confirm
+        </StyledButton>
+      </StyledButtonContainer>
+    </StyledBookingForm>
   );
 }

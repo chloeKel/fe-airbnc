@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyledLeaveReview, StyledTextArea, StyledRatingBar, StyledStarButton, StyledStarAsset } from "../../Styling/ReviewsStyles";
+import { StyledLeaveReview, StyledTextArea, StyledStarButton, StyledStar, StyledRatingBar } from "../../Styling/ReviewsStyles";
 import { StyledLink } from "../../Styling/NavigationStyles";
 import { StyledArrowAsset } from "../../Styling/FilterStyles";
 import { useUserContext } from "../../Contexts/Contexts";
@@ -51,7 +51,7 @@ export default function LeaveReview({ propId }) {
             {[...Array(5)].map((_, i) => {
               return (
                 <StyledStarButton key={i} onClick={(e) => handleInteract(e, i)} onMouseMove={(e) => handleInteract(e, i)}>
-                  <StyledStarAsset src={handleAsset(i)} />
+                  <StyledStar src={handleAsset(i)} />
                 </StyledStarButton>
               );
             })}

@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useErrorContext } from "../Contexts/Contexts";
 const url = import.meta.env.VITE_API_URL;
 
-export default function useFetchUser(userId) {
+export function useFetchUser(userId) {
   const { setError } = useErrorContext();
   const [user, setUser] = useState({});
+  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -18,7 +19,25 @@ export default function useFetchUser(userId) {
         setError(error);
       }
     })();
-  }, [userId, setError]);
+  }, [userId, setError, refresh]);
 
-  return user;
+  return { user, setRefresh };
+}
+
+export function usePostUser() {
+  const { setError } = useErrorContext();
+
+  const postUser = useCallback(
+    async (userId, details) => {
+      try {
+        const { data } = await axios.patch(`${url}/api/users/${userId}`, details);
+        return data;
+      } catch (error) {
+        setError(error);
+      }
+    },
+    [setError]
+  );
+
+  return { postUser };
 }
