@@ -29,14 +29,9 @@ export const StyledNavBar = styled.div`
 `;
 
 export const StyledLink = styled(NavLink)`
-  display: inline-block;
-  position: relative;
   text-decoration: none;
-  padding: 0.5rem 0;
   color: #2a5faf;
-  font-size: ${({ $fontsize }) => $fontsize || "1rem"};
   background-color: transparent !important;
-  border: none;
   outline: none;
   box-shadow: none;
   appearance: none;

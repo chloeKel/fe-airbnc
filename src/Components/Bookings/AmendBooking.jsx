@@ -36,7 +36,15 @@ export default function AmendBooking({ prevCheckIn, prevCheckOut, bookingId, set
       openModal(
         <>
           <BookingConfirmation msg="Booking updated" checkIn={checkIn} checkOut={checkOut} />
-          <StyledButton onClick={closeModal} $width="40vw" $bordertop="1px solid #2a5faf" $borderleft="1px solid #2a5faf">
+          <StyledButton
+            onClick={() => {
+              closeModal();
+              setIsAmendOpen(false);
+            }}
+            $width="40vw"
+            $bordertop="1px solid #2a5faf"
+            $borderleft="1px solid #2a5faf"
+          >
             Close
           </StyledButton>
         </>

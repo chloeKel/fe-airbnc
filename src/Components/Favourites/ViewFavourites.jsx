@@ -12,7 +12,7 @@ export default function ViewFavourites() {
   const { userId } = useUserContext();
   const { isLoading, favourites } = useFetchFavourites(userId);
   const screenSize = useScreenSize();
-  const height = screenSize.height / 3;
+  const height = screenSize.height / 2;
 
   return (
     <>

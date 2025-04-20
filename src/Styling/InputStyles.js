@@ -45,10 +45,14 @@ export const StyledDateInput = styled.input`
   font-weight: 500;
   font-size: 1rem;
   outline: none;
-  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -moz-appearance: none;
+  -webkit-appearance: none !important;
 
   &:focus {
-    border: 2px solid #2a5faf;
+    border: 2px solid #2a5faf !important;
   }
 
   &::-webkit-calendar-picker-indicator {
@@ -58,5 +62,10 @@ export const StyledDateInput = styled.input`
     background-repeat: no-repeat;
     background-position: right center;
     background-size: 1rem;
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-clear-button {
+    display: none;
   }
 `;

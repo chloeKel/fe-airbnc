@@ -51,6 +51,11 @@ export const StyledInfo = styled.div`
   font-weight: 500;
   text-align: center;
 
+  > :nth-child(1),
+  > :nth-child(2) {
+    border-bottom: 1px solid #2a5faf;
+  }
+
   > * {
     display: flex;
     align-items: center;
@@ -59,11 +64,6 @@ export const StyledInfo = styled.div`
     padding: 1rem;
     border-left: 1px solid #2a5faf;
     height: ${({ $height }) => $height};
-  }
-
-  > :nth-child(1),
-  > :nth-child(2) {
-    border-bottom: 1px solid #2a5faf;
   }
 `;
 

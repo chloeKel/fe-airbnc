@@ -55,7 +55,7 @@ export const StyledProfileForm = styled.form`
 `;
 
 export const StyledFormItem = styled.div`
-  aspect-ratio: 1 / 0.5;
+  aspect-ratio: 1 / 0.4;
   width: 50vw;
   display: flex;
   flex-direction: column;

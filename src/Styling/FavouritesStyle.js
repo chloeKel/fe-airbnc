@@ -22,6 +22,17 @@ export const FavouriteCard = styled.div`
   &:nth-child(odd) {
     border-right: 1px solid #2a5faf;
   }
+
+  > * {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
 `;
 
 export const FavouritesText = styled.div`
@@ -40,7 +51,5 @@ export const ImageContainer = styled.div`
     width: 50vw;
     height: auto;
     object-fit: cover;
-    border-top: 1px solid #2a5faf;
-    border-bottom: 1px solid #2a5faf;
   }
 `;

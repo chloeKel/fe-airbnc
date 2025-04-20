@@ -58,9 +58,7 @@ export default function Bookings({ height }) {
                     <StyledBookingsLi $height={`${bookingHeight}px`}>
                       <StyledBookingsImg src={image} alt={property_name} />
                       <StyledInfo $height={`${childHeight}px`}>
-                        <StyledLink to={`/property/${property_id}`}>
-                          <span>{property_name}</span>
-                        </StyledLink>
+                        <StyledLink to={`/property/${property_id}`}>{property_name}</StyledLink>
                         <p>{getBookingDuration(checkIn, checkOut)}</p>
                         <p>Booking reference: {booking_id}</p>
                       </StyledInfo>
