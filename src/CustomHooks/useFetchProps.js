@@ -30,6 +30,7 @@ export default function useFetchProps(userId, sort = null, minprice = null, maxp
     if (containerRef.current) {
       containerRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
+
     (async () => {
       try {
         const {

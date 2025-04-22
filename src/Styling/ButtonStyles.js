@@ -6,18 +6,36 @@ export const StyledButton = styled.button`
   position: relative;
   width: ${({ $width }) => $width};
   height: auto;
-  cursor: pointer;
   padding: 0.5rem 0;
   text-align: center;
   border-right: 1px solid #2a5faf;
   border-bottom: 1px solid #2a5faf;
   border-left: ${({ $borderleft }) => $borderleft || "transparent"};
   border-top: ${({ $bordertop }) => $bordertop || "transparent"};
-  outline: none;
   color: ${({ $color }) => $color || "#2a5faf"};
   background: ${({ $background }) => $background || "#fefce8"};
-  font-size: 1rem;
+  font-family: "Satoshi", sans-serif;
   font-weight: 500;
+  color: #2a5faf;
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
 `;
 
 export const StyledFaveButtonContainer = styled.div`
@@ -57,7 +75,7 @@ export const StyledFavouriteButton = styled.button`
   }
 `;
 
-export const StyledBackButton = styled(Link)`
+export const StyledBackArrow = styled(Link)`
   width: 2rem;
   height: 2rem;
   position: fixed;
@@ -66,10 +84,27 @@ export const StyledBackButton = styled(Link)`
   z-index: 1000;
   background: url("/assets/blueLeftArrow.svg") no-repeat center;
   background-size: contain;
-  border: none;
   padding: 0;
-  cursor: pointer;
   display: inline-block;
   text-decoration: none;
   box-sizing: border-box;
+  border: none;
+  transition: opacity 0.3s ease;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
 `;

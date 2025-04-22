@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../Contexts/Contexts";
 import { NavContainer, StyledLink, StyledLogo, StyledNavBar } from "../../Styling/NavigationStyles";
 
 export default function Navbar({ measureRef }) {
   const { userId } = useUserContext();
+  const navigate = useNavigate();
 
   return (
     <NavContainer ref={measureRef}>
-      <StyledLogo src="/assets/logo.svg" alt="Airbnc" />
+      <StyledLogo src="/assets/logo.svg" alt="Airbnc logo" onClick={() => navigate("/")} />
       <StyledNavBar>
         <StyledLink $fontsize="1.1rem" to="/">
           <span>Explore</span>

@@ -36,10 +36,18 @@ export const StyledName = styled.div`
   grid-area: a;
   height: ${({ $height }) => $height};
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   text-align: center;
+  gap: 5px;
   border-bottom: 1px solid #2a5faf;
+
+  img {
+    width: 1rem;
+    height: auto;
+    background: transparent !important;
+  }
 `;
 
 export const StyledCarouselContainer = styled.li`

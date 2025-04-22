@@ -13,6 +13,7 @@ export const StyledFiltersContainer = styled.div`
 
 export const StyledFilterContainer = styled.div`
   font-family: inherit;
+  font-size: inherit;
   background: #fefce8;
   width: 50%;
   > *:last-child {
@@ -23,7 +24,7 @@ export const StyledFilterContainer = styled.div`
 export const StyledArrowAsset = styled.img`
   width: 1rem;
   height: auto;
-  background: transparent;
+  background: transparent !important;
 `;
 
 export const StyledDropdown = styled.ul`
@@ -42,8 +43,7 @@ export const StyledOptions = styled.li`
   width: 100%;
   cursor: pointer;
   position: relative;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: inherit;
   text-align: center;
 `;
 

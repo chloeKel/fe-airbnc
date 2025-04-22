@@ -9,6 +9,4 @@ export const StyledDefaultContent = styled.div`
   height: auto;
   width: 100%;
   box-sizing: border-box;
-  border-style: solid;
-  border-color: purple;
 `;

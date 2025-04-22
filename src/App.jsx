@@ -7,7 +7,7 @@ import ViewFavourites from "./Components/Favourites/ViewFavourites";
 import Explore from "./Components/ExplorePage/Explore";
 import Navbar from "./Components/ExplorePage/Navbar";
 import useMeasure from "./CustomHooks/useMeasure";
-import { StyledBackButton } from "./Styling/ButtonStyles";
+import { StyledBackArrow } from "./Styling/ButtonStyles";
 import { StyledBody } from "./Styling/GlobalStyle";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <Navbar measureRef={measureRef} />
-      {showBackButton && <StyledBackButton to={-1} aria-label="Go back" preventScrollReset={true} />}
+      {showBackButton && <StyledBackArrow to={-1} aria-label="Go Back" />}
       <StyledBody $height={`${height}px`}>
         <Routes>
           <Route path="/" element={<Explore />} />

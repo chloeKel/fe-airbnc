@@ -18,7 +18,28 @@ export const NavContainer = styled.div`
 export const StyledLogo = styled.img`
   height: 80%;
   width: auto;
-  background: transparent !important;
+  transition: opacity 0.3s ease;
+  background-color: transparent !important;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
 `;
 
 export const StyledNavBar = styled.div`
@@ -39,6 +60,7 @@ export const StyledLink = styled(NavLink)`
   -moz-appearance: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  font-size: inherit;
 
   span {
     position: relative;
